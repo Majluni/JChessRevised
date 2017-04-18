@@ -4,9 +4,9 @@ package MainFrame.ChessFrame.players.Pieces;
 import java.awt.Image;
 import java.awt.Point;
 
-public class Queen {
+public class Bishop {
 
-  /** Creates a new instance of Queen */
+  /** Creates a new instance of Elephent */
   private int X, Y;
   private Point pixelPoint = new Point();
   private int pixelX, pixelY;
@@ -15,7 +15,7 @@ public class Queen {
   private Point p = new Point();
   private Point old = new Point();
 
-  public Queen(String NameIcon, int startX, int startY) {
+  public Bishop(String NameIcon, int startX, int startY) {
 
     PieceIcon = new PieceIcon(NameIcon);
 
@@ -27,69 +27,33 @@ public class Queen {
 
   public boolean Canmove(int x, int y) {
 
-    if (((y == Y) && (x > (X) || (x < X)))) {
+    if ((x - y) == (X - Y)) {
+
       return true;
 
-    } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
-      return true;
-    } else if ((x - y) == (X - Y)) {
-      return true;
+    }
 
-    } else if ((x + y) == (X + Y)) {
+    //////////////////////////////////////////////////////////////////////////////////////////
+    else if ((x + y) == (X + Y)) {
       return true;
 
     } else {
-
       return false;
     }
 
   }
 
   public boolean checkKing(int x, int y, Point othersPostion) {
+
     int j = y;
     int i = x;
-    if (((y == Y) && (x > (X) || (x < (X))))) {
-      if ((X < i)) {
-        while ((i != X)) {
-          i--;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i)))// there Same Color piece
-          {
-            return true;
-          }
-        }
-      } else if ((X > i)) {
-        while ((i != X)) {
-          i++;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-    }
 
-    else if ((((y > Y) || (y < Y)) && (x == (X)))) {
-      if ((Y < j)) {
-        while ((j != Y)) {
-          j--;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      } else if ((Y > j)) {
-        while ((j != Y)) {
-          j++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-
-      }
-    } else if ((x - y) == (X - Y)) {
+    if ((x - y) == (X - Y)) {
       if (x > X && y > Y) {
         while ((j != Y) && (i != X)) {
           j--;
           i--;
+
           if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
             return true;
           }
@@ -109,14 +73,16 @@ public class Queen {
       }
     }
 
-    else if ((x + y) == (X + Y)) {
+    else if (((x + y)) == ((X + Y))) {
 
       if ((X < i) && (Y > j)) {
-        while ((j != Y) && (i != X)) {
+
+        while (((j != Y)) && ((i != X))) {
           j++;
           i--;
 
           if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+
             return true;
           }
 
@@ -125,17 +91,18 @@ public class Queen {
       }
 
       else if ((X > i) && (Y < j)) {
-        while ((j != Y) && (i != X)) {
+        while ((j != X) && (i != X)) {
           j--;
           i++;
 
           if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
             return true;
           }
+
         }
       }
-
     }
+
     return false;
   }
 
@@ -163,50 +130,16 @@ public class Queen {
   }
 
   public boolean PieceInMYway(int x, int y, Point othersPostion) {
+
     int j = y;
     int i = x;
-    if (((y == Y) && (x > (X) || (x < (X))))) {
-      if ((X < i)) {
-        while ((i != X + 1)) {
-          i--;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i)))// there Same Color piece
-          {
-            return true;
-          }
-        }
-      } else if ((X > i)) {
-        while ((i != X - 1)) {
-          i++;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-    }
 
-    else if ((((y > Y) || (y < Y)) && (x == (X)))) {
-      if ((Y < j)) {
-        while ((j != Y + 1)) {
-          j--;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      } else if ((Y > j)) {
-        while ((j != Y - 1)) {
-          j++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-
-      }
-    } else if ((x - y) == (X - Y)) {
+    if ((x - y) == (X - Y)) {
       if (x > X && y > Y) {
         while ((j != Y + 1) && (i != X + 1)) {
           j--;
           i--;
+
           if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
             return true;
           }
@@ -226,14 +159,16 @@ public class Queen {
       }
     }
 
-    else if ((x + y) == (X + Y)) {
+    else if (((x + y)) == ((X + Y))) {
 
       if ((X < i) && (Y > j)) {
-        while ((j != Y - 1) && (i != X + 1)) {
+
+        while (((j != Y - 1)) && ((i != X + 1))) {
           j++;
           i--;
 
           if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+
             return true;
           }
 
@@ -242,17 +177,18 @@ public class Queen {
       }
 
       else if ((X > i) && (Y < j)) {
-        while ((j != Y + 1) && (i != X - 1)) {
+        while ((j != X + 1) && (i != X - 1)) {
           j--;
           i++;
 
           if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
             return true;
           }
+
         }
       }
-
     }
+
     return false;
   }
 
@@ -288,13 +224,19 @@ public class Queen {
   public void setPoint(Point newPoint) {
     old.x = p.x;
     old.y = p.y;
-    X = p.x = newPoint.x;
-    Y = p.y = newPoint.y;
+
+    p.x = newPoint.x;
+
+    p.y = newPoint.y;
+    X = p.x;
+    Y = p.y;
+
   }
 
   public void setX(int newX) {
     X = newX;
-    p.x = X;
+    p.x = newX;
+
   }
 
   public void setY(int newY) {
@@ -303,7 +245,7 @@ public class Queen {
   }
 
   public String Tell_me() {
-    return "Queen= (" + p.x + ',' + p.y + ")";
+    return "Elephent= (" + p.x + ',' + p.y + ")";
   }
 
   public void toOld(Point Old) {

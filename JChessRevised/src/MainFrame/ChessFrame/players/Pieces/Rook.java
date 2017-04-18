@@ -4,18 +4,17 @@ package MainFrame.ChessFrame.players.Pieces;
 import java.awt.Image;
 import java.awt.Point;
 
-public class Queen {
+public class Rook {
 
-  /** Creates a new instance of Queen */
   private int X, Y;
-  private Point pixelPoint = new Point();
   private int pixelX, pixelY;
+  private Point pixelPoint = new Point();
   private boolean havelife = true;
   private PieceIcon PieceIcon;
   private Point p = new Point();
   private Point old = new Point();
 
-  public Queen(String NameIcon, int startX, int startY) {
+  public Rook(String NameIcon, int startX, int startY) {
 
     PieceIcon = new PieceIcon(NameIcon);
 
@@ -26,18 +25,10 @@ public class Queen {
   }
 
   public boolean Canmove(int x, int y) {
-
-    if (((y == Y) && (x > (X) || (x < X)))) {
+    if (((y == Y) && (x > (X) || (x < (X))))) {
       return true;
-
     } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
       return true;
-    } else if ((x - y) == (X - Y)) {
-      return true;
-
-    } else if ((x + y) == (X + Y)) {
-      return true;
-
     } else {
 
       return false;
@@ -49,6 +40,7 @@ public class Queen {
     int j = y;
     int i = x;
     if (((y == Y) && (x > (X) || (x < (X))))) {
+
       if ((X < i)) {
         while ((i != X)) {
           i--;
@@ -65,9 +57,7 @@ public class Queen {
           }
         }
       }
-    }
-
-    else if ((((y > Y) || (y < Y)) && (x == (X)))) {
+    } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
       if ((Y < j)) {
         while ((j != Y)) {
           j--;
@@ -85,58 +75,9 @@ public class Queen {
         }
 
       }
-    } else if ((x - y) == (X - Y)) {
-      if (x > X && y > Y) {
-        while ((j != Y) && (i != X)) {
-          j--;
-          i--;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-
-      else if (x < X && y < Y) {
-        while ((j != Y) && (i != X)) {
-          j++;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-      }
-    }
-
-    else if ((x + y) == (X + Y)) {
-
-      if ((X < i) && (Y > j)) {
-        while ((j != Y) && (i != X)) {
-          j++;
-          i--;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-
-      }
-
-      else if ((X > i) && (Y < j)) {
-        while ((j != Y) && (i != X)) {
-          j--;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-
     }
     return false;
+
   }
 
   public Point GeneratePossible_Moves() {
@@ -166,6 +107,7 @@ public class Queen {
     int j = y;
     int i = x;
     if (((y == Y) && (x > (X) || (x < (X))))) {
+
       if ((X < i)) {
         while ((i != X + 1)) {
           i--;
@@ -182,9 +124,7 @@ public class Queen {
           }
         }
       }
-    }
-
-    else if ((((y > Y) || (y < Y)) && (x == (X)))) {
+    } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
       if ((Y < j)) {
         while ((j != Y + 1)) {
           j--;
@@ -202,58 +142,9 @@ public class Queen {
         }
 
       }
-    } else if ((x - y) == (X - Y)) {
-      if (x > X && y > Y) {
-        while ((j != Y + 1) && (i != X + 1)) {
-          j--;
-          i--;
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-
-      else if (x < X && y < Y) {
-        while ((j != Y - 1) && (i != X - 1)) {
-          j++;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-      }
-    }
-
-    else if ((x + y) == (X + Y)) {
-
-      if ((X < i) && (Y > j)) {
-        while ((j != Y - 1) && (i != X + 1)) {
-          j++;
-          i--;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-
-      }
-
-      else if ((X > i) && (Y < j)) {
-        while ((j != Y + 1) && (i != X - 1)) {
-          j--;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-
     }
     return false;
+
   }
 
   public boolean returnLife() {
@@ -269,14 +160,17 @@ public class Queen {
   }
 
   public Point returnPostion() {
+
     return (Point) p.clone();
   }
 
   public int returnX() {
+    X = p.x;
     return X;
   }
 
   public int returnY() {
+    Y = p.y;
     return Y;
   }
 
@@ -294,16 +188,16 @@ public class Queen {
 
   public void setX(int newX) {
     X = newX;
-    p.x = X;
+    p.x = newX;
   }
 
   public void setY(int newY) {
     Y = newY;
-    p.y = Y;
+    p.y = newY;
   }
 
   public String Tell_me() {
-    return "Queen= (" + p.x + ',' + p.y + ")";
+    return "Castle= (" + p.x + ',' + p.y + ")";
   }
 
   public void toOld(Point Old) {
@@ -312,5 +206,4 @@ public class Queen {
     p.y = Old.y;
 
   }
-
 }
