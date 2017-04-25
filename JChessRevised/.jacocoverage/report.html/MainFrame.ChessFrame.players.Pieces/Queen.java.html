@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Queen.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;JChessRevised&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">MainFrame.ChessFrame.players.Pieces</a> &gt; <span class="el_source">Queen.java</span></div><h1>Queen.java</h1><pre class="source lang-java linenums">package MainFrame.ChessFrame.players.Pieces;
+
+import java.awt.Image;
+import java.awt.Point;
+
+public class Queen extends Piece {
+
+    public Queen(String nameIcon, int startX, int startY) {
+<span class="fc" id="L9">        super(nameIcon, startX, startY);</span>
+<span class="fc" id="L10">    }</span>
+
+    public boolean Canmove(int x, int y) {
+
+<span class="pc bpc" id="L14" title="1 of 6 branches missed.">        if (((y == Y) &amp;&amp; (x &gt; (X) || (x &lt; X)))) {</span>
+<span class="fc" id="L15">            return true;</span>
+
+<span class="pc bpc" id="L17" title="1 of 6 branches missed.">        } else if ((((y &gt; Y) || (y &lt; Y)) &amp;&amp; (x == (X)))) {</span>
+<span class="fc" id="L18">            return true;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        } else if ((x - y) == (X - Y)) {</span>
+<span class="fc" id="L20">            return true;</span>
+
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        } else if ((x + y) == (X + Y)) {</span>
+<span class="fc" id="L23">            return true;</span>
+
+        } else {
+
+<span class="fc" id="L27">            return false;</span>
+        }
+
+    }
+
+    public boolean checkKing(int x, int y, Point othersPostion) {
+<span class="nc" id="L33">        int j = y;</span>
+<span class="nc" id="L34">        int i = x;</span>
+<span class="nc bnc" id="L35" title="All 6 branches missed.">        if (((y == Y) &amp;&amp; (x &gt; (X) || (x &lt; (X))))) {</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if ((X &lt; i)) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">                while ((i != X)) {</span>
+<span class="nc" id="L38">                    i--;</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i)))// there Same Color piece</span>
+                    {
+<span class="nc" id="L41">                        return true;</span>
+                    }
+                }
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            } else if ((X &gt; i)) {</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                while ((i != X)) {</span>
+<span class="nc" id="L46">                    i++;</span>
+<span class="nc bnc" id="L47" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L48">                        return true;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L52" title="All 6 branches missed.">        } else if ((((y &gt; Y) || (y &lt; Y)) &amp;&amp; (x == (X)))) {</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if ((Y &lt; j)) {</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                while ((j != Y)) {</span>
+<span class="nc" id="L55">                    j--;</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L57">                        return true;</span>
+                    }
+                }
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            } else if ((Y &gt; j)) {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                while ((j != Y)) {</span>
+<span class="nc" id="L62">                    j++;</span>
+
+<span class="nc bnc" id="L64" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L65">                        return true;</span>
+                    }
+                }
+
+            }
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        } else if ((x - y) == (X - Y)) {</span>
+<span class="nc bnc" id="L71" title="All 4 branches missed.">            if (x &gt; X &amp;&amp; y &gt; Y) {</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">                while ((j != Y) &amp;&amp; (i != X)) {</span>
+<span class="nc" id="L73">                    j--;</span>
+<span class="nc" id="L74">                    i--;</span>
+<span class="nc bnc" id="L75" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L76">                        return true;</span>
+                    }
+                }
+<span class="nc bnc" id="L79" title="All 4 branches missed.">            } else if (x &lt; X &amp;&amp; y &lt; Y) {</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">                while ((j != Y) &amp;&amp; (i != X)) {</span>
+<span class="nc" id="L81">                    j++;</span>
+<span class="nc" id="L82">                    i++;</span>
+
+<span class="nc bnc" id="L84" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L85">                        return true;</span>
+                    }
+
+                }
+            }
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        } else if ((x + y) == (X + Y)) {</span>
+
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if ((X &lt; i) &amp;&amp; (Y &gt; j)) {</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">                while ((j != Y) &amp;&amp; (i != X)) {</span>
+<span class="nc" id="L94">                    j++;</span>
+<span class="nc" id="L95">                    i--;</span>
+
+<span class="nc bnc" id="L97" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L98">                        return true;</span>
+                    }
+
+                }
+
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            } else if ((X &gt; i) &amp;&amp; (Y &lt; j)) {</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">                while ((j != Y) &amp;&amp; (i != X)) {</span>
+<span class="nc" id="L105">                    j--;</span>
+<span class="nc" id="L106">                    i++;</span>
+
+<span class="nc bnc" id="L108" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L109">                        return true;</span>
+                    }
+                }
+            }
+
+        }
+<span class="nc" id="L115">        return false;</span>
+    }
+
+    public Point GeneratePossible_Moves() {
+<span class="nc" id="L119">        return new Point();</span>
+    }
+
+    public Point getpixelPoint() {
+<span class="fc" id="L123">        return pixelPoint;</span>
+    }
+
+    public int getPixelX() {
+<span class="nc" id="L127">        return pixelX;</span>
+    }
+
+    public int getPixelY() {
+<span class="nc" id="L131">        return pixelY;</span>
+    }
+
+    public boolean Inthispostion(int x, int y) {
+<span class="nc bnc" id="L135" title="All 4 branches missed.">        if (p.x == x &amp;&amp; p.y == y) {</span>
+<span class="nc" id="L136">            return true;</span>
+        }
+<span class="nc" id="L138">        return false;</span>
+    }
+
+    public boolean PieceInMYway(int x, int y, Point othersPostion) {
+<span class="fc" id="L142">        int j = y;</span>
+<span class="fc" id="L143">        int i = x;</span>
+<span class="fc bfc" id="L144" title="All 6 branches covered.">        if (((y == Y) &amp;&amp; (x &gt; (X) || (x &lt; (X))))) {</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">            if ((X &lt; i)) {</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">                while ((i != X + 1)) {</span>
+<span class="fc" id="L147">                    i--;</span>
+<span class="pc bpc" id="L148" title="1 of 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i)))// there Same Color piece</span>
+                    {
+<span class="nc" id="L150">                        return true;</span>
+                    }
+                }
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">            } else if ((X &gt; i)) {</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">                while ((i != X - 1)) {</span>
+<span class="fc" id="L155">                    i++;</span>
+<span class="pc bpc" id="L156" title="3 of 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L157">                        return true;</span>
+                    }
+                }
+            }
+<span class="fc bfc" id="L161" title="All 6 branches covered.">        } else if ((((y &gt; Y) || (y &lt; Y)) &amp;&amp; (x == (X)))) {</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">            if ((Y &lt; j)) {</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">                while ((j != Y + 1)) {</span>
+<span class="fc" id="L164">                    j--;</span>
+<span class="fc bfc" id="L165" title="All 4 branches covered.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="fc" id="L166">                        return true;</span>
+                    }
+                }
+<span class="pc bpc" id="L169" title="1 of 2 branches missed.">            } else if ((Y &gt; j)) {</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">                while ((j != Y - 1)) {</span>
+<span class="fc" id="L171">                    j++;</span>
+
+<span class="pc bpc" id="L173" title="1 of 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L174">                        return true;</span>
+                    }
+                }
+
+            }
+<span class="fc bfc" id="L179" title="All 2 branches covered.">        } else if ((x - y) == (X - Y)) {</span>
+<span class="pc bpc" id="L180" title="1 of 4 branches missed.">            if (x &gt; X &amp;&amp; y &gt; Y) {</span>
+<span class="pc bpc" id="L181" title="3 of 4 branches missed.">                while ((j != Y + 1) &amp;&amp; (i != X + 1)) {</span>
+<span class="nc" id="L182">                    j--;</span>
+<span class="nc" id="L183">                    i--;</span>
+<span class="nc bnc" id="L184" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L185">                        return true;</span>
+                    }
+                }
+<span class="pc bpc" id="L188" title="1 of 4 branches missed.">            } else if (x &lt; X &amp;&amp; y &lt; Y) {</span>
+<span class="pc bpc" id="L189" title="1 of 4 branches missed.">                while ((j != Y - 1) &amp;&amp; (i != X - 1)) {</span>
+<span class="fc" id="L190">                    j++;</span>
+<span class="fc" id="L191">                    i++;</span>
+
+<span class="fc bfc" id="L193" title="All 4 branches covered.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="fc" id="L194">                        return true;</span>
+                    }
+
+                }
+            }
+<span class="pc bpc" id="L199" title="1 of 2 branches missed.">        } else if ((x + y) == (X + Y)) {</span>
+
+<span class="pc bpc" id="L201" title="2 of 4 branches missed.">            if ((X &lt; i) &amp;&amp; (Y &gt; j)) {</span>
+<span class="pc bpc" id="L202" title="1 of 4 branches missed.">                while ((j != Y - 1) &amp;&amp; (i != X + 1)) {</span>
+<span class="fc" id="L203">                    j++;</span>
+<span class="fc" id="L204">                    i--;</span>
+
+<span class="pc bpc" id="L206" title="1 of 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L207">                        return true;</span>
+                    }
+
+                }
+
+<span class="nc bnc" id="L212" title="All 4 branches missed.">            } else if ((X &gt; i) &amp;&amp; (Y &lt; j)) {</span>
+<span class="nc bnc" id="L213" title="All 4 branches missed.">                while ((j != Y + 1) &amp;&amp; (i != X - 1)) {</span>
+<span class="nc" id="L214">                    j--;</span>
+<span class="nc" id="L215">                    i++;</span>
+
+<span class="nc bnc" id="L217" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L218">                        return true;</span>
+                    }
+                }
+            }
+
+        }
+<span class="fc" id="L224">        return false;</span>
+    }
+
+    public boolean returnLife() {
+<span class="nc" id="L228">        return havelife;</span>
+    }
+
+    public Point returnOld() {
+<span class="fc" id="L232">        return old;</span>
+    }
+
+    public Image returnPieceImage() {
+<span class="fc" id="L236">        return icon.returnPieceIcon();</span>
+    }
+
+    public Point returnPostion() {
+<span class="fc" id="L240">        return (Point) p.clone();</span>
+    }
+
+    public int returnX() {
+<span class="nc" id="L244">        return X;</span>
+    }
+
+    public int returnY() {
+<span class="nc" id="L248">        return Y;</span>
+    }
+
+    public void setPixels(int newpixelX, int newpixelY) {
+<span class="fc" id="L252">        pixelPoint.x = newpixelX;</span>
+<span class="fc" id="L253">        pixelPoint.y = newpixelY;</span>
+<span class="fc" id="L254">    }</span>
+
+    public void setPoint(Point newPoint) {
+<span class="fc" id="L257">        old.x = p.x;</span>
+<span class="fc" id="L258">        old.y = p.y;</span>
+<span class="fc" id="L259">        X = p.x = newPoint.x;</span>
+<span class="fc" id="L260">        Y = p.y = newPoint.y;</span>
+<span class="fc" id="L261">    }</span>
+
+    public void setX(int newX) {
+<span class="fc" id="L264">        X = newX;</span>
+<span class="fc" id="L265">        p.x = X;</span>
+<span class="fc" id="L266">    }</span>
+
+    public void setY(int newY) {
+<span class="fc" id="L269">        Y = newY;</span>
+<span class="fc" id="L270">        p.y = Y;</span>
+<span class="fc" id="L271">    }</span>
+
+    public String Tell_me() {
+<span class="fc" id="L274">        return &quot;Queen= (&quot; + p.x + ',' + p.y + &quot;)&quot;;</span>
+    }
+
+    public void toOld(Point Old) {
+
+<span class="nc" id="L279">        p.x = Old.x;</span>
+<span class="nc" id="L280">        p.y = Old.y;</span>
+
+<span class="nc" id="L282">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

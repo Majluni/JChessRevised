@@ -58,7 +58,6 @@ public class Rook extends Piece {
                         return true;
                     }
                 }
-
             }
         }
         return false;
@@ -71,14 +70,6 @@ public class Rook extends Piece {
 
     public Point getpixelPoint() {
         return pixelPoint;
-    }
-
-    public int getPixelX() {
-        return pixelX;
-    }
-
-    public int getPixelY() {
-        return pixelY;
     }
 
     public boolean Inthispostion(int x, int y) {
@@ -129,11 +120,6 @@ public class Rook extends Piece {
             }
         }
         return false;
-
-    }
-
-    public boolean returnLife() {
-        return havelife;
     }
 
     public Point returnOld() {

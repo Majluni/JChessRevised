@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MainPanel.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;JChessRevised&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">MainFrame.ChessFrame</a> &gt; <span class="el_source">MainPanel.java</span></div><h1>MainPanel.java</h1><pre class="source lang-java linenums">package MainFrame.ChessFrame;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Rectangle2D;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import MainFrame.ChessFrame.players.Player1;
+import MainFrame.ChessFrame.players.Player2;
+
+public class MainPanel extends JPanel {
+
+    /// You can inherit from Adapter and avoid meaningless
+<span class="fc" id="L32">    private class Mousehere implements MouseListener {</span>
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+<span class="fc" id="L37">        }</span>
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+<span class="fc" id="L42">        }</span>
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+<span class="fc" id="L47">        }</span>
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+<span class="fc" id="L52">        }</span>
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+<span class="fc" id="L56">            boolean can_Send = false;</span>
+
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            if (!GameOver) {</span>
+
+                Point newP;
+                Point samePostion;
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                if (P1.GetInhand() != -1) {</span>
+
+<span class="fc" id="L64">                    newP = P1.getPixelPoint(P1.GetInhand());</span>
+<span class="fc" id="L65">                    newP.x /= Divide;</span>
+<span class="fc" id="L66">                    newP.y /= Divide;</span>
+<span class="fc" id="L67">                    newP.x++;</span>
+<span class="fc" id="L68">                    newP.y++;</span>
+<span class="fc" id="L69">                    P1.returnOldPostion(P1.GetInhand());</span>
+<span class="fc" id="L70">                    Point present = P1.returnPostion(P1.GetInhand());</span>
+
+                    ///////////////////////////////////////////////////////////////////////////
+                    ///////////////////////////////////////////////////////////////////////////
+<span class="pc bpc" id="L74" title="2 of 4 branches missed.">                    if (Iam_Server || local) {</span>
+
+                        // set the seen of the Pawn -white
+<span class="pc bpc" id="L77" title="1 of 4 branches missed.">                        if (P1.GetInhand() &lt; 33 &amp;&amp; P1.GetInhand() &gt; 24) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">                            for (int i = 1; i &lt; 17; i++) {</span>
+<span class="fc" id="L79">                                samePostion = P2.returnPostion(i);</span>
+<span class="fc bfc" id="L80" title="All 4 branches covered.">                                if (samePostion.x == newP.x &amp;&amp; samePostion.y == newP.y) {</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">                                    if (P1.setSeentoSiliders(P1.GetInhand(), samePostion)) {</span>
+<span class="fc" id="L82">                                        break;</span>
+                                    }
+                                }
+                            }
+                        }
+                        ///////////////////////////////////////////////////////////////////////////////////
+<span class="fc bfc" id="L88" title="All 4 branches covered.">                        if (!(newP.x == present.x &amp;&amp; newP.y == present.y)/* &amp;&amp;!P1.returncheckKing() */) {</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">                            if (P1.checkthemove(newP, P1.GetInhand())) // if the move is illegal</span>
+                            {
+
+<span class="fc" id="L92">                                boolean flag = false;</span>
+
+<span class="fc bfc" id="L94" title="All 2 branches covered.">                                for (int i = 1; i &lt;= 32; i++) {</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">                                    if (P1.GetInhand() != i)// check if there is peices in the WAY</span>
+                                    {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">                                        if (i &lt; 17) {</span>
+<span class="fc" id="L98">                                            flag = P1.checktheWay(newP, P2.returnPostion(i), P1.GetInhand());// Means</span>
+                                            // there is
+                                            // somting in
+                                            // the Way so
+                                            // can't move
+                                        } else {
+<span class="fc" id="L104">                                            flag = P1.checktheWay(newP, P1.returnPostion(i), P1.GetInhand());</span>
+                                        }
+
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">                                        if (flag == true) {</span>
+<span class="nc" id="L108">                                            break;// Means there is a Pice in the Way</span>
+                                        }
+                                    }
+
+                                    //
+                                }
+
+<span class="pc bpc" id="L115" title="2 of 4 branches missed.">                                if (!flag &amp;&amp; P1.Pice_already_there(newP)) // (if flag =false this means &quot;The pice able to MOVE as logic&quot;&quot;</span>
+                                {
+<span class="fc" id="L117">                                    Point myold = new Point();</span>
+<span class="fc" id="L118">                                    Point o = P1.returnPostion(P1.GetInhand());</span>
+<span class="fc" id="L119">                                    myold.x = o.x;</span>
+<span class="fc" id="L120">                                    myold.y = o.y;</span>
+<span class="fc" id="L121">                                    Point other = new Point();</span>
+<span class="fc" id="L122">                                    Point f = new Point();</span>
+<span class="fc" id="L123">                                    boolean kill = false;</span>
+<span class="fc" id="L124">                                    int killed = -1;</span>
+<span class="fc" id="L125">                                    boolean end_move = true;</span>
+
+                                    //// *** Start Here to Check the King
+<span class="fc bfc" id="L128" title="All 2 branches covered.">                                    for (int k = 1; k &lt; 17; k++) {</span>
+                                        // I have to Check the Place
+
+<span class="fc" id="L131">                                        other = P2.returnPostion(k);</span>
+
+<span class="fc bfc" id="L133" title="All 4 branches covered.">                                        if (newP.x == other.x &amp;&amp; newP.y == other.y) {</span>
+
+<span class="fc" id="L135">                                            int inHand = P1.GetInhand();</span>
+
+<span class="pc bpc" id="L137" title="1 of 4 branches missed.">                                            if (inHand &gt; 24 &amp;&amp; P1.returnPawnSeen(inHand)) {</span>
+<span class="fc" id="L138">                                                kill = true;</span>
+
+<span class="fc" id="L140">                                                f.x = other.x;</span>
+<span class="fc" id="L141">                                                f.y = other.y;</span>
+
+<span class="fc" id="L143">                                                P2.Killedpiec(k);</span>
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">                                            } else if (inHand &lt;= 24) {</span>
+<span class="fc" id="L145">                                                kill = true;</span>
+
+<span class="fc" id="L147">                                                f.x = other.x;</span>
+<span class="fc" id="L148">                                                f.y = other.y;</span>
+
+<span class="fc" id="L150">                                                P2.Killedpiec(k);</span>
+                                            } else {
+<span class="nc" id="L152">                                                P1.changePostion(myold, inHand);</span>
+<span class="nc" id="L153">                                                end_move = false;</span>
+
+<span class="nc" id="L155">                                                break;</span>
+                                            }
+
+<span class="fc" id="L158">                                            killed = k;// !!!</span>
+
+<span class="fc" id="L160">                                            break;</span>
+
+                                        }
+
+                                    }
+
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">                                    if (end_move) {</span>
+<span class="fc" id="L167">                                        P1.changePostion(newP, P1.GetInhand());// Here is the mOve ended</span>
+                                    }
+
+<span class="fc" id="L170">                                    P1.checkKing(false);</span>
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">                                    if (P1.seeIfChecked(P2)) // if my king will be in check if i move</span>
+                                    // so i can't move and i will return back to old postion'
+                                    {
+<span class="nc" id="L174">                                        P1.changePostion(myold, P1.GetInhand());</span>
+<span class="nc" id="L175">                                        P1.checkKing(true);</span>
+<span class="nc" id="L176">                                        end_move = false;</span>
+                                    }
+<span class="pc bpc" id="L178" title="1 of 4 branches missed.">                                    if (kill &amp;&amp; P1.returncheckKing()) {</span>
+<span class="nc" id="L179">                                        P2.changePostion(f, killed);</span>
+
+                                    }
+
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">                                    if (!P1.returncheckKing()) {</span>
+
+<span class="fc bfc" id="L185" title="All 2 branches covered.">                                        if (P2.seeIfChecked(P1)) // if my king will be in check if i move</span>
+                                        // so i can't move and i will return back to old postion'
+                                        {
+
+<span class="fc" id="L189">                                            P2.checkKing(true);</span>
+<span class="fc" id="L190">                                            end_move = false;</span>
+<span class="fc bfc" id="L191" title="All 2 branches covered.">                                            if (P2.Check_Mate_GameOver(P1)) {</span>
+<span class="fc" id="L192">                                                GameOver();</span>
+<span class="fc" id="L193">                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
+<span class="fc" id="L194">                                                        + Integer.toString(newP.y);</span>
+<span class="fc" id="L195">                                                can_Send = true;</span>
+                                            } else {
+<span class="fc" id="L197">                                                Box = Integer.toString(P1.GetInhand()) + Integer.toString(newP.x)</span>
+<span class="fc" id="L198">                                                        + Integer.toString(newP.y);</span>
+
+<span class="fc" id="L200">                                                CheckStatus();</span>
+<span class="fc" id="L201">                                                can_Send = true;</span>
+
+                                            }
+
+                                        }
+
+<span class="fc bfc" id="L207" title="All 2 branches covered.">                                        if (end_move) {</span>
+<span class="fc" id="L208">                                            Box = Integer.toString(P1.GetInhand()) + Integer.toString(newP.x)</span>
+<span class="fc" id="L209">                                                    + Integer.toString(newP.y);</span>
+
+<span class="fc" id="L211">                                            ChangeTurn();</span>
+<span class="fc" id="L212">                                            can_Send = true;</span>
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+                        }
+
+<span class="fc" id="L222">                        P1.SetInhand(-1);</span>
+
+<span class="fc" id="L224">                        repaint();</span>
+
+<span class="pc bpc" id="L226" title="2 of 6 branches missed.">                        if (can_Send &amp;&amp; ((Iam_Server || Iam_Client))) {</span>
+
+<span class="nc" id="L228">                            Send_move();</span>
+                            // Send_to.resume();
+
+                            // Recv_from.resume();
+                        }
+
+<span class="fc bfc" id="L234" title="All 2 branches covered.">                        if (GameOver) {</span>
+<span class="fc" id="L235">                            JOptionPane.showConfirmDialog(null, &quot;Check Mate\n White won the game&quot;, &quot;Game Over&quot;,</span>
+                                    JOptionPane.PLAIN_MESSAGE);
+                        }
+
+                    }
+<span class="fc" id="L240">                } /////////////////////////////// Black/////////////////////////////////////////</span>
+                ////////////////////////////// Black///////////////////////////////////////////
+                ////////////////////////////// Black//////////////////////////////////////////////
+                ////////////////////////////// Black//////////////////////////////////////////////
+<span class="fc bfc" id="L244" title="All 2 branches covered.">                else if (P2.GetInhand() != -1)// white</span>
+                {
+
+<span class="pc bpc" id="L247" title="2 of 4 branches missed.">                    if (Iam_Client || local) {</span>
+<span class="fc" id="L248">                        newP = P2.getPixelPoint(P2.GetInhand());</span>
+<span class="fc" id="L249">                        newP.x /= Divide;</span>
+<span class="fc" id="L250">                        newP.y /= Divide;</span>
+<span class="fc" id="L251">                        newP.x++;</span>
+<span class="fc" id="L252">                        newP.y++;</span>
+<span class="fc" id="L253">                        P2.returnOldPostion(P2.GetInhand());</span>
+<span class="fc" id="L254">                        Point present = P2.returnPostion(P2.GetInhand());</span>
+
+                        // set the seen of the Pawn -black
+                        // set the seen of the Pawn -black
+                        // set the seen of the Pawn -black
+<span class="pc bpc" id="L259" title="1 of 4 branches missed.">                        if (P2.GetInhand() &lt; 17 &amp;&amp; P2.GetInhand() &gt; 8) {</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">                            for (int i = 17; i &lt; 33; i++) {</span>
+<span class="fc" id="L261">                                samePostion = P1.returnPostion(i);</span>
+
+<span class="fc bfc" id="L263" title="All 4 branches covered.">                                if (samePostion.x == newP.x &amp;&amp; samePostion.y == newP.y) {</span>
+<span class="pc bpc" id="L264" title="1 of 2 branches missed.">                                    if (P2.setSeentoSiliders(P2.GetInhand(), samePostion)) {</span>
+
+<span class="fc" id="L266">                                        break;</span>
+                                    }
+                                }
+                            }
+                        }
+
+<span class="fc bfc" id="L272" title="All 4 branches covered.">                        if (!(newP.x == present.x &amp;&amp; newP.y == present.y)/* &amp;&amp;!P2.returncheckKing() */) {</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">                            if (P2.checkthemove(newP, P2.GetInhand())) {</span>
+<span class="fc" id="L274">                                boolean flag = false;</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">                                for (int i = 1; i &lt;= 32; i++) {</span>
+<span class="fc bfc" id="L276" title="All 2 branches covered.">                                    if (P2.GetInhand() != i) {</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">                                        if (i &lt; 17) {</span>
+<span class="fc" id="L278">                                            flag = P2.checktheWay(newP, P2.returnPostion(i), P2.GetInhand());</span>
+                                        } else {
+<span class="fc" id="L280">                                            flag = P2.checktheWay(newP, P1.returnPostion(i), P2.GetInhand());</span>
+                                        }
+
+<span class="pc bpc" id="L283" title="1 of 2 branches missed.">                                        if (flag) {</span>
+<span class="nc" id="L284">                                            break;</span>
+                                        }
+                                    }
+                                }
+
+<span class="pc bpc" id="L289" title="1 of 4 branches missed.">                                for (int i = 1; i &lt;= 16 &amp;&amp; !flag; i++) {</span>
+<span class="fc bfc" id="L290" title="All 2 branches covered.">                                    if (P2.GetInhand() != i) {</span>
+<span class="pc bpc" id="L291" title="1 of 2 branches missed.">                                        if (flag == false) {</span>
+<span class="fc" id="L292">                                            samePostion = P2.returnPostion(i);</span>
+<span class="fc bfc" id="L293" title="All 4 branches covered.">                                            if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
+<span class="fc" id="L294">                                                flag = true;</span>
+<span class="fc" id="L295">                                                break;</span>
+
+                                            }
+                                        }
+
+                                    }
+
+<span class="pc bpc" id="L302" title="1 of 2 branches missed.">                                    if (flag) {</span>
+<span class="nc" id="L303">                                        break;</span>
+                                    }
+                                }
+
+<span class="fc bfc" id="L307" title="All 2 branches covered.">                                if (!flag) {</span>
+<span class="fc" id="L308">                                    P2.returnPostion(8);</span>
+<span class="fc" id="L309">                                    Point myold = new Point();</span>
+<span class="fc" id="L310">                                    Point o = P2.returnPostion(P2.GetInhand());</span>
+<span class="fc" id="L311">                                    myold.x = o.x;</span>
+<span class="fc" id="L312">                                    myold.y = o.y;</span>
+<span class="fc" id="L313">                                    Point other = new Point();</span>
+<span class="fc" id="L314">                                    Point f = new Point();</span>
+<span class="fc" id="L315">                                    boolean kill = false;</span>
+<span class="fc" id="L316">                                    boolean end_move = true;</span>
+<span class="fc" id="L317">                                    int killed = -1;</span>
+
+<span class="fc bfc" id="L319" title="All 2 branches covered.">                                    for (int k = 17; k &lt; 33; k++) {</span>
+<span class="fc" id="L320">                                        other = P1.returnPostion(k);</span>
+<span class="fc bfc" id="L321" title="All 4 branches covered.">                                        if (newP.x == other.x &amp;&amp; newP.y == other.y) {</span>
+
+<span class="fc" id="L323">                                            int inHand = P2.GetInhand();</span>
+
+<span class="pc bpc" id="L325" title="1 of 4 branches missed.">                                            if (inHand &gt; 8 &amp;&amp; P2.returnsoliderSeen(inHand)) {</span>
+<span class="fc" id="L326">                                                kill = true;</span>
+
+<span class="fc" id="L328">                                                other = P1.returnPostion(k);</span>
+
+<span class="fc" id="L330">                                                f.x = other.x;</span>
+<span class="fc" id="L331">                                                f.y = other.y;</span>
+
+<span class="fc" id="L333">                                                P1.Killedpiec(k);</span>
+<span class="pc bpc" id="L334" title="1 of 2 branches missed.">                                            } else if (inHand &lt;= 8) {</span>
+<span class="fc" id="L335">                                                kill = true;</span>
+
+<span class="fc" id="L337">                                                other = P1.returnPostion(k);</span>
+
+<span class="fc" id="L339">                                                f.x = other.x;</span>
+<span class="fc" id="L340">                                                f.y = other.y;</span>
+<span class="fc" id="L341">                                                P1.Killedpiec(k);</span>
+                                            } else {
+<span class="nc" id="L343">                                                end_move = false;</span>
+<span class="nc" id="L344">                                                P2.changePostion(myold, inHand);</span>
+                                            }
+
+<span class="fc" id="L347">                                            killed = k;</span>
+<span class="fc" id="L348">                                            break;</span>
+
+                                        }
+
+                                    }
+                                    // boolean kin2=true;
+<span class="pc bpc" id="L354" title="1 of 2 branches missed.">                                    if (end_move) {</span>
+<span class="fc" id="L355">                                        P2.changePostion(newP, P2.GetInhand());</span>
+                                    }
+
+<span class="fc" id="L358">                                    P2.checkKing(false);</span>
+<span class="fc bfc" id="L359" title="All 2 branches covered.">                                    if (P2.seeIfChecked(P1)) // if my king will be in check if i move</span>
+                                    // so i can't move and i will return back to old postion'
+                                    {
+<span class="fc" id="L362">                                        P2.changePostion(myold, P2.GetInhand());</span>
+<span class="fc" id="L363">                                        P2.checkKing(true);</span>
+
+<span class="fc" id="L365">                                        end_move = false;</span>
+
+                                    }
+<span class="pc bpc" id="L368" title="1 of 4 branches missed.">                                    if (kill &amp;&amp; P2.returncheckKing()) {</span>
+
+<span class="nc" id="L370">                                        P1.changePostion(f, killed);</span>
+                                    }
+
+<span class="fc bfc" id="L373" title="All 2 branches covered.">                                    if (P2.returncheckKing()) {</span>
+<span class="fc" id="L374">                                        P2.changePostion(myold, P2.GetInhand());</span>
+                                    }
+
+<span class="fc bfc" id="L377" title="All 2 branches covered.">                                    if (!P2.returncheckKing()) {</span>
+<span class="pc bpc" id="L378" title="1 of 2 branches missed.">                                        if (P1.seeIfChecked(P2)) // if my king will be in check if i move</span>
+                                        // so i can't move and i will return back to old postion'
+                                        {
+
+<span class="nc" id="L382">                                            P1.checkKing(true);</span>
+<span class="nc" id="L383">                                            end_move = false;</span>
+
+<span class="nc bnc" id="L385" title="All 2 branches missed.">                                            if (P1.Check_Mate_GameOver(P2)) {</span>
+<span class="nc" id="L386">                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
+<span class="nc" id="L387">                                                        + Integer.toString(newP.y);</span>
+<span class="nc" id="L388">                                                GameOver();</span>
+
+<span class="nc" id="L390">                                                can_Send = true;</span>
+                                            } else {
+<span class="nc" id="L392">                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
+<span class="nc" id="L393">                                                        + Integer.toString(newP.y);</span>
+<span class="nc" id="L394">                                                CheckStatus();</span>
+<span class="nc" id="L395">                                                can_Send = true;</span>
+                                            }
+                                        }
+
+<span class="pc bpc" id="L399" title="1 of 2 branches missed.">                                        if (end_move) {</span>
+<span class="fc" id="L400">                                            Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
+<span class="fc" id="L401">                                                    + Integer.toString(newP.y);</span>
+<span class="fc" id="L402">                                            ChangeTurn();</span>
+<span class="fc" id="L403">                                            can_Send = true;</span>
+                                        }
+
+                                    }
+
+                                }
+                            }
+                        }
+<span class="fc" id="L411">                        P2.SetInhand(-1);</span>
+
+<span class="fc" id="L413">                        repaint();</span>
+
+<span class="pc bpc" id="L415" title="2 of 6 branches missed.">                        if (can_Send &amp;&amp; ((Iam_Server || Iam_Client))) {</span>
+
+                            // Send_to.resume();
+<span class="nc" id="L418">                            Send_move();</span>
+                            /// Recv_from.resume();
+
+                        }
+<span class="pc bpc" id="L422" title="1 of 2 branches missed.">                        if (GameOver) {</span>
+<span class="nc" id="L423">                            JOptionPane.showConfirmDialog(null, &quot;Check Mate\n Black won the game&quot;, &quot;Game Over&quot;,</span>
+                                    JOptionPane.DEFAULT_OPTION);
+                        }
+
+                    }
+                }
+            }
+
+<span class="fc" id="L431">        }</span>
+    }
+
+<span class="fc" id="L434">    private class MousewhenMove implements MouseMotionListener {</span>
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+
+<span class="fc" id="L439">            int x = e.getX();</span>
+<span class="fc" id="L440">            int y = e.getY();</span>
+<span class="fc bfc" id="L441" title="All 2 branches covered.">            if (controll_game_type(x, y)) {</span>
+
+<span class="fc" id="L443">                repaint();</span>
+            }
+
+<span class="fc" id="L446">        }</span>
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+
+<span class="fc" id="L451">        }</span>
+
+    }
+
+<span class="nc" id="L455">    class Recv_Thread extends Thread {</span>
+
+        @Override
+        public synchronized void run() {
+
+            while (true) {
+
+                try {
+
+<span class="nc" id="L464">                    Box = in.readLine();</span>
+
+<span class="nc" id="L466">                } catch (IOException ex) {</span>
+<span class="nc" id="L467">                    ex.printStackTrace();</span>
+<span class="nc" id="L468">                    System.out.println(&quot;ERROR&quot;);</span>
+<span class="nc" id="L469">                }</span>
+
+<span class="nc bnc" id="L471" title="All 2 branches missed.">                if (Box != null) {</span>
+
+<span class="nc" id="L473">                    int newInHand = Integer.parseInt(Box);</span>
+<span class="nc" id="L474">                    int newX = Integer.parseInt(Box);</span>
+<span class="nc" id="L475">                    int newY = Integer.parseInt(Box);</span>
+
+                    /**
+                     * *
+                     * Operation to Get 1- The # of Pice 2- The Location X 3-
+                     * The Location Y
+                     *
+                     *
+                     */
+<span class="nc" id="L484">                    newInHand /= 100;</span>
+<span class="nc" id="L485">                    newX -= (newInHand * 100);</span>
+<span class="nc" id="L486">                    newX /= 10;</span>
+<span class="nc" id="L487">                    newY -= (newInHand * 100) + (newX * 10);</span>
+
+<span class="nc bnc" id="L489" title="All 2 branches missed.">                    if (players_turn == 1) {</span>
+
+<span class="nc" id="L491">                        P1.SetInhand(newInHand);</span>
+<span class="nc" id="L492">                        players_turn = 2;</span>
+
+<span class="nc" id="L494">                        P1.changePostion(new Point(newX, newY), newInHand);</span>
+
+<span class="nc" id="L496">                        P2.Killedpiec(P1.Get_Pice_already_there_from_enemy(new Point(newX, newY), P2));</span>
+<span class="nc" id="L497">                        P2.checkKing(false);</span>
+
+<span class="nc bnc" id="L499" title="All 2 branches missed.">                        if (P2.seeIfChecked(P1)) // if my king will be in check if i move</span>
+                        // so i can't move and i will return back to old postion'
+                        {
+
+<span class="nc" id="L503">                            P2.checkKing(true);</span>
+
+<span class="nc bnc" id="L505" title="All 2 branches missed.">                            if (P2.Check_Mate_GameOver(P1)) {</span>
+<span class="nc" id="L506">                                System.out.println(&quot;mate&quot;);</span>
+<span class="nc" id="L507">                                GameOver();</span>
+
+                            } else {
+
+<span class="nc" id="L511">                                NeTGameCheckStatus();</span>
+
+                            }
+                        } else {
+<span class="nc" id="L515">                            NetChangeTurn();</span>
+                        }
+
+<span class="nc" id="L518">                        P1.SetInhand(-1);</span>
+
+                    } else {
+<span class="nc" id="L521">                        P2.SetInhand(newInHand);</span>
+<span class="nc" id="L522">                        P2.changePostion(new Point(newX, newY), newInHand);</span>
+
+<span class="nc" id="L524">                        P1.Killedpiec(P2.Get_Pice_already_there_from_enemy(new Point(newX, newY), P1));</span>
+<span class="nc" id="L525">                        players_turn = 1;</span>
+
+<span class="nc" id="L527">                        P1.checkKing(false);</span>
+<span class="nc bnc" id="L528" title="All 2 branches missed.">                        if (P1.seeIfChecked(P2)) // if my king will be in check if i move</span>
+                        // so i can't move and i will return back to old postion'
+                        {
+
+<span class="nc" id="L532">                            P1.checkKing(true);</span>
+
+<span class="nc bnc" id="L534" title="All 2 branches missed.">                            if (P1.Check_Mate_GameOver(P2)) {</span>
+
+<span class="nc" id="L536">                                System.out.println(&quot;mate&quot;);</span>
+<span class="nc" id="L537">                                GameOver();</span>
+
+                            } else {
+
+<span class="nc" id="L541">                                NeTGameCheckStatus();</span>
+
+                            }
+                        } else {
+<span class="nc" id="L545">                            NetChangeTurn();</span>
+                        }
+
+<span class="nc" id="L548">                        P2.SetInhand(-1);</span>
+                    }
+                    // CheckStatus();
+
+<span class="nc" id="L552">                    repaint();</span>
+<span class="nc" id="L553">                }</span>
+
+            }
+        }
+    }
+
+<span class="fc" id="L559">    private Player1 P1 = new Player1();</span>
+<span class="fc" id="L560">    private Player2 P2 = new Player2();</span>
+<span class="fc" id="L561">    private final int Divide = 600 / 8;</span>
+    private Rectangle2D rec;
+<span class="fc" id="L563">    private short players_turn = 1;</span>
+    public final ToolPanel myTool;
+    private final StatusPanel myStatus;
+<span class="fc" id="L566">    private boolean GameOver = false;</span>
+<span class="fc" id="L567">    private boolean Iam_Server = false;</span>
+<span class="fc" id="L568">    private boolean Iam_Client = false;</span>
+    private ServerSocket ServerSock;
+    private Socket Sock;
+    private BufferedReader in;
+    private PrintWriter out;
+    private String Box;
+<span class="fc" id="L574">    private boolean local = true;</span>
+    private JButton startServer;
+    private JButton startClient;
+    private String MyIp_Address;
+    private String MyPort_number;
+
+<span class="fc" id="L580">    private boolean Game_started = true;</span>
+    private Recv_Thread Recv_from;
+
+    private ChatPanel Refe_Chat;
+
+<span class="fc" id="L585">    public MainPanel(ToolPanel myToolPanel, StatusPanel myStatusPanel) {</span>
+<span class="fc" id="L586">        setBackground(Color.WHITE);</span>
+
+<span class="fc" id="L588">        setSize(600, 600);</span>
+<span class="fc" id="L589">        setLocation(3, 10);</span>
+
+<span class="fc" id="L591">        MousewhenMove mouseDragAndDrop = new MousewhenMove();</span>
+<span class="fc" id="L592">        Mousehere mouseHereEvent = new Mousehere();</span>
+<span class="fc" id="L593">        addMouseMotionListener(mouseDragAndDrop);</span>
+<span class="fc" id="L594">        addMouseListener(mouseHereEvent);</span>
+
+<span class="fc" id="L596">        myTool = myToolPanel;</span>
+<span class="fc" id="L597">        myStatus = myStatusPanel;</span>
+<span class="fc" id="L598">        setLayout(null);</span>
+
+<span class="fc" id="L600">    }</span>
+
+    //////// *---------------Mohamed Sami ------------------*//////////////////
+    public boolean BoardgetPostion(int x, int y) {
+<span class="pc bpc" id="L604" title="2 of 4 branches missed.">        if (!GameOver &amp;&amp; Game_started) {</span>
+<span class="pc bpc" id="L605" title="8 of 10 branches missed.">            if ((Iam_Server &amp;&amp; players_turn == 1) || (local) || (Iam_Client &amp;&amp; players_turn == 2)) {</span>
+
+<span class="fc" id="L607">                int newX = x / Divide;</span>
+<span class="fc" id="L608">                int newY = y / Divide;</span>
+<span class="fc" id="L609">                newX++;</span>
+<span class="fc" id="L610">                newY++;</span>
+
+<span class="pc bpc" id="L612" title="4 of 8 branches missed.">                if (newX &gt; 8 || newY &gt; 8 || newX &lt; 1 || newY &lt; 1) {</span>
+<span class="nc" id="L613">                    repaint();</span>
+<span class="nc" id="L614">                    return false;</span>
+
+                }
+
+<span class="fc bfc" id="L618" title="All 4 branches covered.">                if (players_turn == 1 &amp;&amp; P1.GetInhand() == -1)// Player 1</span>
+                {
+<span class="fc bfc" id="L620" title="All 2 branches covered.">                    for (int i = 17; i &lt;= 32; i++) {</span>
+<span class="fc" id="L621">                        Point p = P1.returnPostion(i);</span>
+<span class="fc bfc" id="L622" title="All 4 branches covered.">                        if (p.x == newX &amp;&amp; p.y == newY) {</span>
+<span class="fc" id="L623">                            P1.SetInhand(i);</span>
+<span class="fc" id="L624">                            whenHandleAndPice(x, y);</span>
+<span class="fc" id="L625">                            return true;</span>
+                        }
+                    }
+<span class="fc bfc" id="L628" title="All 4 branches covered.">                } else if (players_turn == 2 &amp;&amp; P2.GetInhand() == -1)// Player 2</span>
+                {
+<span class="fc bfc" id="L630" title="All 2 branches covered.">                    for (int i = 1; i &lt;= 16; i++) {</span>
+<span class="fc" id="L631">                        Point p = P2.returnPostion(i);</span>
+<span class="fc bfc" id="L632" title="All 4 branches covered.">                        if (p.x == newX &amp;&amp; p.y == newY) {</span>
+<span class="fc" id="L633">                            P2.SetInhand(i);</span>
+<span class="fc" id="L634">                            whenHandleAndPice(x, y);</span>
+<span class="fc" id="L635">                            return true;</span>
+                        }
+                    }
+<span class="pc bpc" id="L638" title="1 of 4 branches missed.">                } else if (players_turn == 1 &amp;&amp; P1.GetInhand() != -1)// Player 1</span>
+                {
+<span class="fc" id="L640">                    whenHandleAndPice(x, y);</span>
+<span class="fc" id="L641">                    return true;</span>
+<span class="pc bpc" id="L642" title="2 of 4 branches missed.">                } else if (players_turn == 2 &amp;&amp; P2.GetInhand() != -1)// Player 2</span>
+                {
+<span class="fc" id="L644">                    whenHandleAndPice(x, y);</span>
+<span class="fc" id="L645">                    return true;</span>
+                }
+<span class="fc" id="L647">                P1.SetInhand(-1);</span>
+<span class="fc" id="L648">                return false;</span>
+
+            }
+        }
+<span class="nc" id="L652">        return false;</span>
+    }
+
+    private void ChangeTurn() {
+<span class="fc bfc" id="L656" title="All 2 branches covered.">        if (players_turn == 1) {</span>
+<span class="fc" id="L657">            players_turn = 2;</span>
+<span class="fc" id="L658">            myTool.add_to_History(&quot;White : &quot; + P1.Tell_me_About_last_move());</span>
+<span class="fc" id="L659">            myStatus.changeStatus(&quot; Black player turn&quot;);</span>
+<span class="fc" id="L660">            myTool.change_to_Timer2();</span>
+<span class="pc bpc" id="L661" title="1 of 2 branches missed.">        } else if (players_turn == 2) {</span>
+<span class="fc" id="L662">            players_turn = 1;</span>
+<span class="fc" id="L663">            myTool.add_to_History(&quot;Black : &quot; + P2.Tell_me_About_last_move());</span>
+<span class="fc" id="L664">            myTool.change_to_Timer1();</span>
+<span class="fc" id="L665">            myStatus.changeStatus(&quot; White player turn&quot;);</span>
+        }
+
+<span class="fc" id="L668">    }</span>
+
+    private void CheckStatus() {
+<span class="pc bpc" id="L671" title="1 of 2 branches missed.">        if (players_turn == 1) {</span>
+
+<span class="fc" id="L673">            players_turn = 2;</span>
+<span class="fc" id="L674">            myTool.add_to_History(&quot;White : &quot; + P1.Tell_me_About_last_move());</span>
+<span class="fc" id="L675">            myTool.change_to_Timer2();</span>
+<span class="nc bnc" id="L676" title="All 2 branches missed.">        } else if (players_turn == 2) {</span>
+
+<span class="nc" id="L678">            players_turn = 1;</span>
+<span class="nc" id="L679">            myTool.add_to_History(&quot;Black : &quot; + P2.Tell_me_About_last_move());</span>
+<span class="nc" id="L680">            myTool.change_to_Timer1();</span>
+        }
+
+<span class="fc" id="L683">        myStatus.changeStatus(&quot; Check! &quot;);</span>
+<span class="fc" id="L684">    }</span>
+
+    private int colToY(int c) {
+        int myy;
+<span class="fc" id="L688">        int iWidth = getWidth();</span>
+<span class="fc" id="L689">        myy = (c * iWidth / 8) - Divide;</span>
+<span class="fc" id="L690">        return myy;</span>
+    }
+
+    public boolean controll_game_type(int x, int y) {
+
+<span class="pc bpc" id="L695" title="4 of 6 branches missed.">        if (Iam_Server == true || Iam_Client == true &amp;&amp; Game_started) {</span>
+<span class="nc bnc" id="L696" title="All 4 branches missed.">            if (Iam_Server &amp;&amp; players_turn == 1) {</span>
+<span class="nc" id="L697">                return BoardgetPostion(x, y);</span>
+<span class="nc bnc" id="L698" title="All 4 branches missed.">            } else if (Iam_Client &amp;&amp; players_turn == 2) {</span>
+<span class="nc" id="L699">                return BoardgetPostion(x, y);</span>
+            } else {
+<span class="nc" id="L701">                return false;</span>
+            }
+        } else {
+<span class="fc" id="L704">            return BoardgetPostion(x, y);</span>
+        }
+
+        // return false;
+    }
+
+    private void GameOver() {
+
+<span class="fc" id="L712">        myStatus.changeStatus(&quot; Check Mate! &quot;);</span>
+
+<span class="fc" id="L714">        GameOver = true;</span>
+<span class="fc" id="L715">    }</span>
+
+    private void NetChangeTurn() {
+<span class="nc bnc" id="L718" title="All 2 branches missed.">        if (players_turn == 2) {</span>
+
+<span class="nc" id="L720">            myTool.add_to_History(&quot;White : &quot; + P1.Tell_me_About_last_move());</span>
+<span class="nc" id="L721">            myStatus.changeStatus(&quot; Black player turn&quot;);</span>
+<span class="nc" id="L722">            myTool.change_to_Timer2();</span>
+<span class="nc bnc" id="L723" title="All 2 branches missed.">        } else if (players_turn == 1) {</span>
+
+<span class="nc" id="L725">            myTool.add_to_History(&quot;Black : &quot; + P2.Tell_me_About_last_move());</span>
+<span class="nc" id="L726">            myTool.change_to_Timer1();</span>
+<span class="nc" id="L727">            myStatus.changeStatus(&quot; White player turn&quot;);</span>
+        }
+
+<span class="nc" id="L730">    }</span>
+
+    private void NeTGameCheckStatus() {
+<span class="nc bnc" id="L733" title="All 2 branches missed.">        if (players_turn == 1) {</span>
+
+<span class="nc" id="L735">            myTool.add_to_History(&quot;White : &quot; + P1.Tell_me_About_last_move());</span>
+<span class="nc" id="L736">            myTool.change_to_Timer2();</span>
+<span class="nc bnc" id="L737" title="All 2 branches missed.">        } else if (players_turn == 2) {</span>
+
+<span class="nc" id="L739">            myTool.add_to_History(&quot;Black : &quot; + P2.Tell_me_About_last_move());</span>
+<span class="nc" id="L740">            myTool.change_to_Timer1();</span>
+        }
+<span class="nc" id="L742">        myStatus.changeStatus(&quot; Check! &quot;);</span>
+<span class="nc" id="L743">    }</span>
+
+    @Override
+    public void paintComponent(Graphics g) {
+
+<span class="fc" id="L748">        super.paintComponent(g);</span>
+
+<span class="fc" id="L750">        Graphics2D g2 = (Graphics2D) g;</span>
+
+<span class="fc" id="L752">        int iWidth = 600;</span>
+        // Drawing the board
+<span class="fc bfc" id="L754" title="All 2 branches covered.">        for (int i = 0; i &lt; 8; i = i + 2) {</span>
+<span class="fc bfc" id="L755" title="All 2 branches covered.">            for (int j = 0; j &lt; 8; j = j + 2) {</span>
+
+<span class="fc" id="L757">                g2.setColor(Color.BLUE);</span>
+<span class="fc" id="L758">                rec = new Rectangle2D.Double(j * iWidth / 8, (1 + i) * iWidth / 8, Divide, Divide);</span>
+<span class="fc" id="L759">                g2.fill(rec);</span>
+<span class="fc" id="L760">                rec = new Rectangle2D.Double((1 + j) * iWidth / 8, i * iWidth / 8, Divide, Divide);</span>
+<span class="fc" id="L761">                g2.fill(rec);</span>
+
+            }
+        }
+
+        /// Puting the pieces
+        Point postionPoint;
+        int postX;
+        int postY;
+        Image img;
+<span class="fc bfc" id="L771" title="All 2 branches covered.">        for (int i = 1; i &lt;= 32; i++) {</span>
+<span class="fc bfc" id="L772" title="All 2 branches covered.">            if (i &lt; 17) {</span>
+<span class="fc bfc" id="L773" title="All 2 branches covered.">                if (i == P2.GetInhand()) {</span>
+<span class="fc" id="L774">                    postionPoint = P2.getPixelPoint(i);</span>
+
+                } else {
+<span class="fc" id="L777">                    postionPoint = P2.returnPostion(i);</span>
+                }
+<span class="fc" id="L779">                img = P2.returnIconImage(i);</span>
+
+            } else {
+
+<span class="fc bfc" id="L783" title="All 2 branches covered.">                if (i == P1.GetInhand()) {</span>
+
+<span class="fc" id="L785">                    postionPoint = P1.getPixelPoint(i);</span>
+
+                } else {
+<span class="fc" id="L788">                    postionPoint = P1.returnPostion(i);</span>
+                }
+<span class="fc" id="L790">                img = P1.returnIconImage(i);</span>
+            }
+
+<span class="fc bfc" id="L793" title="All 2 branches covered.">            if (i == P1.GetInhand()) {</span>
+<span class="fc" id="L794">                g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25, Divide - 40, Divide - 12, this);</span>
+<span class="fc bfc" id="L795" title="All 2 branches covered.">            } else if (i == P2.GetInhand()) {</span>
+<span class="fc" id="L796">                g2.drawImage(img, postionPoint.x - 25, postionPoint.y - 25, Divide - 40, Divide - 12, this);</span>
+            } else {
+<span class="fc" id="L798">                postX = rowToX(postionPoint.x);</span>
+<span class="fc" id="L799">                postY = colToY(postionPoint.y);</span>
+<span class="fc" id="L800">                g2.drawImage(img, postX + 20, postY + 4, Divide - 40, Divide - 12, this);</span>
+            }
+
+        }
+
+<span class="fc" id="L805">    }</span>
+
+    private int rowToX(int r) {
+        int myx;
+<span class="fc" id="L809">        int iHeight = this.getHeight();</span>
+<span class="fc" id="L810">        myx = (r * iHeight / 8) - Divide;</span>
+<span class="fc" id="L811">        return myx;</span>
+    }
+
+    public void Send_move() {
+<span class="nc" id="L815">        out.print(Box);</span>
+<span class="nc" id="L816">        out.print(&quot;\r\n&quot;);</span>
+<span class="nc" id="L817">        out.flush();</span>
+
+<span class="nc" id="L819">    }</span>
+
+    public void start_Again() {
+<span class="fc" id="L822">        P1 = new Player1();</span>
+<span class="fc" id="L823">        P2 = new Player2();</span>
+<span class="fc" id="L824">        players_turn = 1;</span>
+<span class="fc" id="L825">        GameOver = false;</span>
+<span class="fc" id="L826">        local = true;</span>
+<span class="fc" id="L827">        myTool.start_Again();</span>
+<span class="fc" id="L828">        myStatus.start_Again();</span>
+<span class="fc" id="L829">        Iam_Server = false;</span>
+<span class="fc" id="L830">        Iam_Client = false;</span>
+<span class="fc" id="L831">        repaint();</span>
+
+<span class="fc" id="L833">    }</span>
+
+    public void start_As_Client(String Ip, String Port, ChatPanel newChat) {
+
+<span class="nc" id="L837">        Recv_from = new Recv_Thread();</span>
+
+<span class="nc" id="L839">        Refe_Chat = newChat;</span>
+
+<span class="nc" id="L841">        Game_started = false;</span>
+
+<span class="nc" id="L843">        start_Again();</span>
+<span class="nc" id="L844">        MyIp_Address = Ip;</span>
+<span class="nc" id="L845">        MyPort_number = Port;</span>
+<span class="nc" id="L846">        local = false;</span>
+<span class="nc" id="L847">        startClient = new JButton(&quot;Start Client&quot;);</span>
+<span class="nc" id="L848">        startClient.setSize(150, 25);</span>
+<span class="nc" id="L849">        startClient.setLocation(200, 300);</span>
+
+<span class="nc" id="L851">        startClient.addActionListener(new ActionListener() {</span>
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+<span class="nc" id="L857">                    Sock = new Socket(MyIp_Address, Integer.parseInt(MyPort_number));</span>
+<span class="nc" id="L858">                    in = new BufferedReader(new InputStreamReader(Sock.getInputStream()));</span>
+<span class="nc" id="L859">                    out = new PrintWriter(Sock.getOutputStream());</span>
+
+<span class="nc" id="L861">                    Recv_from.start();</span>
+<span class="nc" id="L862">                    Game_started = true;</span>
+<span class="nc" id="L863">                    Refe_Chat.start_chat();</span>
+
+<span class="nc" id="L865">                } catch (UnknownHostException ex) {</span>
+<span class="nc" id="L866">                    ex.printStackTrace();</span>
+<span class="nc" id="L867">                } catch (IOException ex) {</span>
+<span class="nc" id="L868">                    ex.printStackTrace();</span>
+<span class="nc" id="L869">                    JOptionPane.showConfirmDialog(null, &quot;Client error&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L870">                }</span>
+
+<span class="nc" id="L872">                startClient.setVisible(false);</span>
+<span class="nc" id="L873">                startClient = null;</span>
+<span class="nc" id="L874">            }</span>
+        });
+
+<span class="nc" id="L877">        Iam_Client = true;</span>
+<span class="nc" id="L878">        add(startClient);</span>
+
+<span class="nc" id="L880">    }</span>
+
+    public void start_As_Server(String Ip, String Port, ChatPanel newChat) {
+
+<span class="nc" id="L884">        Recv_from = new Recv_Thread();</span>
+<span class="nc" id="L885">        Refe_Chat = newChat;</span>
+<span class="nc" id="L886">        Game_started = false;</span>
+
+<span class="nc" id="L888">        MyIp_Address = Ip;</span>
+<span class="nc" id="L889">        MyPort_number = Port;</span>
+
+<span class="nc" id="L891">        start_Again();</span>
+<span class="nc" id="L892">        startServer = new JButton(&quot; Start server&quot;);</span>
+<span class="nc" id="L893">        startServer.setSize(150, 25);</span>
+<span class="nc" id="L894">        startServer.setLocation(200, 300);</span>
+<span class="nc" id="L895">        startServer.addActionListener(new ActionListener() {</span>
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+
+<span class="nc" id="L901">                    ServerSock = new ServerSocket(Integer.parseInt(MyPort_number));</span>
+
+<span class="nc" id="L903">                    Thread Server = new Thread(new Runnable() {</span>
+                        @Override
+                        public synchronized void run() {
+
+                            try {
+
+<span class="nc" id="L909">                                Sock = ServerSock.accept();</span>
+
+<span class="nc" id="L911">                                Refe_Chat.listen_chat();</span>
+<span class="nc" id="L912">                                in = new BufferedReader(new InputStreamReader(Sock.getInputStream()));</span>
+<span class="nc" id="L913">                                out = new PrintWriter(Sock.getOutputStream());</span>
+<span class="nc" id="L914">                                startServer.setVisible(false);</span>
+<span class="nc" id="L915">                                startServer = null;</span>
+<span class="nc" id="L916">                                Recv_from.start();</span>
+
+<span class="nc" id="L918">                                Game_started = true;</span>
+
+<span class="nc" id="L920">                            } catch (IOException ex) {</span>
+<span class="nc" id="L921">                                ex.printStackTrace();</span>
+<span class="nc" id="L922">                            }</span>
+<span class="nc" id="L923">                        }</span>
+                    });
+
+<span class="nc" id="L926">                    Server.start();</span>
+
+                    /*
+           * in=new BufferedReader(new InputStreamReader(Sock.getInputStream())); out=new
+           * PrintWriter(Sock.getOutputStream());
+                     */
+                    // Sock.setSoTimeout(999999);
+                    // Refe_Chat.listen_chat();
+<span class="nc" id="L934">                } catch (IOException ex) {</span>
+<span class="nc" id="L935">                    ex.printStackTrace();</span>
+
+<span class="nc" id="L937">                    JOptionPane.showConfirmDialog(null, &quot;Server error&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L938">                }</span>
+<span class="nc" id="L939">                startServer.setText(&quot;Waiting...&quot;);</span>
+
+<span class="nc" id="L941">            }</span>
+
+        });
+<span class="nc" id="L944">        local = false;</span>
+<span class="nc" id="L945">        add(startServer);</span>
+
+<span class="nc" id="L947">        Iam_Server = true;</span>
+<span class="nc" id="L948">        repaint();</span>
+<span class="nc" id="L949">    }</span>
+
+    public boolean whenHandleAndPice(int x, int y) {
+
+<span class="pc bpc" id="L953" title="1 of 4 branches missed.">        if (players_turn == 1 &amp;&amp; P1.GetInhand() != -1) {</span>
+<span class="fc" id="L954">            P1.changePixel(x, y, P1.GetInhand());</span>
+<span class="fc" id="L955">            return true;</span>
+<span class="pc bpc" id="L956" title="2 of 4 branches missed.">        } else if (players_turn == 2 &amp;&amp; P2.GetInhand() != -1) {</span>
+<span class="fc" id="L957">            P2.changePixel(x, y, P2.GetInhand());</span>
+<span class="fc" id="L958">            return true;</span>
+        }
+<span class="nc" id="L960">        return false;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

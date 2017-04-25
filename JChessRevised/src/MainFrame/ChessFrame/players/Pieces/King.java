@@ -27,14 +27,6 @@ public class King extends Piece {
         pixelPoint.y = newpixelY;
     }
 
-    public int getPixelX() {
-        return pixelX;
-    }
-
-    public int getPixelY() {
-        return pixelY;
-    }
-
     public Point getpixelPoint() {
         return pixelPoint;
     }
@@ -82,10 +74,6 @@ public class King extends Piece {
             return true;//cant kill the king anymore;
         }
         return false;
-    }
-
-    public boolean returnLife() {
-        return havelife;
     }
 
     public boolean Canmove(int x, int y) {

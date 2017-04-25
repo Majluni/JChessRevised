@@ -31,23 +31,11 @@ public class Knight extends Piece {
         return pixelPoint;
     }
 
-    public int getPixelX() {
-        return pixelX;
-    }
-
-    public int getPixelY() {
-        return pixelY;
-    }
-
     public boolean Inthispostion(int x, int y) {
         if (p.x == x && p.y == y) {
             return true;
         }
         return false;
-    }
-
-    public boolean returnLife() {
-        return havelife;
     }
 
     public Point returnOld() {

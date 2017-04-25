@@ -1,0 +1,1807 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Player1.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;JChessRevised&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">MainFrame.ChessFrame.players</a> &gt; <span class="el_source">Player1.java</span></div><h1>Player1.java</h1><pre class="source lang-java linenums">package MainFrame.ChessFrame.players;
+
+import MainFrame.ChessFrame.players.Pieces.Rook;
+import MainFrame.ChessFrame.players.Pieces.Bishop;
+import MainFrame.ChessFrame.players.Pieces.Knight;
+import MainFrame.ChessFrame.players.Pieces.Queen;
+import MainFrame.ChessFrame.players.Pieces.Pawn;
+import MainFrame.ChessFrame.players.Pieces.King;
+import java.awt.Button;
+import java.awt.Canvas;
+import java.awt.Checkbox;
+import java.awt.CheckboxMenuItem;
+import java.awt.Choice;
+import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FileDialog;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Frame;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.List;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.Panel;
+import java.awt.Point;
+import java.awt.PopupMenu;
+import java.awt.PrintJob;
+import java.awt.ScrollPane;
+import java.awt.Scrollbar;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.datatransfer.Clipboard;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.InvalidDnDOperationException;
+import java.awt.dnd.peer.DragSourceContextPeer;
+import java.awt.im.InputMethodHighlight;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.awt.peer.ButtonPeer;
+import java.awt.peer.CanvasPeer;
+import java.awt.peer.CheckboxMenuItemPeer;
+import java.awt.peer.CheckboxPeer;
+import java.awt.peer.ChoicePeer;
+import java.awt.peer.DialogPeer;
+import java.awt.peer.FileDialogPeer;
+import java.awt.peer.FontPeer;
+import java.awt.peer.FramePeer;
+import java.awt.peer.LabelPeer;
+import java.awt.peer.ListPeer;
+import java.awt.peer.MenuBarPeer;
+import java.awt.peer.MenuItemPeer;
+import java.awt.peer.MenuPeer;
+import java.awt.peer.PanelPeer;
+import java.awt.peer.PopupMenuPeer;
+import java.awt.peer.ScrollPanePeer;
+import java.awt.peer.ScrollbarPeer;
+import java.awt.peer.TextAreaPeer;
+import java.awt.peer.TextFieldPeer;
+import java.awt.peer.WindowPeer;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.Properties;
+
+public class Player1 {
+
+    /**
+     * Creates a new instance of Player1
+     */
+    public Rook WC1;
+    public Rook WC2;
+    public Knight WH1;
+    public Knight WH2;
+    public Queen WQ;
+    public Bishop WE1;
+    public Bishop WE2;
+<span class="fc" id="L86">    public Pawn[] WS = new Pawn[8];</span>
+    public King WK;
+<span class="fc" id="L88">    private int inHand = -1;</span>
+<span class="fc" id="L89">    private boolean kingischeck = false;</span>
+    private int choosenOne;
+<span class="fc" id="L91">    String Color = &quot;white&quot;;</span>
+    private Point other;
+    int ate_to_protect;
+
+<span class="fc" id="L95">    public Player1() {</span>
+<span class="fc" id="L96">        String fileSeparator = new String(System.getProperty(&quot;file.separator&quot;));</span>
+<span class="fc" id="L97">        WC1 = new Rook(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wr.gif&quot;, 8, 8);</span>
+<span class="fc" id="L98">        WC2 = new Rook(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wr.gif&quot;, 1, 8);</span>
+<span class="fc" id="L99">        WH1 = new Knight(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wn.gif&quot;, 2, 8);</span>
+<span class="fc" id="L100">        WH2 = new Knight(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wn.gif&quot;, 7, 8);</span>
+<span class="fc" id="L101">        WE1 = new Bishop(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wb.gif&quot;, 3, 8);</span>
+<span class="fc" id="L102">        WE2 = new Bishop(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wb.gif&quot;, 6, 8);</span>
+<span class="fc" id="L103">        WQ = new Queen(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wq.gif&quot;, 4, 8);</span>
+<span class="fc" id="L104">        WK = new King(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wk.gif&quot;, 5, 8);</span>
+<span class="fc" id="L105">        int j = 1;</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        for (int i = 0; i &lt;= 7; i++, j++) {</span>
+<span class="fc" id="L107">            WS[i] = new Pawn(&quot;src&quot; + fileSeparator + &quot;Icons&quot; + fileSeparator + &quot;Player1Icons&quot; + fileSeparator + &quot;wp.gif&quot;, j, 7);</span>
+        }
+<span class="fc" id="L109">    }</span>
+
+    public Point returnPostion(int i) {
+
+<span class="fc bfc" id="L113" title="All 17 branches covered.">        switch (i) {</span>
+
+            case 17:
+<span class="fc" id="L116">                return WC1.returnPostion();</span>
+            case 18:
+<span class="fc" id="L118">                return WC2.returnPostion();</span>
+            case 19:
+<span class="fc" id="L120">                return WH1.returnPostion();</span>
+            case 20:
+<span class="fc" id="L122">                return WH2.returnPostion();</span>
+            case 21:
+<span class="fc" id="L124">                return WE1.returnPostion();</span>
+            case 22:
+<span class="fc" id="L126">                return WE2.returnPostion();</span>
+            case 23:
+<span class="fc" id="L128">                return WQ.returnPostion();</span>
+            case 24:
+<span class="fc" id="L130">                return WK.returnPostion();</span>
+            case 25:
+<span class="fc" id="L132">                return WS[0].returnPostion();</span>
+            case 26:
+<span class="fc" id="L134">                return WS[1].returnPostion();</span>
+            case 27:
+<span class="fc" id="L136">                return WS[2].returnPostion();</span>
+            case 28:
+<span class="fc" id="L138">                return WS[3].returnPostion();</span>
+            case 29:
+<span class="fc" id="L140">                return WS[4].returnPostion();</span>
+            case 30:
+<span class="fc" id="L142">                return WS[5].returnPostion();</span>
+            case 31:
+<span class="fc" id="L144">                return WS[6].returnPostion();</span>
+            case 32:
+<span class="fc" id="L146">                return WS[7].returnPostion();</span>
+        }
+<span class="fc" id="L148">        return new Point(-1, -1);</span>
+    }
+
+    public Point returnOldPostion(int i) {
+
+<span class="pc bpc" id="L153" title="4 of 17 branches missed.">        switch (i) {</span>
+
+            case 17:
+<span class="fc" id="L156">                return WC1.returnOld();</span>
+            case 18:
+<span class="fc" id="L158">                return WC2.returnOld();</span>
+            case 19:
+<span class="fc" id="L160">                return WH1.returnOld();</span>
+            case 20:
+<span class="fc" id="L162">                return WH2.returnOld();</span>
+            case 21:
+<span class="fc" id="L164">                return WE1.returnOld();</span>
+            case 22:
+<span class="fc" id="L166">                return WE2.returnOld();</span>
+            case 23:
+<span class="fc" id="L168">                return WQ.returnOld();</span>
+            case 24:
+<span class="fc" id="L170">                return WK.returnOld();</span>
+            case 25:
+<span class="nc" id="L172">                return WS[0].returnOld();</span>
+            case 26:
+<span class="nc" id="L174">                return WS[1].returnOld();</span>
+            case 27:
+<span class="fc" id="L176">                return WS[2].returnOld();</span>
+            case 28:
+<span class="fc" id="L178">                return WS[3].returnOld();</span>
+            case 29:
+<span class="fc" id="L180">                return WS[4].returnOld();</span>
+            case 30:
+<span class="fc" id="L182">                return WS[5].returnOld();</span>
+            case 31:
+<span class="fc" id="L184">                return WS[6].returnOld();</span>
+            case 32:
+<span class="nc" id="L186">                return WS[7].returnOld();</span>
+        }
+<span class="nc" id="L188">        return new Point(-1, -1);</span>
+    }
+
+    public Image returnIconImage(int i) {
+
+<span class="pc bpc" id="L193" title="1 of 17 branches missed.">        switch (i) {</span>
+
+            case 17: {
+<span class="fc" id="L196">                return WC1.returnPieceImage();</span>
+            }
+            case 18: {
+<span class="fc" id="L199">                return WC2.returnPieceImage();</span>
+            }
+            case 19: {
+<span class="fc" id="L202">                return WH1.returnPieceImage();</span>
+            }
+            case 20: {
+<span class="fc" id="L205">                return WH2.returnPieceImage();</span>
+            }
+            case 21:
+<span class="fc" id="L208">                return WE1.returnPieceImage();</span>
+            case 22:
+<span class="fc" id="L210">                return WE2.returnPieceImage();</span>
+            case 23:
+<span class="fc" id="L212">                return WQ.returnPieceImage();</span>
+            case 24:
+<span class="fc" id="L214">                return WK.returnPieceImage();</span>
+            case 25:
+<span class="fc" id="L216">                return WS[0].returnPieceImage();</span>
+            case 26:
+<span class="fc" id="L218">                return WS[1].returnPieceImage();</span>
+            case 27:
+<span class="fc" id="L220">                return WS[2].returnPieceImage();</span>
+            case 28:
+<span class="fc" id="L222">                return WS[3].returnPieceImage();</span>
+            case 29:
+<span class="fc" id="L224">                return WS[4].returnPieceImage();</span>
+            case 30:
+<span class="fc" id="L226">                return WS[5].returnPieceImage();</span>
+            case 31:
+<span class="fc" id="L228">                return WS[6].returnPieceImage();</span>
+            case 32:
+<span class="fc" id="L230">                return WS[7].returnPieceImage();</span>
+        }
+<span class="nc" id="L232">        return null;</span>
+    }
+
+    public void changePostion(Point newPoint, int i) {
+<span class="pc bpc" id="L236" title="2 of 17 branches missed.">        switch (i) {</span>
+
+            case 17:
+<span class="fc" id="L239">                WC1.setPoint(newPoint);</span>
+<span class="fc" id="L240">                break;</span>
+            case 18:
+<span class="fc" id="L242">                WC2.setPoint(newPoint);</span>
+<span class="fc" id="L243">                break;</span>
+            case 19:
+<span class="fc" id="L245">                WH1.setPoint(newPoint);</span>
+<span class="fc" id="L246">                break;</span>
+            case 20:
+<span class="fc" id="L248">                WH2.setPoint(newPoint);</span>
+<span class="fc" id="L249">                break;</span>
+            case 21:
+<span class="fc" id="L251">                WE1.setPoint(newPoint);</span>
+<span class="fc" id="L252">                break;</span>
+            case 22:
+<span class="fc" id="L254">                WE2.setPoint(newPoint);</span>
+<span class="fc" id="L255">                break;</span>
+            case 23:
+<span class="fc" id="L257">                WQ.setPoint(newPoint);</span>
+<span class="fc" id="L258">                break;</span>
+            case 24:
+<span class="fc" id="L260">                WK.setPoint(newPoint);</span>
+<span class="fc" id="L261">                break;</span>
+            case 25:
+<span class="fc" id="L263">                WS[0].setPoint(newPoint);</span>
+<span class="fc" id="L264">                break;</span>
+            case 26:
+<span class="nc" id="L266">                WS[1].setPoint(newPoint);</span>
+<span class="nc" id="L267">                break;</span>
+            case 27:
+<span class="fc" id="L269">                WS[2].setPoint(newPoint);</span>
+<span class="fc" id="L270">                break;</span>
+            case 28:
+<span class="fc" id="L272">                WS[3].setPoint(newPoint);</span>
+<span class="fc" id="L273">                break;</span>
+            case 29:
+<span class="fc" id="L275">                WS[4].setPoint(newPoint);</span>
+<span class="fc" id="L276">                break;</span>
+            case 30:
+<span class="fc" id="L278">                WS[5].setPoint(newPoint);</span>
+<span class="fc" id="L279">                break;</span>
+            case 31:
+<span class="fc" id="L281">                WS[6].setPoint(newPoint);</span>
+<span class="fc" id="L282">                break;</span>
+            case 32:
+<span class="fc" id="L284">                WS[7].setPoint(newPoint);</span>
+                break;
+        }
+
+<span class="fc" id="L288">    }</span>
+
+    public void changePostionToOld(Point newPoint, int i) {
+<span class="nc bnc" id="L291" title="All 17 branches missed.">        switch (i) {</span>
+
+            case 17:
+<span class="nc" id="L294">                WC1.toOld(newPoint);</span>
+<span class="nc" id="L295">                break;</span>
+            case 18:
+<span class="nc" id="L297">                WC2.toOld(newPoint);</span>
+<span class="nc" id="L298">                break;</span>
+            case 19:
+<span class="nc" id="L300">                WH1.toOld(newPoint);</span>
+<span class="nc" id="L301">                break;</span>
+            case 20:
+<span class="nc" id="L303">                WH2.toOld(newPoint);</span>
+<span class="nc" id="L304">                break;</span>
+            case 21:
+<span class="nc" id="L306">                WE1.toOld(newPoint);</span>
+<span class="nc" id="L307">                break;</span>
+            case 22:
+<span class="nc" id="L309">                WE2.toOld(newPoint);</span>
+<span class="nc" id="L310">                break;</span>
+            case 23:
+<span class="nc" id="L312">                WQ.toOld(newPoint);</span>
+<span class="nc" id="L313">                break;</span>
+            case 24:
+<span class="nc" id="L315">                WK.toOld(newPoint);</span>
+<span class="nc" id="L316">                break;</span>
+            case 25:
+<span class="nc" id="L318">                WS[0].toOld(newPoint);</span>
+<span class="nc" id="L319">                break;</span>
+            case 26:
+<span class="nc" id="L321">                WS[1].toOld(newPoint);</span>
+<span class="nc" id="L322">                break;</span>
+            case 27:
+<span class="nc" id="L324">                WS[2].toOld(newPoint);</span>
+<span class="nc" id="L325">                break;</span>
+            case 28:
+<span class="nc" id="L327">                WS[3].toOld(newPoint);</span>
+<span class="nc" id="L328">                break;</span>
+            case 29:
+<span class="nc" id="L330">                WS[4].toOld(newPoint);</span>
+<span class="nc" id="L331">                break;</span>
+            case 30:
+<span class="nc" id="L333">                WS[5].toOld(newPoint);</span>
+<span class="nc" id="L334">                break;</span>
+            case 31:
+<span class="nc" id="L336">                WS[6].toOld(newPoint);</span>
+<span class="nc" id="L337">                break;</span>
+            case 32:
+<span class="nc" id="L339">                WS[7].toOld(newPoint);</span>
+                break;
+        }
+<span class="nc" id="L342">    }</span>
+
+    public void changePixel(int newPixelX, int newPixelY, int i) {
+<span class="fc" id="L345">        choosenOne = i;</span>
+<span class="pc bpc" id="L346" title="4 of 17 branches missed.">        switch (choosenOne) {</span>
+
+            case 17:
+<span class="fc" id="L349">                WC1.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L350">                break;</span>
+            case 18:
+<span class="fc" id="L352">                WC2.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L353">                break;</span>
+            case 19:
+<span class="fc" id="L355">                WH1.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L356">                break;</span>
+            case 20:
+<span class="fc" id="L358">                WH2.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L359">                break;</span>
+            case 21:
+<span class="fc" id="L361">                WE1.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L362">                break;</span>
+            case 22:
+<span class="fc" id="L364">                WE2.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L365">                break;</span>
+            case 23:
+<span class="fc" id="L367">                WQ.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L368">                break;</span>
+            case 24:
+<span class="fc" id="L370">                WK.setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L371">                break;</span>
+            case 25:
+<span class="nc" id="L373">                WS[0].setPixels(newPixelX, newPixelY);</span>
+<span class="nc" id="L374">                break;</span>
+            case 26:
+<span class="nc" id="L376">                WS[1].setPixels(newPixelX, newPixelY);</span>
+<span class="nc" id="L377">                break;</span>
+            case 27:
+<span class="fc" id="L379">                WS[2].setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L380">                break;</span>
+            case 28:
+<span class="fc" id="L382">                WS[3].setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L383">                break;</span>
+            case 29:
+<span class="fc" id="L385">                WS[4].setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L386">                break;</span>
+            case 30:
+<span class="fc" id="L388">                WS[5].setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L389">                break;</span>
+            case 31:
+<span class="fc" id="L391">                WS[6].setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L392">                break;</span>
+            case 32:
+<span class="nc" id="L394">                WS[7].setPixels(newPixelX, newPixelY);</span>
+                break;
+        }
+<span class="fc" id="L397">    }</span>
+
+    public Point getPixelPoint(int i) {
+<span class="fc" id="L400">        choosenOne = i;</span>
+<span class="pc bpc" id="L401" title="4 of 17 branches missed.">        switch (choosenOne) {</span>
+
+            case 17:
+<span class="fc" id="L404">                return WC1.getpixelPoint();</span>
+            case 18:
+<span class="fc" id="L406">                return WC2.getpixelPoint();</span>
+            case 19:
+<span class="fc" id="L408">                return WH1.getpixelPoint();</span>
+            case 20:
+<span class="fc" id="L410">                return WH2.getpixelPoint();</span>
+            case 21:
+<span class="fc" id="L412">                return WE1.getpixelPoint();</span>
+            case 22:
+<span class="fc" id="L414">                return WE2.getpixelPoint();</span>
+            case 23:
+<span class="fc" id="L416">                return WQ.getpixelPoint();</span>
+            case 24:
+<span class="fc" id="L418">                return WK.getpixelPoint();</span>
+            case 25:
+<span class="nc" id="L420">                return WS[0].getpixelPoint();</span>
+            case 26:
+<span class="nc" id="L422">                return WS[1].getpixelPoint();</span>
+            case 27:
+<span class="fc" id="L424">                return WS[2].getpixelPoint();</span>
+            case 28:
+<span class="fc" id="L426">                return WS[3].getpixelPoint();</span>
+            case 29:
+<span class="fc" id="L428">                return WS[4].getpixelPoint();</span>
+            case 30:
+<span class="fc" id="L430">                return WS[5].getpixelPoint();</span>
+            case 31:
+<span class="fc" id="L432">                return WS[6].getpixelPoint();</span>
+            case 32:
+<span class="nc" id="L434">                return WS[7].getpixelPoint();</span>
+        }
+<span class="nc" id="L436">        return null;</span>
+    }
+
+    public boolean checkthemove(Point newP, int i) {
+<span class="fc" id="L440">        choosenOne = i;</span>
+<span class="pc bpc" id="L441" title="4 of 17 branches missed.">        switch (choosenOne) {</span>
+
+            case 17:
+<span class="fc" id="L444">                return WC1.Canmove(newP.x, newP.y);</span>
+            case 18:
+<span class="fc" id="L446">                return WC2.Canmove(newP.x, newP.y);</span>
+            case 19:
+<span class="fc" id="L448">                return WH1.Canmove(newP.x, newP.y);</span>
+            case 20:
+<span class="fc" id="L450">                return WH2.Canmove(newP.x, newP.y);</span>
+            case 21:
+<span class="fc" id="L452">                return WE1.Canmove(newP.x, newP.y);</span>
+            case 22:
+<span class="fc" id="L454">                return WE2.Canmove(newP.x, newP.y);</span>
+            case 23:
+<span class="fc" id="L456">                return WQ.Canmove(newP.x, newP.y);</span>
+            case 24:
+<span class="fc" id="L458">                return WK.Canmove(newP.x, newP.y);</span>
+            case 25:
+<span class="nc" id="L460">                return WS[0].Canmove(newP.x, newP.y, Color);</span>
+            case 26:
+<span class="nc" id="L462">                return WS[1].Canmove(newP.x, newP.y, Color);</span>
+            case 27:
+<span class="fc" id="L464">                return WS[2].Canmove(newP.x, newP.y, Color);</span>
+            case 28:
+<span class="fc" id="L466">                return WS[3].Canmove(newP.x, newP.y, Color);</span>
+            case 29:
+<span class="fc" id="L468">                return WS[4].Canmove(newP.x, newP.y, Color);</span>
+            case 30:
+<span class="fc" id="L470">                return WS[5].Canmove(newP.x, newP.y, Color);</span>
+            case 31:
+<span class="fc" id="L472">                return WS[6].Canmove(newP.x, newP.y, Color);</span>
+            case 32:
+<span class="nc" id="L474">                return WS[7].Canmove(newP.x, newP.y, Color);</span>
+        }
+<span class="nc" id="L476">        return false;</span>
+    }
+
+    public boolean setSeentoSiliders(int i, Point P) {
+<span class="pc bpc" id="L480" title="1 of 9 branches missed.">        switch (i) {</span>
+            case 25:
+<span class="fc" id="L482">                return WS[0].setSeenbychecking(P, &quot;white&quot;);</span>
+            case 26:
+<span class="fc" id="L484">                return WS[1].setSeenbychecking(P, &quot;white&quot;);</span>
+            case 27:
+<span class="fc" id="L486">                return WS[2].setSeenbychecking(P, &quot;white&quot;);</span>
+            case 28:
+<span class="fc" id="L488">                return WS[3].setSeenbychecking(P, &quot;white&quot;);</span>
+            case 29:
+<span class="fc" id="L490">                return WS[4].setSeenbychecking(P, &quot;white&quot;);</span>
+            case 30:
+<span class="fc" id="L492">                return WS[5].setSeenbychecking(P, &quot;white&quot;);</span>
+            case 31:
+<span class="fc" id="L494">                return WS[6].setSeenbychecking(P, &quot;white&quot;);</span>
+            case 32:
+<span class="fc" id="L496">                return WS[7].setSeenbychecking(P, &quot;white&quot;);</span>
+        }
+<span class="nc" id="L498">        return false;</span>
+    }
+
+    public boolean returnPawnSeen(int i) {
+<span class="pc bpc" id="L502" title="8 of 9 branches missed.">        switch (i) {</span>
+            case 25:
+<span class="nc" id="L504">                return WS[0].returnMyseen();</span>
+            case 26:
+<span class="nc" id="L506">                return WS[1].returnMyseen();</span>
+            case 27:
+<span class="nc" id="L508">                return WS[2].returnMyseen();</span>
+            case 28:
+<span class="nc" id="L510">                return WS[3].returnMyseen();</span>
+            case 29:
+<span class="fc" id="L512">                return WS[4].returnMyseen();</span>
+            case 30:
+<span class="nc" id="L514">                return WS[5].returnMyseen();</span>
+            case 31:
+<span class="nc" id="L516">                return WS[6].returnMyseen();</span>
+            case 32:
+<span class="nc" id="L518">                return WS[7].returnMyseen();</span>
+        }
+<span class="nc" id="L520">        return false;</span>
+    }
+
+    public boolean checktheWay(Point newP, Point postionFromOthers, int i) {
+<span class="pc bpc" id="L524" title="3 of 14 branches missed.">        switch (i) {</span>
+
+            case 17:
+<span class="fc" id="L527">                return WC1.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
+            case 18:
+<span class="fc" id="L529">                return WC2.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
+            case 21:
+<span class="fc" id="L531">                return WE1.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
+            case 22:
+<span class="fc" id="L533">                return WE2.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
+            case 23:
+<span class="fc" id="L535">                return WQ.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
+            case 25:
+<span class="nc" id="L537">                return WS[0].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+            case 26:
+<span class="nc" id="L539">                return WS[1].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+            case 27:
+<span class="fc" id="L541">                return WS[2].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+            case 28:
+<span class="fc" id="L543">                return WS[3].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+            case 29:
+<span class="fc" id="L545">                return WS[4].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+            case 30:
+<span class="fc" id="L547">                return WS[5].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+            case 31:
+<span class="fc" id="L549">                return WS[6].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+            case 32:
+<span class="nc" id="L551">                return WS[7].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+
+        }
+<span class="fc" id="L554">        return false;</span>
+    }
+
+    public boolean Killedpiec(int i) {
+<span class="fc" id="L558">        Point out = new Point(13, 13);</span>
+<span class="pc bpc" id="L559" title="3 of 17 branches missed.">        switch (i) {</span>
+
+            case 17:
+<span class="fc" id="L562">                WC1.setPoint(out);</span>
+<span class="fc" id="L563">                return true;</span>
+            case 18:
+<span class="fc" id="L565">                WC2.setPoint(out);</span>
+<span class="fc" id="L566">                return true;</span>
+            case 19:
+<span class="fc" id="L568">                WH1.setPoint(out);</span>
+<span class="fc" id="L569">                return true;</span>
+            case 20:
+<span class="fc" id="L571">                WH2.setPoint(out);</span>
+<span class="fc" id="L572">                return true;</span>
+            case 21:
+<span class="fc" id="L574">                WE1.setPoint(out);</span>
+<span class="fc" id="L575">                return true;</span>
+            case 22:
+<span class="fc" id="L577">                WE2.setPoint(out);</span>
+<span class="fc" id="L578">                return true;</span>
+            case 23:
+<span class="fc" id="L580">                WQ.setPoint(out);</span>
+<span class="fc" id="L581">                return true;</span>
+            case 24:
+<span class="fc" id="L583">                return false;</span>
+            case 25:
+<span class="fc" id="L585">                WS[0].setPoint(out);</span>
+<span class="fc" id="L586">                return true;</span>
+            case 26:
+<span class="nc" id="L588">                WS[1].setPoint(out);</span>
+<span class="nc" id="L589">                return true;</span>
+            case 27:
+<span class="nc" id="L591">                WS[2].setPoint(out);</span>
+<span class="nc" id="L592">                return true;</span>
+            case 28:
+<span class="fc" id="L594">                WS[3].setPoint(out);</span>
+<span class="fc" id="L595">                return true;</span>
+            case 29:
+<span class="fc" id="L597">                WS[4].setPoint(out);</span>
+<span class="fc" id="L598">                return true;</span>
+            case 30:
+<span class="fc" id="L600">                WS[5].setPoint(out);</span>
+<span class="fc" id="L601">                return true;</span>
+            case 31:
+<span class="fc" id="L603">                WS[6].setPoint(out);</span>
+<span class="fc" id="L604">                return true;</span>
+            case 32:
+<span class="fc" id="L606">                WS[7].setPoint(out);</span>
+<span class="fc" id="L607">                return true;</span>
+        }
+
+<span class="nc" id="L610">        return false;</span>
+    }
+
+    public boolean checKing(Point p1, Point p2, int i) {
+<span class="nc bnc" id="L614" title="All 16 branches missed.">        switch (i) {</span>
+
+            case 17:
+<span class="nc" id="L617">                return WC1.checkKing(p1.x, p1.y, p2);</span>
+            case 18:
+<span class="nc" id="L619">                return WC2.checkKing(p1.x, p1.y, p2);</span>
+            case 19:
+<span class="nc" id="L621">                return WH1.Canmove(p1.x, p1.y);</span>
+            case 20:
+<span class="nc" id="L623">                return WH2.Canmove(p1.x, p1.y);</span>
+            case 21:
+<span class="nc" id="L625">                return WE1.checkKing(p1.x, p1.y, p2);</span>
+            case 22:
+<span class="nc" id="L627">                return WE2.checkKing(p1.x, p1.y, p2);</span>
+            case 23:
+<span class="nc" id="L629">                return WQ.checkKing(p1.x, p1.y, p2);</span>
+
+            case 25:
+<span class="nc" id="L632">                return WS[0].Canmove(p1.x, p1.y, Color);</span>
+            case 26:
+<span class="nc" id="L634">                return WS[1].Canmove(p1.x, p1.y, Color);</span>
+            case 27:
+<span class="nc" id="L636">                return WS[2].Canmove(p1.x, p1.y, Color);</span>
+            case 28:
+<span class="nc" id="L638">                return WS[3].Canmove(p1.x, p1.y, Color);</span>
+            case 29:
+<span class="nc" id="L640">                return WS[4].Canmove(p1.x, p1.y, Color);</span>
+            case 30:
+<span class="nc" id="L642">                return WS[5].Canmove(p1.x, p1.y, Color);</span>
+            case 31:
+<span class="nc" id="L644">                return WS[6].Canmove(p1.x, p1.y, Color);</span>
+            case 32:
+<span class="nc" id="L646">                return WS[7].Canmove(p1.x, p1.y, Color);</span>
+        }
+<span class="nc" id="L648">        return false;</span>
+    }
+
+    public int returnChosen() {
+<span class="nc" id="L652">        return choosenOne;</span>
+    }
+
+    public void SetInhand(int i) {
+<span class="fc" id="L656">        inHand = i;</span>
+<span class="fc" id="L657">    }</span>
+
+    public int GetInhand() {
+<span class="fc" id="L660">        return inHand;</span>
+    }
+
+    public boolean CanMove(int x, int y) {
+<span class="nc" id="L664">        return true;</span>
+    }
+
+    public void checkKing(boolean newkingcheck) {
+<span class="fc" id="L668">        kingischeck = newkingcheck;</span>
+<span class="fc" id="L669">    }</span>
+
+    public boolean returncheckKing() {
+
+<span class="fc" id="L673">        return kingischeck;</span>
+    }
+
+    public boolean if_MyKing_In_check(Player2 Black) {
+<span class="nc" id="L677">        boolean isCheckmate = false;</span>
+<span class="nc" id="L678">        boolean flag = false;</span>
+
+<span class="nc" id="L680">        return false;</span>
+    }
+
+    public boolean Check_Mate_GameOver(Player2 Enemy) {
+
+<span class="nc bnc" id="L685" title="All 2 branches missed.">        if (!KingGenerate_moves(Enemy)) {</span>
+
+<span class="nc" id="L687">            inHand = -1;</span>
+<span class="nc" id="L688">            return false;</span>
+<span class="nc bnc" id="L689" title="All 2 branches missed.">        } else if (!CastleGenerate_moves(Enemy, WC1)) {</span>
+
+<span class="nc" id="L691">            inHand = -1;</span>
+<span class="nc" id="L692">            return false;</span>
+<span class="nc bnc" id="L693" title="All 2 branches missed.">        } else if (!CastleGenerate_moves(Enemy, WC2)) {</span>
+
+<span class="nc" id="L695">            inHand = -1;</span>
+<span class="nc" id="L696">            return false;</span>
+<span class="nc bnc" id="L697" title="All 2 branches missed.">        } else if (!ElephentGenerate_moves(Enemy, WE1)) {</span>
+
+<span class="nc" id="L699">            inHand = -1;</span>
+<span class="nc" id="L700">            return false;</span>
+<span class="nc bnc" id="L701" title="All 2 branches missed.">        } else if (!ElephentGenerate_moves(Enemy, WE2)) {</span>
+
+<span class="nc" id="L703">            inHand = -1;</span>
+<span class="nc" id="L704">            return false;</span>
+<span class="nc bnc" id="L705" title="All 2 branches missed.">        } else if (!HosreGenerate_moves(Enemy, WH1)) {</span>
+
+<span class="nc" id="L707">            inHand = -1;</span>
+<span class="nc" id="L708">            return false;</span>
+<span class="nc bnc" id="L709" title="All 2 branches missed.">        } else if (!HosreGenerate_moves(Enemy, WH2)) {</span>
+
+<span class="nc" id="L711">            inHand = -1;</span>
+<span class="nc" id="L712">            return false;</span>
+<span class="nc bnc" id="L713" title="All 2 branches missed.">        } else if (!QueenGenerate_moves(Enemy)) {</span>
+
+<span class="nc" id="L715">            inHand = -1;</span>
+<span class="nc" id="L716">            return false;</span>
+        }
+
+<span class="nc bnc" id="L719" title="All 2 branches missed.">        for (int i = 0; i &lt;= 7; i++) {</span>
+<span class="nc" id="L720">            inHand = 25 + i;</span>
+<span class="nc bnc" id="L721" title="All 2 branches missed.">            if (!SoliderGenerate_moves(Enemy, WS[i])) {</span>
+
+<span class="nc" id="L723">                inHand = -1;</span>
+<span class="nc" id="L724">                System.out.println(&quot;I Killed Pawn 1&quot;);</span>
+<span class="nc" id="L725">                return false;</span>
+            }
+        }
+
+<span class="nc" id="L729">        inHand = -1;</span>
+<span class="nc" id="L730">        return true;</span>
+
+    }
+
+    public boolean seeIfChecked(Player2 Black) {
+
+<span class="fc" id="L736">        Point My_King_Postion = WK.returnPostion();</span>
+<span class="fc" id="L737">        boolean flag = false;</span>
+
+        //////////    Start Checking the King ////////////
+<span class="pc bpc" id="L740" title="1 of 2 branches missed.">        for (int i = 1; i &lt; 17; i++) {</span>
+<span class="fc bfc" id="L741" title="All 2 branches covered.">            if (i &lt; 9) {</span>
+<span class="fc bfc" id="L742" title="All 2 branches covered.">                if (Black.checkthemove(My_King_Postion, i)) {</span>
+
+<span class="fc" id="L744">                    flag = true;</span>
+<span class="fc bfc" id="L745" title="All 2 branches covered.">                    for (int j = 1; j &lt; 33; j++) {</span>
+
+<span class="fc bfc" id="L747" title="All 2 branches covered.">                        if (j &lt; 17) {</span>
+
+<span class="fc bfc" id="L749" title="All 2 branches covered.">                            if (Black.checktheWay(My_King_Postion, Black.returnPostion(j), i)) {</span>
+                                //Means there is something in the Way so can't move'
+
+<span class="fc" id="L752">                                flag = false;</span>
+
+                            }
+                        } else {
+
+<span class="fc bfc" id="L757" title="All 2 branches covered.">                            if (j != 24) {</span>
+<span class="fc bfc" id="L758" title="All 2 branches covered.">                                if (Black.checktheWay(My_King_Postion, returnPostion(j), i)) {</span>
+
+<span class="fc" id="L760">                                    flag = false;</span>
+                                    //Means there is something in the Way so can't move'
+
+                                }
+                            }
+
+                        }
+
+                    }
+
+<span class="pc bpc" id="L770" title="1 of 2 branches missed.">                    if (flag) {</span>
+
+<span class="nc" id="L772">                        break;</span>
+                    }
+
+                }
+            } else {
+                // For Pawns
+<span class="pc bpc" id="L778" title="1 of 2 branches missed.">                if (Black.setSeentoSiliders(i, My_King_Postion)) {</span>
+
+<span class="nc" id="L780">                    break;</span>
+
+                }
+            }
+            //   if(stillIn_Check){ return true;}//Here Means White King is in check !!!
+<span class="fc bfc" id="L785" title="All 2 branches covered.">            if (i == 16) {</span>
+
+<span class="fc" id="L787">                return false;</span>
+            }
+        }
+
+<span class="nc" id="L791">        return true;</span>
+    }
+
+    public boolean Pice_already_there(Point newP) {
+        Point samePostion;
+<span class="fc bfc" id="L796" title="All 2 branches covered.">        for (int i = 17; i &lt;= 32; i++) {</span>
+<span class="fc bfc" id="L797" title="All 2 branches covered.">            if (GetInhand() != i)// There is no need to check the inHand pice</span>
+            {
+
+                //Check if there is White Pices in the new Point
+                //If so we Can't move (Same Color)!!
+<span class="fc" id="L802">                samePostion = returnPostion(i);</span>
+<span class="pc bpc" id="L803" title="1 of 4 branches missed.">                if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
+
+<span class="nc" id="L805">                    return false;</span>
+
+                }
+            }
+        }
+
+<span class="fc" id="L811">        return true;</span>
+    }
+
+    public boolean Pice_already_there_from_enemy(Point newP, Player2 enemy) {
+        Point samePostion;
+<span class="nc bnc" id="L816" title="All 2 branches missed.">        for (int i = 1; i &lt;= 16; i++) {</span>
+<span class="nc" id="L817">            samePostion = enemy.returnPostion(i);</span>
+<span class="nc bnc" id="L818" title="All 4 branches missed.">            if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
+
+<span class="nc" id="L820">                return false;</span>
+
+            }
+        }
+
+<span class="nc" id="L825">        return true;</span>
+    }
+
+    public int Get_Pice_already_there_from_enemy(Point newP, Player2 enemy) {
+        Point samePostion;
+<span class="nc bnc" id="L830" title="All 2 branches missed.">        for (int i = 1; i &lt;= 16; i++) {</span>
+<span class="nc" id="L831">            samePostion = enemy.returnPostion(i);</span>
+<span class="nc bnc" id="L832" title="All 4 branches missed.">            if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
+
+<span class="nc" id="L834">                return i;</span>
+
+            }
+        }
+
+<span class="nc" id="L839">        return -1;</span>
+    }
+
+    public boolean KingGenerate_moves(Player2 enemy) {
+<span class="nc" id="L843">        boolean somthing_killed = false;</span>
+<span class="nc" id="L844">        Point Oldp = new Point();</span>
+
+<span class="nc" id="L846">        Point PlaceCheck = new Point();</span>
+<span class="nc" id="L847">        inHand = 24;</span>
+
+<span class="nc" id="L849">        int x = WK.returnX();</span>
+<span class="nc" id="L850">        int y = WK.returnY();</span>
+<span class="nc" id="L851">        Oldp.x = x;</span>
+<span class="nc" id="L852">        Oldp.y = y;</span>
+
+<span class="nc bnc" id="L854" title="All 2 branches missed.">        if (x + 1 &lt;= 8) {</span>
+
+<span class="nc" id="L856">            WK.setX(x + 1);</span>
+<span class="nc" id="L857">            WK.setY(y);</span>
+<span class="nc" id="L858">            PlaceCheck.x = x + 1;</span>
+<span class="nc" id="L859">            PlaceCheck.y = y;</span>
+
+<span class="nc bnc" id="L861" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L862">                somthing_killed = true;</span>
+            }
+<span class="nc bnc" id="L864" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L865" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+
+<span class="nc" id="L867">                    WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L868" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L869">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L870">                        somthing_killed = false;</span>
+                    }
+<span class="nc" id="L872">                    return false;</span>
+                }
+            }
+
+        }
+<span class="nc" id="L877">        WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L878" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L879">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L880">            somthing_killed = false;</span>
+        }
+<span class="nc bnc" id="L882" title="All 2 branches missed.">        if (y + 1 &lt;= 8) {</span>
+
+<span class="nc" id="L884">            WK.setX(x);</span>
+<span class="nc" id="L885">            WK.setY(y + 1);</span>
+<span class="nc" id="L886">            PlaceCheck.x = x;</span>
+<span class="nc" id="L887">            PlaceCheck.y = y + 1;</span>
+<span class="nc bnc" id="L888" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L889">                somthing_killed = true;</span>
+            }
+<span class="nc bnc" id="L891" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L892" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+
+<span class="nc" id="L894">                    WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L895" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L896">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L897">                        somthing_killed = false;</span>
+                    }
+<span class="nc" id="L899">                    return false;</span>
+
+                }
+            }
+
+        }
+<span class="nc" id="L905">        WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L906" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L907">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L908">            somthing_killed = false;</span>
+        }
+
+<span class="nc bnc" id="L911" title="All 2 branches missed.">        if (y - 1 &gt; 0) {</span>
+
+<span class="nc" id="L913">            WK.setX(x);</span>
+<span class="nc" id="L914">            WK.setY(y - 1);</span>
+
+<span class="nc" id="L916">            PlaceCheck.x = x;</span>
+<span class="nc" id="L917">            PlaceCheck.y = y - 1;</span>
+
+<span class="nc bnc" id="L919" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L920">                somthing_killed = true;</span>
+            }
+
+<span class="nc bnc" id="L923" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L924" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+
+<span class="nc" id="L926">                    WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L927" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L928">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L929">                        somthing_killed = false;</span>
+                    }
+
+<span class="nc" id="L932">                    return false;</span>
+                }
+            }
+
+        }
+<span class="nc" id="L937">        WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L938" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L939">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L940">            somthing_killed = false;</span>
+        }
+<span class="nc bnc" id="L942" title="All 2 branches missed.">        if (x - 1 &gt; 0) {</span>
+
+<span class="nc" id="L944">            WK.setX(x - 1);</span>
+<span class="nc" id="L945">            WK.setY(y);</span>
+
+<span class="nc" id="L947">            PlaceCheck.x = x - 1;</span>
+<span class="nc" id="L948">            PlaceCheck.y = y;</span>
+<span class="nc bnc" id="L949" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L950">                somthing_killed = true;</span>
+            }
+<span class="nc bnc" id="L952" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L953" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L954" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L955">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L956">                        somthing_killed = false;</span>
+                    }
+<span class="nc" id="L958">                    WK.setPoint(Oldp);</span>
+<span class="nc" id="L959">                    return false;</span>
+                }
+            }
+
+        }
+<span class="nc" id="L964">        WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L965" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L966">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L967">            somthing_killed = false;</span>
+        }
+<span class="nc bnc" id="L969" title="All 4 branches missed.">        if (y - 1 &gt; 0 &amp;&amp; x - 1 &gt; 0) {</span>
+
+<span class="nc" id="L971">            WK.setX(x - 1);</span>
+<span class="nc" id="L972">            WK.setY(y - 1);</span>
+
+<span class="nc" id="L974">            PlaceCheck.x = x - 1;</span>
+<span class="nc" id="L975">            PlaceCheck.y = y - 1;</span>
+
+<span class="nc bnc" id="L977" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L978">                somthing_killed = true;</span>
+            }
+<span class="nc bnc" id="L980" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L981" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+
+<span class="nc bnc" id="L983" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L984">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L985">                        somthing_killed = false;</span>
+                    }
+<span class="nc" id="L987">                    WK.setPoint(Oldp);</span>
+<span class="nc" id="L988">                    return false;</span>
+                }
+            }
+
+        }
+<span class="nc" id="L993">        WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L994" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L995">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L996">            somthing_killed = false;</span>
+        }
+<span class="nc bnc" id="L998" title="All 4 branches missed.">        if (y + 1 &lt;= 8 &amp;&amp; x + 1 &lt;= 8) {</span>
+
+<span class="nc" id="L1000">            WK.setX(x + 1);</span>
+<span class="nc" id="L1001">            WK.setY(y + 1);</span>
+
+<span class="nc" id="L1003">            PlaceCheck.x = x + 1;</span>
+<span class="nc" id="L1004">            PlaceCheck.y = y + 1;</span>
+<span class="nc bnc" id="L1005" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1006">                somthing_killed = true;</span>
+            }
+<span class="nc bnc" id="L1008" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1009" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+
+<span class="nc bnc" id="L1011" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L1012">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1013">                        somthing_killed = false;</span>
+                    }
+<span class="nc" id="L1015">                    WK.setPoint(Oldp);</span>
+<span class="nc" id="L1016">                    return false;</span>
+                }
+            }
+
+        }
+<span class="nc" id="L1021">        WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L1022" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L1023">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1024">            somthing_killed = false;</span>
+        }
+<span class="nc bnc" id="L1026" title="All 4 branches missed.">        if (y - 1 &gt; 0 &amp;&amp; x + 1 &lt;= 8) {</span>
+
+<span class="nc" id="L1028">            WK.setX(x + 1);</span>
+<span class="nc" id="L1029">            WK.setY(y - 1);</span>
+
+<span class="nc" id="L1031">            PlaceCheck.x = x + 1;</span>
+<span class="nc" id="L1032">            PlaceCheck.y = y - 1;</span>
+<span class="nc bnc" id="L1033" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1034">                somthing_killed = true;</span>
+            }
+<span class="nc bnc" id="L1036" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1037" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1038" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L1039">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1040">                        somthing_killed = false;</span>
+                    }
+<span class="nc" id="L1042">                    WK.setPoint(Oldp);</span>
+<span class="nc" id="L1043">                    return false;</span>
+                }
+            }
+
+        }
+<span class="nc" id="L1048">        WK.setPoint(Oldp);</span>
+<span class="nc bnc" id="L1049" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L1050">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1051">            somthing_killed = false;</span>
+        }
+<span class="nc bnc" id="L1053" title="All 4 branches missed.">        if (y + 1 &lt;= 8 &amp;&amp; x - 1 &gt; 0) {</span>
+
+<span class="nc" id="L1055">            WK.setX(x - 1);</span>
+<span class="nc" id="L1056">            WK.setY(y + 1);</span>
+
+<span class="nc" id="L1058">            PlaceCheck.x = x - 1;</span>
+<span class="nc" id="L1059">            PlaceCheck.y = y + 1;</span>
+<span class="nc bnc" id="L1060" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1061">                somthing_killed = true;</span>
+            }
+<span class="nc bnc" id="L1063" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1064" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1065" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="nc" id="L1066">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1067">                        somthing_killed = false;</span>
+                    }
+<span class="nc" id="L1069">                    WK.setPoint(Oldp);</span>
+<span class="nc" id="L1070">                    return false;</span>
+                }
+            }
+
+        }
+
+<span class="nc bnc" id="L1076" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L1077">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1078">            somthing_killed = false;</span>
+        }
+
+<span class="nc" id="L1081">        WK.setPoint(Oldp);</span>
+<span class="nc" id="L1082">        return true;</span>
+
+    }
+
+    public boolean CastleGenerate_moves(Player2 enemy, Rook WC) {
+<span class="nc" id="L1087">        boolean somthing_killed = false;</span>
+<span class="nc" id="L1088">        Point Oldp1 = new Point();</span>
+
+<span class="nc" id="L1090">        Point PlaceCheck = new Point();</span>
+<span class="nc" id="L1091">        int x1 = WC.returnX();</span>
+<span class="nc" id="L1092">        int y1 = WC.returnY();</span>
+
+<span class="nc bnc" id="L1094" title="All 2 branches missed.">        if (WC == WC1) {</span>
+<span class="nc" id="L1095">            inHand = 17;</span>
+        } else {
+<span class="nc" id="L1097">            inHand = 18;</span>
+        }
+        /////////////////////
+
+<span class="nc" id="L1101">        Oldp1.x = x1;</span>
+<span class="nc" id="L1102">        Oldp1.y = y1;</span>
+
+<span class="nc" id="L1104">        PlaceCheck.y = y1;</span>
+
+<span class="nc bnc" id="L1106" title="All 2 branches missed.">        if (x1 != 20) {</span>
+<span class="nc bnc" id="L1107" title="All 2 branches missed.">            for (int i = 1; i &lt;= 8; i++) {</span>
+<span class="nc" id="L1108">                WC.setX(i);</span>
+<span class="nc" id="L1109">                PlaceCheck.x = i;</span>
+
+<span class="nc bnc" id="L1111" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1112" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1113">                        somthing_killed = true;</span>
+                    }
+<span class="nc bnc" id="L1115" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1116" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1117">                            WC.setX(Oldp1.x);</span>
+<span class="nc" id="L1118">                            WC.setY(Oldp1.y);</span>
+
+<span class="nc bnc" id="L1120" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1121">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1122">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1124">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1129" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1130">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1131">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc" id="L1135">            WC.setX(Oldp1.x);</span>
+<span class="nc" id="L1136">            PlaceCheck.x = Oldp1.x;</span>
+
+<span class="nc bnc" id="L1138" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1139">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1140">                somthing_killed = false;</span>
+            }
+<span class="nc bnc" id="L1142" title="All 2 branches missed.">            for (int i = 1; i &lt;= 8; i++) {</span>
+<span class="nc" id="L1143">                WC.setY(i);</span>
+<span class="nc" id="L1144">                PlaceCheck.y = i;</span>
+<span class="nc bnc" id="L1145" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1146" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1147">                        somthing_killed = true;</span>
+                    }
+<span class="nc bnc" id="L1149" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1150" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1151">                            WC.setX(Oldp1.x);</span>
+<span class="nc" id="L1152">                            WC.setY(Oldp1.y);</span>
+
+<span class="nc bnc" id="L1154" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1155">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1156">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1158">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1163" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1164">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1165">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc" id="L1169">            WC.setY(Oldp1.y);</span>
+        }
+        //////////////////////////////////////////
+        ///////////////////////////
+
+<span class="nc bnc" id="L1174" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L1175">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1176">            somthing_killed = false;</span>
+        }
+<span class="nc" id="L1178">        WC.setX(Oldp1.x);</span>
+<span class="nc" id="L1179">        WC.setY(Oldp1.y);</span>
+<span class="nc" id="L1180">        return true;</span>
+    }
+
+    public boolean ElephentGenerate_moves(Player2 enemy, Bishop WE) {
+<span class="nc" id="L1184">        boolean somthing_killed = false;</span>
+<span class="nc" id="L1185">        Point Oldp1 = new Point();</span>
+<span class="nc" id="L1186">        Point PlaceCheck = new Point();</span>
+
+<span class="nc" id="L1188">        Oldp1 = WE.returnPostion();</span>
+
+<span class="nc bnc" id="L1190" title="All 2 branches missed.">        if (WE == WE1) {</span>
+<span class="nc" id="L1191">            inHand = 21;</span>
+        } else {
+<span class="nc" id="L1193">            inHand = 22;</span>
+        }
+
+<span class="nc bnc" id="L1196" title="All 2 branches missed.">        if (Oldp1.x != 20) {</span>
+<span class="nc bnc" id="L1197" title="All 4 branches missed.">            for (int x = Oldp1.x, y = Oldp1.y; x &gt;= 1 &amp;&amp; y &lt;= 8; x--, y++) {</span>
+
+<span class="nc" id="L1199">                WE.setX(x);</span>
+<span class="nc" id="L1200">                WE.setY(y);</span>
+<span class="nc" id="L1201">                PlaceCheck.x = x;</span>
+<span class="nc" id="L1202">                PlaceCheck.y = y;</span>
+<span class="nc bnc" id="L1203" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1204" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1205">                        somthing_killed = true;</span>
+                    }
+<span class="nc bnc" id="L1207" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1208" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+
+<span class="nc bnc" id="L1210" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1211">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1212">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1214">                            WE.setPoint(Oldp1);</span>
+<span class="nc" id="L1215">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1220" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1221">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1222">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc bnc" id="L1226" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1227">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1228">                somthing_killed = false;</span>
+            }
+<span class="nc bnc" id="L1230" title="All 4 branches missed.">            for (int x = Oldp1.x, y = Oldp1.y; y &gt;= 1 &amp;&amp; x &lt;= 8; x++, y--) {</span>
+
+<span class="nc" id="L1232">                WE.setX(x);</span>
+<span class="nc" id="L1233">                WE.setY(y);</span>
+<span class="nc" id="L1234">                PlaceCheck.x = x;</span>
+<span class="nc" id="L1235">                PlaceCheck.y = y;</span>
+<span class="nc bnc" id="L1236" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1237" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1238">                        somthing_killed = true;</span>
+                    }
+<span class="nc bnc" id="L1240" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1241" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1242" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1243">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1244">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1246">                            WE.setPoint(Oldp1);</span>
+<span class="nc" id="L1247">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1252" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1253">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1254">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc" id="L1258">            WE.setPoint(Oldp1);</span>
+
+        }
+
+<span class="nc" id="L1262">        WE.setPoint(Oldp1);</span>
+
+<span class="nc bnc" id="L1264" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L1265">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1266">            somthing_killed = false;</span>
+        }
+
+<span class="nc" id="L1269">        return true;</span>
+    }
+
+    public boolean HosreGenerate_moves(Player2 enemy, Knight WH) {
+<span class="nc" id="L1273">        Point oldp1 = new Point();</span>
+<span class="nc" id="L1274">        boolean somthing_killed = false;</span>
+<span class="nc" id="L1275">        oldp1 = WH.returnPostion();</span>
+
+<span class="nc" id="L1277">        Point PlaceCheck = new Point();</span>
+
+<span class="nc bnc" id="L1279" title="All 2 branches missed.">        if (WH == WH1) {</span>
+<span class="nc" id="L1280">            inHand = 19;</span>
+        } else {
+<span class="nc" id="L1282">            inHand = 20;</span>
+        }
+
+<span class="nc" id="L1285">        int x = oldp1.x;</span>
+<span class="nc" id="L1286">        int y = oldp1.y;</span>
+
+<span class="nc bnc" id="L1288" title="All 2 branches missed.">        if (x != 20) {</span>
+
+<span class="nc bnc" id="L1290" title="All 4 branches missed.">            if (x + 1 &lt;= 8 &amp;&amp; y + 1 &lt;= 8) {</span>
+<span class="nc" id="L1291">                WH.setX(x + 1);</span>
+<span class="nc" id="L1292">                WH.setY(y + 2);</span>
+<span class="nc" id="L1293">                PlaceCheck.x = x + 1;</span>
+<span class="nc" id="L1294">                PlaceCheck.y = y + 2;</span>
+
+<span class="nc bnc" id="L1296" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1297">                    somthing_killed = true;</span>
+                }
+
+<span class="nc bnc" id="L1300" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1301" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1302">                        WH.setPoint(oldp1);</span>
+
+<span class="nc bnc" id="L1304" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1305">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1306">                            somthing_killed = false;</span>
+                        }
+
+<span class="nc" id="L1309">                        return false;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L1313" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1314">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1315">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1318" title="All 4 branches missed.">            if (x + 1 &lt;= 8 &amp;&amp; y - 2 &gt;= 1) {</span>
+<span class="nc" id="L1319">                WH.setX(x + 1);</span>
+<span class="nc" id="L1320">                WH.setY(y - 2);</span>
+<span class="nc" id="L1321">                PlaceCheck.x = x + 1;</span>
+<span class="nc" id="L1322">                PlaceCheck.y = y - 2;</span>
+<span class="nc bnc" id="L1323" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1324">                    somthing_killed = true;</span>
+                }
+
+<span class="nc bnc" id="L1327" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1328" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1329" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1330">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1331">                            somthing_killed = false;</span>
+                        }
+<span class="nc" id="L1333">                        WH.setPoint(oldp1);</span>
+<span class="nc" id="L1334">                        return false;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L1338" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1339">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1340">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1343" title="All 4 branches missed.">            if (x + 2 &lt;= 8 &amp;&amp; y + 1 &lt;= 8) {</span>
+<span class="nc" id="L1344">                WH.setX(x + 2);</span>
+<span class="nc" id="L1345">                WH.setY(y + 1);</span>
+<span class="nc" id="L1346">                PlaceCheck.x = x + 2;</span>
+<span class="nc" id="L1347">                PlaceCheck.y = y + 1;</span>
+
+<span class="nc bnc" id="L1349" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1350">                    somthing_killed = true;</span>
+                }
+
+<span class="nc bnc" id="L1353" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1354" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1355" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1356">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1357">                            somthing_killed = false;</span>
+                        }
+<span class="nc" id="L1359">                        WH.setPoint(oldp1);</span>
+<span class="nc" id="L1360">                        return false;</span>
+                    }
+                }
+            }
+
+<span class="nc bnc" id="L1365" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1366">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1367">                somthing_killed = false;</span>
+            }
+<span class="nc bnc" id="L1369" title="All 4 branches missed.">            if (x + 2 &lt;= 8 &amp;&amp; y - 1 &gt;= 1) {</span>
+<span class="nc" id="L1370">                WH.setX(x + 2);</span>
+<span class="nc" id="L1371">                WH.setY(y - 1);</span>
+<span class="nc" id="L1372">                PlaceCheck.x = x + 2;</span>
+<span class="nc" id="L1373">                PlaceCheck.y = y - 1;</span>
+<span class="nc bnc" id="L1374" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1375">                    somthing_killed = true;</span>
+                }
+
+<span class="nc bnc" id="L1378" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1379" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1380" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1381">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1382">                            somthing_killed = false;</span>
+                        }
+<span class="nc" id="L1384">                        WH.setPoint(oldp1);</span>
+<span class="nc" id="L1385">                        return false;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L1389" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1390">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1391">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1394" title="All 4 branches missed.">            if (x - 1 &gt;= 1 &amp;&amp; y + 2 &lt;= 8) {</span>
+<span class="nc" id="L1395">                WH.setX(x - 1);</span>
+<span class="nc" id="L1396">                WH.setY(y + 2);</span>
+<span class="nc" id="L1397">                PlaceCheck.x = x - 1;</span>
+<span class="nc" id="L1398">                PlaceCheck.y = y + 2;</span>
+
+<span class="nc bnc" id="L1400" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1401">                    somthing_killed = true;</span>
+                }
+
+<span class="nc bnc" id="L1404" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1405" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1406" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1407">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1408">                            somthing_killed = false;</span>
+                        }
+<span class="nc" id="L1410">                        WH.setPoint(oldp1);</span>
+<span class="nc" id="L1411">                        return false;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L1415" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1416">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1417">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1420" title="All 4 branches missed.">            if (x - 1 &gt;= 1 &amp;&amp; y - 2 &gt;= 1) {</span>
+<span class="nc" id="L1421">                WH.setX(x - 1);</span>
+<span class="nc" id="L1422">                WH.setY(y - 2);</span>
+<span class="nc" id="L1423">                PlaceCheck.x = x - 1;</span>
+<span class="nc" id="L1424">                PlaceCheck.y = y - 2;</span>
+<span class="nc bnc" id="L1425" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1426">                    somthing_killed = true;</span>
+                }
+
+<span class="nc bnc" id="L1429" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1430" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1431" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1432">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1433">                            somthing_killed = false;</span>
+                        }
+<span class="nc" id="L1435">                        WH.setPoint(oldp1);</span>
+<span class="nc" id="L1436">                        return false;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L1440" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1441">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1442">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1445" title="All 4 branches missed.">            if (x - 2 &gt;= 1 &amp;&amp; y + 1 &lt;= 8) {</span>
+<span class="nc" id="L1446">                WH.setX(x - 2);</span>
+<span class="nc" id="L1447">                WH.setY(y + 1);</span>
+<span class="nc" id="L1448">                PlaceCheck.x = x - 2;</span>
+<span class="nc" id="L1449">                PlaceCheck.y = y + 1;</span>
+
+<span class="nc bnc" id="L1451" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1452">                    somthing_killed = true;</span>
+                }
+<span class="nc bnc" id="L1454" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1455" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1456" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1457">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1458">                            somthing_killed = false;</span>
+                        }
+<span class="nc" id="L1460">                        WH.setPoint(oldp1);</span>
+<span class="nc" id="L1461">                        return false;</span>
+                    }
+                }
+            }
+
+<span class="nc bnc" id="L1466" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1467">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1468">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1471" title="All 4 branches missed.">            if (x - 2 &gt;= 1 &amp;&amp; y - 1 &gt;= 1) {</span>
+<span class="nc" id="L1472">                WH.setX(x - 2);</span>
+<span class="nc" id="L1473">                WH.setY(y - 1);</span>
+<span class="nc" id="L1474">                PlaceCheck.x = x - 2;</span>
+<span class="nc" id="L1475">                PlaceCheck.y = y - 1;</span>
+
+<span class="nc bnc" id="L1477" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1478">                    somthing_killed = true;</span>
+                }
+
+<span class="nc bnc" id="L1481" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1482" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc bnc" id="L1483" title="All 2 branches missed.">                        if (somthing_killed) {</span>
+<span class="nc" id="L1484">                            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1485">                            somthing_killed = false;</span>
+                        }
+<span class="nc" id="L1487">                        WH.setPoint(oldp1);</span>
+<span class="nc" id="L1488">                        return false;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L1492" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1493">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1494">                somthing_killed = false;</span>
+            }
+
+        }
+<span class="nc" id="L1498">        WH.setPoint(oldp1);</span>
+
+<span class="nc" id="L1500">        return true;</span>
+    }
+
+    public boolean QueenGenerate_moves(Player2 enemy) {
+<span class="nc" id="L1504">        boolean somthing_killed = false;</span>
+
+<span class="nc" id="L1506">        Point Oldp1 = new Point();</span>
+
+<span class="nc" id="L1508">        Oldp1 = WQ.returnPostion();</span>
+
+<span class="nc" id="L1510">        Point PlaceCheck = new Point();</span>
+
+<span class="nc" id="L1512">        inHand = 23;</span>
+
+<span class="nc bnc" id="L1514" title="All 2 branches missed.">        if (Oldp1.x != 20) {</span>
+<span class="nc bnc" id="L1515" title="All 4 branches missed.">            for (int x = Oldp1.x, y = Oldp1.y; x &gt;= 1 &amp;&amp; y &lt;= 8; x--, y++) {</span>
+
+<span class="nc" id="L1517">                WQ.setX(x);</span>
+<span class="nc" id="L1518">                WQ.setY(y);</span>
+<span class="nc" id="L1519">                PlaceCheck.x = x;</span>
+<span class="nc" id="L1520">                PlaceCheck.y = y;</span>
+<span class="nc bnc" id="L1521" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1522" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1523">                        somthing_killed = true;</span>
+                    }
+
+<span class="nc bnc" id="L1526" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1527" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1528">                            WQ.setPoint(Oldp1);</span>
+
+<span class="nc bnc" id="L1530" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1531">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1532">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1534">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1539" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1540">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1541">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc bnc" id="L1545" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1546">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1547">                somthing_killed = false;</span>
+            }
+<span class="nc bnc" id="L1549" title="All 4 branches missed.">            for (int x = Oldp1.x, y = Oldp1.y; y &gt;= 1 &amp;&amp; x &lt;= 8; x++, y--) {</span>
+
+<span class="nc" id="L1551">                WQ.setX(x);</span>
+<span class="nc" id="L1552">                WQ.setY(y);</span>
+<span class="nc" id="L1553">                PlaceCheck.x = x;</span>
+<span class="nc" id="L1554">                PlaceCheck.y = y;</span>
+<span class="nc bnc" id="L1555" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1556" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1557">                        somthing_killed = true;</span>
+                    }
+<span class="nc bnc" id="L1559" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1560" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1561">                            WQ.setPoint(Oldp1);</span>
+<span class="nc bnc" id="L1562" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1563">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1564">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1566">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1571" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1572">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1573">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc" id="L1577">            WQ.setPoint(Oldp1);</span>
+<span class="nc" id="L1578">            PlaceCheck.x = Oldp1.x;</span>
+<span class="nc" id="L1579">            PlaceCheck.y = Oldp1.y;</span>
+
+<span class="nc bnc" id="L1581" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1582">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1583">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1586" title="All 2 branches missed.">            for (int i = 1; i &lt;= 8; i++) {</span>
+<span class="nc" id="L1587">                WQ.setX(i);</span>
+
+<span class="nc" id="L1589">                PlaceCheck.x = i;</span>
+<span class="nc bnc" id="L1590" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1591" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1592">                        somthing_killed = true;</span>
+                    }
+<span class="nc bnc" id="L1594" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1595" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1596">                            WQ.setX(Oldp1.x);</span>
+<span class="nc bnc" id="L1597" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1598">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1599">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1601">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1606" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1607">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1608">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc" id="L1612">            WQ.setX(Oldp1.x);</span>
+<span class="nc" id="L1613">            PlaceCheck.x = Oldp1.x;</span>
+
+<span class="nc bnc" id="L1615" title="All 2 branches missed.">            if (somthing_killed) {</span>
+<span class="nc" id="L1616">                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1617">                somthing_killed = false;</span>
+            }
+
+<span class="nc bnc" id="L1620" title="All 2 branches missed.">            for (int i = 1; i &lt;= 8; i++) {</span>
+<span class="nc" id="L1621">                WQ.setY(i);</span>
+<span class="nc" id="L1622">                PlaceCheck.y = i;</span>
+<span class="nc bnc" id="L1623" title="All 2 branches missed.">                if (Check_The_Way_to_Postion(enemy, Oldp1)) {</span>
+<span class="nc bnc" id="L1624" title="All 2 branches missed.">                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="nc" id="L1625">                        somthing_killed = true;</span>
+                    }
+<span class="nc bnc" id="L1627" title="All 2 branches missed.">                    if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1628" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1629">                            WQ.setY(Oldp1.y);</span>
+<span class="nc bnc" id="L1630" title="All 2 branches missed.">                            if (somthing_killed) {</span>
+<span class="nc" id="L1631">                                enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1632">                                somthing_killed = false;</span>
+                            }
+<span class="nc" id="L1634">                            return false;</span>
+                        }
+                    }
+                }
+
+<span class="nc bnc" id="L1639" title="All 2 branches missed.">                if (somthing_killed) {</span>
+<span class="nc" id="L1640">                    enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1641">                    somthing_killed = false;</span>
+                }
+
+            }
+<span class="nc" id="L1645">            WQ.setY(Oldp1.y);</span>
+        }
+
+<span class="nc bnc" id="L1648" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="nc" id="L1649">            enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1650">            somthing_killed = false;</span>
+        }
+
+<span class="nc" id="L1653">        return true;</span>
+
+    }
+
+    public boolean SoliderGenerate_moves(Player2 enemy, Pawn Sold) {
+<span class="nc" id="L1658">        Point Oldp1 = new Point();</span>
+<span class="nc" id="L1659">        Oldp1 = Sold.returnPostion();</span>
+<span class="nc" id="L1660">        Point PlaceCheck = new Point();</span>
+<span class="nc" id="L1661">        PlaceCheck.x = Oldp1.x;</span>
+<span class="nc" id="L1662">        PlaceCheck.y = Oldp1.y;</span>
+
+<span class="nc bnc" id="L1664" title="All 2 branches missed.">        if (Oldp1.x != 20) {</span>
+<span class="nc bnc" id="L1665" title="All 4 branches missed.">            if (Sold.Canmove(Oldp1.x, Oldp1.y - 2, Color) &amp;&amp; Oldp1.y - 2 &gt;= 1) {</span>
+<span class="nc" id="L1666">                Sold.setY(Oldp1.y - 2);</span>
+
+<span class="nc" id="L1668">                PlaceCheck.y = Oldp1.y - 1;</span>
+
+<span class="nc bnc" id="L1670" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1671" title="All 2 branches missed.">                    if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {</span>
+<span class="nc bnc" id="L1672" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+
+<span class="nc" id="L1674">                            Sold.setPoint(Oldp1);</span>
+<span class="nc" id="L1675">                            return false;</span>
+                        }
+                    }
+                }
+
+            }
+<span class="nc bnc" id="L1681" title="All 4 branches missed.">            if (Sold.Canmove(Oldp1.x, Oldp1.y - 1, Color) &amp;&amp; Oldp1.y - 1 &gt;= 1) {</span>
+<span class="nc" id="L1682">                Sold.setY(Oldp1.y - 1);</span>
+<span class="nc" id="L1683">                PlaceCheck.y = Oldp1.y - 1;</span>
+
+<span class="nc bnc" id="L1685" title="All 2 branches missed.">                if (Pice_already_there(PlaceCheck)) {</span>
+<span class="nc bnc" id="L1686" title="All 2 branches missed.">                    if (Pice_already_there_from_enemy(PlaceCheck, enemy)) {</span>
+
+<span class="nc bnc" id="L1688" title="All 2 branches missed.">                        if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1689">                            Sold.setPoint(Oldp1);</span>
+<span class="nc" id="L1690">                            System.out.println(&quot;dff&quot;);</span>
+<span class="nc" id="L1691">                            System.out.println(&quot;dff&quot;);</span>
+<span class="nc" id="L1692">                            System.out.println(&quot;dff&quot;);</span>
+<span class="nc" id="L1693">                            return false;</span>
+                        }
+                    }
+                }
+            }
+
+<span class="nc bnc" id="L1699" title="All 2 branches missed.">            if (!Pice_already_there_from_enemy(new Point(Oldp1.x - 1, Oldp1.y - 1), enemy)) {</span>
+<span class="nc bnc" id="L1700" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, new Point(Oldp1.x - 1, Oldp1.y - 1))) {</span>
+
+<span class="nc bnc" id="L1702" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1703">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1704">                        Sold.setPoint(Oldp1);</span>
+
+<span class="nc" id="L1706">                        return false;</span>
+                    }
+<span class="nc" id="L1708">                    enemy.changePostion(other, ate_to_protect);</span>
+                }
+            }
+
+<span class="nc bnc" id="L1712" title="All 2 branches missed.">            if (!Pice_already_there_from_enemy(new Point(Oldp1.x + 1, Oldp1.y - 1), enemy)) {</span>
+<span class="nc bnc" id="L1713" title="All 2 branches missed.">                if (kill_to_protect_king(enemy, new Point(Oldp1.x + 1, Oldp1.y - 1))) {</span>
+<span class="nc bnc" id="L1714" title="All 2 branches missed.">                    if (!seeIfChecked(enemy)) {</span>
+<span class="nc" id="L1715">                        enemy.changePostion(other, ate_to_protect);</span>
+<span class="nc" id="L1716">                        Sold.setPoint(Oldp1);</span>
+
+<span class="nc" id="L1718">                        return false;</span>
+                    }
+<span class="nc" id="L1720">                    enemy.changePostion(other, ate_to_protect);</span>
+
+                }
+            }
+
+        }
+
+<span class="nc" id="L1727">        Sold.setPoint(Oldp1);</span>
+<span class="nc" id="L1728">        return true;</span>
+    }
+
+    public boolean Check_The_Way_to_Postion(Player2 enemy, Point newP) {
+<span class="nc" id="L1732">        boolean flag = false;</span>
+
+<span class="nc bnc" id="L1734" title="All 2 branches missed.">        for (int i = 1; i &lt;= 32; i++) {</span>
+<span class="nc bnc" id="L1735" title="All 2 branches missed.">            if (inHand != i)// check if there is peices in the WAY</span>
+            {
+<span class="nc bnc" id="L1737" title="All 2 branches missed.">                if (i &lt; 17) {</span>
+<span class="nc" id="L1738">                    flag = checktheWay(newP, enemy.returnPostion(i), inHand);//Means there is somting in the Way so can't move</span>
+                } else {
+<span class="nc" id="L1740">                    flag = checktheWay(newP, returnPostion(i), inHand);</span>
+                }
+
+<span class="nc bnc" id="L1743" title="All 2 branches missed.">                if (flag == true) {</span>
+<span class="nc" id="L1744">                    return false;</span>
+                }//Means  there is a Pice in the Way
+            }
+        }
+<span class="nc" id="L1748">        return true;</span>
+
+    }
+
+    public boolean kill_to_protect_king(Player2 enemy, Point newP) {
+
+<span class="nc bnc" id="L1754" title="All 2 branches missed.">        for (int i = 1; i &lt; 17; i++) {</span>
+
+<span class="nc" id="L1756">            other = enemy.returnPostion(i);</span>
+<span class="nc bnc" id="L1757" title="All 4 branches missed.">            if (other.x == newP.x &amp;&amp; other.y == newP.y) {</span>
+<span class="nc" id="L1758">                ate_to_protect = i;</span>
+
+<span class="nc" id="L1760">                enemy.Killedpiec(i);</span>
+<span class="nc" id="L1761">                return true;</span>
+            }
+        }
+
+<span class="nc" id="L1765">        return false;</span>
+    }
+
+    public String Tell_me_About_last_move() {
+<span class="pc bpc" id="L1769" title="4 of 17 branches missed.">        switch (inHand) {</span>
+
+            case 17:
+<span class="fc" id="L1772">                return WC1.Tell_me();</span>
+            case 18:
+<span class="fc" id="L1774">                return WC2.Tell_me();</span>
+            case 19:
+<span class="fc" id="L1776">                return WH1.Tell_me();</span>
+            case 20:
+<span class="fc" id="L1778">                return WH2.Tell_me();</span>
+            case 21:
+<span class="fc" id="L1780">                return WE1.Tell_me();</span>
+            case 22:
+<span class="fc" id="L1782">                return WE2.Tell_me();</span>
+            case 23:
+<span class="fc" id="L1784">                return WQ.Tell_me();</span>
+            case 24:
+<span class="fc" id="L1786">                return WK.Tell_me();</span>
+            case 25:
+<span class="nc" id="L1788">                return WS[0].Tell_me();</span>
+            case 26:
+<span class="nc" id="L1790">                return WS[1].Tell_me();</span>
+            case 27:
+<span class="fc" id="L1792">                return WS[2].Tell_me();</span>
+            case 28:
+<span class="fc" id="L1794">                return WS[3].Tell_me();</span>
+            case 29:
+<span class="fc" id="L1796">                return WS[4].Tell_me();</span>
+            case 30:
+<span class="fc" id="L1798">                return WS[5].Tell_me();</span>
+            case 31:
+<span class="fc" id="L1800">                return WS[6].Tell_me();</span>
+            case 32:
+<span class="nc" id="L1802">                return WS[7].Tell_me();</span>
+        }
+<span class="nc" id="L1804">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

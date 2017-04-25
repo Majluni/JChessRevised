@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ChatPanel.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;JChessRevised&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">MainFrame.ChessFrame</a> &gt; <span class="el_source">ChatPanel.java</span></div><h1>ChatPanel.java</h1><pre class="source lang-java linenums">package MainFrame.ChessFrame;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+
+public class ChatPanel extends JPanel {
+
+<span class="fc" id="L24">    class client_chat extends Thread {</span>
+
+        @Override
+        public void run() {
+<span class="nc" id="L28">            String receive = null;</span>
+            while (true) {
+                try {
+<span class="nc" id="L31">                    receive = in2.readLine();</span>
+<span class="nc" id="L32">                } catch (IOException ex) {</span>
+<span class="nc" id="L33">                    ex.printStackTrace();</span>
+<span class="nc" id="L34">                }</span>
+
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                if (receive != null) {</span>
+<span class="nc" id="L37">                    textArea.append(&quot;\n&quot; + &quot;Other: &quot; + receive);</span>
+                }
+            }
+        }
+    }
+
+<span class="fc" id="L43">    class serv_chat extends Thread {</span>
+
+        @Override
+        public void run() {
+<span class="nc" id="L47">            String receive = null;</span>
+            while (true) {
+                try {
+<span class="nc" id="L50">                    receive = in1.readLine();</span>
+<span class="nc" id="L51">                } catch (IOException ex) {</span>
+<span class="nc" id="L52">                    ex.printStackTrace();</span>
+<span class="nc" id="L53">                }</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                if (receive != null) {</span>
+
+<span class="nc" id="L57">                    textArea.append(&quot;\n&quot; + &quot;Other: &quot; + receive);</span>
+
+                }
+            }
+        }
+    }
+
+<span class="fc" id="L64">    private final mytextArea textArea = new mytextArea(6, 20);</span>
+<span class="fc" id="L65">    private final myTextFiled TextFiled = new myTextFiled(10);</span>
+<span class="fc" id="L66">    private final mybutton Sendbutton = new mybutton();</span>
+
+<span class="fc" id="L68">    private final JScrollPane TextAreaScroll = new JScrollPane(textArea,</span>
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    private Socket chat_socket;
+
+    private ServerSocket server_chat;
+    private BufferedReader in1;
+    private PrintWriter out1;
+    private BufferedReader in2;
+    private PrintWriter out2;
+<span class="fc" id="L77">    private serv_chat myserv_thread = new serv_chat();</span>
+    private Socket send_socket;
+<span class="fc" id="L79">    private client_chat client_thread = new client_chat();</span>
+    private boolean I_am_What;
+
+    /**
+     * Creates a new instance of ChatPanel
+     */
+<span class="fc" id="L85">    public ChatPanel() {</span>
+<span class="fc" id="L86">        setSize(200, 300);</span>
+<span class="fc" id="L87">        setLocation(600, 350);</span>
+
+<span class="fc" id="L89">        TextAreaScroll.setSize(180, 190);</span>
+<span class="fc" id="L90">        TextAreaScroll.setLocation(10, 0);</span>
+
+<span class="fc" id="L92">        setLayout(null);</span>
+
+<span class="fc" id="L94">        TextAreaScroll.setEnabled(false);</span>
+<span class="fc" id="L95">        TextFiled.setEnabled(false);</span>
+<span class="fc" id="L96">        Sendbutton.setEnabled(false);</span>
+
+<span class="fc" id="L98">        add(TextAreaScroll);</span>
+<span class="fc" id="L99">        add(TextFiled);</span>
+<span class="fc" id="L100">        add(Sendbutton);</span>
+
+<span class="fc" id="L102">        Sendbutton.addActionListener(new ActionListener() {</span>
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L107">                textArea.append(&quot;\n&quot; + TextFiled.getText());</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">                if (I_am_What) {</span>
+<span class="nc" id="L109">                    Send_text_server();</span>
+<span class="nc" id="L110">                    TextFiled.setText(null);</span>
+                } else {
+<span class="nc" id="L112">                    Send_text_chat();</span>
+<span class="nc" id="L113">                    TextFiled.setText(null);</span>
+                }
+
+<span class="nc" id="L116">            }</span>
+        });
+
+<span class="fc" id="L119">        TextFiled.addKeyListener(new KeyListener() {</span>
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // System.out.println(&quot;okdddd &quot;+e.KEY_PRESSED+&quot; &quot;+e.VK_PAGE_DOWN);
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">                if (e.getKeyChar() == '\n') {</span>
+<span class="nc" id="L125">                    textArea.append(&quot;\n&quot; + TextFiled.getText());</span>
+
+<span class="nc bnc" id="L127" title="All 2 branches missed.">                    if (I_am_What) {</span>
+<span class="nc" id="L128">                        Send_text_server();</span>
+<span class="nc" id="L129">                        TextFiled.setText(null);</span>
+                    } else {
+<span class="nc" id="L131">                        Send_text_chat();</span>
+<span class="nc" id="L132">                        TextFiled.setText(null);</span>
+                    }
+
+                }
+<span class="nc" id="L136">            }</span>
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+<span class="nc" id="L140">            }</span>
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+<span class="nc" id="L144">            }</span>
+        });
+
+        // add(chatPanelScroll);
+<span class="fc" id="L148">    }</span>
+
+    public void listen_chat() {
+
+<span class="nc" id="L152">        TextAreaScroll.setEnabled(true);</span>
+<span class="nc" id="L153">        TextFiled.setEnabled(true);</span>
+<span class="nc" id="L154">        Sendbutton.setEnabled(true);</span>
+
+<span class="nc" id="L156">        I_am_What = true;</span>
+        try {
+
+<span class="nc" id="L159">            server_chat = new ServerSocket(5002);</span>
+
+<span class="nc" id="L161">            chat_socket = server_chat.accept();</span>
+
+<span class="nc" id="L163">            in1 = new BufferedReader(new InputStreamReader(chat_socket.getInputStream()));</span>
+
+<span class="nc" id="L165">            out1 = new PrintWriter(chat_socket.getOutputStream());</span>
+
+            // chat_socket.setSoTimeout(10000);
+<span class="nc" id="L168">            myserv_thread.start();</span>
+
+<span class="nc" id="L170">        } catch (IOException ex) {</span>
+<span class="nc" id="L171">            ex.printStackTrace();</span>
+<span class="nc" id="L172">        }</span>
+
+<span class="nc" id="L174">    }</span>
+
+    public void Send_text_chat() {
+<span class="nc" id="L177">        out2.print(TextFiled.getText());</span>
+<span class="nc" id="L178">        out2.print(&quot;\r\n&quot;);</span>
+
+<span class="nc" id="L180">        out2.flush();</span>
+
+<span class="nc" id="L182">    }</span>
+
+    public void Send_text_server() {
+<span class="nc" id="L185">        out1.print(TextFiled.getText());</span>
+<span class="nc" id="L186">        out1.print(&quot;\r\n&quot;);</span>
+
+<span class="nc" id="L188">        out1.flush();</span>
+
+<span class="nc" id="L190">    }</span>
+
+    public void start_chat() {
+<span class="nc" id="L193">        TextAreaScroll.setEnabled(true);</span>
+<span class="nc" id="L194">        TextFiled.setEnabled(true);</span>
+<span class="nc" id="L195">        Sendbutton.setEnabled(true);</span>
+
+<span class="nc" id="L197">        I_am_What = false;</span>
+        try {
+<span class="nc" id="L199">            send_socket = new Socket(&quot;127.0.0.1&quot;, 5002);</span>
+<span class="nc" id="L200">            in2 = new BufferedReader(new InputStreamReader(send_socket.getInputStream()));</span>
+<span class="nc" id="L201">            out2 = new PrintWriter(send_socket.getOutputStream());</span>
+<span class="nc" id="L202">        } catch (UnknownHostException ex) {</span>
+<span class="nc" id="L203">            ex.printStackTrace();</span>
+<span class="nc" id="L204">        } catch (IOException ex) {</span>
+<span class="nc" id="L205">            ex.printStackTrace();</span>
+<span class="nc" id="L206">        }</span>
+<span class="nc" id="L207">        client_thread.start();</span>
+<span class="nc" id="L208">    }</span>
+
+}
+
+class mybutton extends JButton {
+
+<span class="fc" id="L214">    mybutton() {</span>
+
+<span class="fc" id="L216">        setSize(80, 30);</span>
+<span class="fc" id="L217">        setLocation(50, 230);</span>
+<span class="fc" id="L218">        setText(&quot;Send&quot;);</span>
+<span class="fc" id="L219">    }</span>
+}
+
+class mytextArea extends JTextArea {
+
+<span class="fc" id="L224">    private final TitledBorder TextBorder = new TitledBorder(&quot;Chat History&quot;);</span>
+
+    mytextArea(int Row_num, int Col_num) {
+<span class="fc" id="L227">        super(Row_num, Col_num);</span>
+
+        /*
+     * setSize(130,150); setLocation(30,0);
+         */
+<span class="fc" id="L232">        setEditable(false);</span>
+        // TextAreaScroll =new
+        // JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        // this.add(TextAreaScroll);
+<span class="fc" id="L236">        setBorder(TextBorder);</span>
+
+<span class="fc" id="L238">    }</span>
+}
+
+class myTextFiled extends JTextField {
+
+<span class="fc" id="L243">    private final JScrollPane TextAreaScroll = new JScrollPane();</span>
+
+    myTextFiled(int FiledLength) {
+<span class="fc" id="L246">        super(FiledLength);</span>
+<span class="fc" id="L247">        setSize(180, 20);</span>
+<span class="fc" id="L248">        setLocation(10, 200);</span>
+
+<span class="fc" id="L250">        add(TextAreaScroll);</span>
+<span class="fc" id="L251">        this.setToolTipText(&quot;Write Text Here&quot;);</span>
+
+<span class="fc" id="L253">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

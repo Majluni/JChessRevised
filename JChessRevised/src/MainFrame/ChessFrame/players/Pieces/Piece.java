@@ -6,8 +6,6 @@ public abstract class Piece {
 
     protected int X, Y;
     protected Point pixelPoint;
-    protected int pixelX, pixelY;
-    protected boolean havelife;
     protected final PieceIcon icon;
     protected Point p;
     protected Point old;
@@ -17,7 +15,6 @@ public abstract class Piece {
         pixelPoint = new Point();
         old = new Point();
         p = new Point();
-        havelife = true;
         X = startX;
         Y = startY;
         p.x = X;

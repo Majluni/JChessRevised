@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>StatusPanel.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;JChessRevised&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">MainFrame.ChessFrame</a> &gt; <span class="el_source">StatusPanel.java</span></div><h1>StatusPanel.java</h1><pre class="source lang-java linenums">package MainFrame.ChessFrame;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
+public class StatusPanel extends JPanel {
+
+<span class="fc" id="L12">    private JLabel statusLabel = new JLabel();</span>
+<span class="fc" id="L13">    private LineBorder LabelBorder = new LineBorder(Color.BLACK.brighter(), 2);</span>
+
+    /**
+     * Creates a new instance of StatusPanel
+     */
+<span class="fc" id="L18">    public StatusPanel() {</span>
+<span class="fc" id="L19">        setSize(580, 30);</span>
+<span class="fc" id="L20">        setLocation(10, 610);</span>
+<span class="fc" id="L21">        setLayout(null);</span>
+
+<span class="fc" id="L23">        statusLabel.setSize(570, 25);</span>
+<span class="fc" id="L24">        statusLabel.setLocation(5, 5);</span>
+<span class="fc" id="L25">        statusLabel.setText(&quot; Start New Game &quot;);</span>
+<span class="fc" id="L26">        statusLabel.setBackground(Color.lightGray);</span>
+<span class="fc" id="L27">        statusLabel.setFont(new Font(&quot;Aril&quot;, Font.BOLD, 11));</span>
+<span class="fc" id="L28">        statusLabel.setForeground(Color.RED.brighter());</span>
+<span class="fc" id="L29">        statusLabel.setBorder(LabelBorder);</span>
+<span class="fc" id="L30">        add(statusLabel);</span>
+
+<span class="fc" id="L32">    }</span>
+
+    public void changeStatus(Object str) {
+<span class="fc" id="L35">        statusLabel.setText((String) str);</span>
+<span class="fc" id="L36">    }</span>
+
+    public void start_Again() {
+<span class="fc" id="L39">        statusLabel.setText(&quot;  Game Started &quot;);</span>
+<span class="fc" id="L40">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

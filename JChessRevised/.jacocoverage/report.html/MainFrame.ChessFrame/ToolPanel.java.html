@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ToolPanel.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;JChessRevised&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">MainFrame.ChessFrame</a> &gt; <span class="el_source">ToolPanel.java</span></div><h1>ToolPanel.java</h1><pre class="source lang-java linenums">package MainFrame.ChessFrame;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
+import MainFrame.ChessFrame.ThreadTimer.ThreadTimer;
+
+class myHistoryList extends JList&lt;Object&gt; {
+
+<span class="fc" id="L18">    private DefaultListModel&lt;Object&gt; listModel = new DefaultListModel&lt;Object&gt;();</span>
+
+<span class="fc" id="L20">    myHistoryList() {</span>
+
+<span class="fc" id="L22">        this.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L23">        setModel(listModel);</span>
+<span class="fc" id="L24">        listModel.addElement(&quot;Player: New Moves&quot;);</span>
+
+<span class="fc" id="L26">    }</span>
+
+    public void addElemen_tolist(Object newItem) {
+<span class="fc" id="L29">        listModel.addElement(newItem);</span>
+<span class="fc" id="L30">    }</span>
+
+    public void clean_list() {
+<span class="fc" id="L33">        listModel.clear();</span>
+<span class="fc" id="L34">    }</span>
+}
+
+class myStatusFileds extends JTextField {
+
+<span class="nc" id="L39">    myStatusFileds() {</span>
+<span class="nc" id="L40">        this.setEnabled(false);</span>
+<span class="nc" id="L41">    }</span>
+}
+
+public class ToolPanel extends JPanel {
+
+<span class="fc" id="L46">    private final JTextField JLturn1 = new JTextField(&quot; P2  Turn &quot;);</span>
+
+<span class="fc" id="L48">    private final JTextField JLturn2 = new JTextField(&quot; P1  Turn &quot;);</span>
+<span class="fc" id="L49">    private final JTextField JLwhite = new JTextField(&quot;  White &quot;);</span>
+<span class="fc" id="L50">    private final JTextField JLblack = new JTextField(&quot;  Black &quot;);</span>
+<span class="fc" id="L51">    private final myHistoryList HistoryList = new myHistoryList();</span>
+<span class="fc" id="L52">    private final JScrollPane HistoryScroll = new JScrollPane(HistoryList,</span>
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+<span class="fc" id="L55">    private final JLabel Screen1 = new JLabel();</span>
+<span class="fc" id="L56">    private final JLabel Screen2 = new JLabel();</span>
+    private ThreadTimer Timer1;
+    private ThreadTimer Timer2;
+
+<span class="fc" id="L60">    public ToolPanel() {</span>
+<span class="fc" id="L61">        setSize(200, 350);</span>
+<span class="fc" id="L62">        setLocation(600, 0);</span>
+<span class="fc" id="L63">        setLayout(null);</span>
+
+<span class="fc" id="L65">        JLturn1.setSize(60, 25);</span>
+<span class="fc" id="L66">        JLturn1.setLocation(20, 10);</span>
+<span class="fc" id="L67">        Screen1.setSize(100, 25);</span>
+<span class="fc" id="L68">        Screen1.setLocation(90, 25);</span>
+
+<span class="fc" id="L70">        JLblack.setSize(60, 25);</span>
+<span class="fc" id="L71">        JLblack.setLocation(20, 34);</span>
+
+<span class="fc" id="L73">        JLturn1.setEnabled(false);</span>
+<span class="fc" id="L74">        JLturn1.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L75">        JLturn1.setDisabledTextColor(Color.BLACK);</span>
+<span class="fc" id="L76">        JLturn1.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 12));</span>
+
+<span class="fc" id="L78">        JLblack.setEnabled(false);</span>
+<span class="fc" id="L79">        JLblack.setBackground(new Color(230, 12, 0));</span>
+<span class="fc" id="L80">        JLblack.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 12));</span>
+<span class="fc" id="L81">        JLblack.setDisabledTextColor(Color.BLACK);</span>
+
+<span class="fc" id="L83">        JLturn2.setSize(60, 25);</span>
+<span class="fc" id="L84">        JLturn2.setLocation(20, 254);</span>
+<span class="fc" id="L85">        Screen2.setSize(100, 25);</span>
+<span class="fc" id="L86">        Screen2.setLocation(90, 254);</span>
+<span class="fc" id="L87">        JLwhite.setSize(60, 25);</span>
+<span class="fc" id="L88">        JLwhite.setLocation(20, 230);</span>
+
+<span class="fc" id="L90">        JLturn2.setEnabled(false);</span>
+<span class="fc" id="L91">        JLturn2.setBackground(Color.ORANGE);</span>
+<span class="fc" id="L92">        JLturn2.setDisabledTextColor(Color.BLACK);</span>
+<span class="fc" id="L93">        JLturn2.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 12));</span>
+
+<span class="fc" id="L95">        JLwhite.setEnabled(false);</span>
+<span class="fc" id="L96">        JLwhite.setBackground(new Color(230, 12, 0));</span>
+<span class="fc" id="L97">        JLwhite.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 12));</span>
+<span class="fc" id="L98">        JLwhite.setDisabledTextColor(Color.BLACK);</span>
+
+<span class="fc" id="L100">        add(JLturn1);</span>
+<span class="fc" id="L101">        add(JLblack);</span>
+<span class="fc" id="L102">        add(JLturn2);</span>
+<span class="fc" id="L103">        add(JLwhite);</span>
+<span class="fc" id="L104">        add(Screen1);</span>
+<span class="fc" id="L105">        add(Screen2);</span>
+
+<span class="fc" id="L107">        HistoryScroll.setSize(150, 150);</span>
+<span class="fc" id="L108">        HistoryScroll.setLocation(20, 70);</span>
+<span class="fc" id="L109">        add(HistoryScroll);</span>
+
+<span class="fc" id="L111">    }</span>
+
+    public void add_to_History(Object newItem) {
+<span class="fc" id="L114">        HistoryList.addElemen_tolist(newItem);</span>
+<span class="fc" id="L115">    }</span>
+
+    public void change_to_Timer1() {
+<span class="fc" id="L118">        Timer1.resume();</span>
+<span class="fc" id="L119">        Timer2.suspend();</span>
+<span class="fc" id="L120">    }</span>
+
+    public void change_to_Timer2() {
+<span class="fc" id="L123">        Timer2.resume();</span>
+<span class="fc" id="L124">        Timer1.suspend();</span>
+<span class="fc" id="L125">    }</span>
+
+    /**
+     * Creates a new instance of ToolPanel
+     */
+    @Override
+    public void paintComponent(Graphics g) {
+<span class="fc" id="L132">        super.paintComponent(g);</span>
+
+        // Graphics2D g2 = (Graphics2D)g;
+        // draw a rectangle
+
+        /*
+     * Ellipse2D start= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D stop= new
+     * Ellipse2D.Double(100, 234, 30, 30); g2.setColor(Color.RED.darker()); g2.fill(start);
+     * g2.setColor(Color.GREEN.darker()); g2.fill(stop);
+     * 
+     * Ellipse2D surr1= new Ellipse2D.Double(100, 34, 30, 30); Ellipse2D surr2= new
+     * Ellipse2D.Double(100, 234, 30, 30);
+     * 
+     * g2.setColor(Color.BLACK.brighter());
+     * 
+     * 
+     * g2.draw(surr1); g2.draw(surr2);
+         */
+<span class="fc" id="L150">    }</span>
+
+    public void setturn() {
+
+<span class="nc" id="L154">    }</span>
+
+    public void start_Again() {
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">        if (Timer1 != null) {</span>
+<span class="nc" id="L158">            Timer1.stop();</span>
+<span class="nc" id="L159">            Timer2.stop();</span>
+        }
+
+<span class="fc" id="L162">        Timer1 = new ThreadTimer(Screen2);</span>
+<span class="fc" id="L163">        Timer2 = new ThreadTimer(Screen1);</span>
+
+<span class="fc" id="L165">        Timer1.start();</span>
+<span class="fc" id="L166">        Timer2.start();</span>
+<span class="fc" id="L167">        Timer2.suspend();</span>
+
+<span class="fc" id="L169">        HistoryList.clean_list();</span>
+<span class="fc" id="L170">        HistoryList.addElemen_tolist(&quot;Player: New Moves&quot;);</span>
+
+<span class="fc" id="L172">    }</span>
+
+    public void stop_timers() {
+<span class="nc" id="L175">        Timer1.stop();</span>
+<span class="nc" id="L176">        Timer2.stop();</span>
+<span class="nc" id="L177">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
