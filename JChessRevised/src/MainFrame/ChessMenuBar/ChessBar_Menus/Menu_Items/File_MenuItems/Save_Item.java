@@ -1,4 +1,3 @@
-
 package MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.File_MenuItems;
 
 import java.awt.event.ActionEvent;
@@ -9,17 +8,19 @@ import javax.swing.JMenuItem;
 
 public class Save_Item extends JMenuItem {
 
-  private final JFileChooser SaveFile = new JFileChooser();
+    private final JFileChooser SaveFile = new JFileChooser();
 
-  /** Creates a new instance of Save_Item */
-  public Save_Item() {
-    setText("Save Game");
-    addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        SaveFile.showSaveDialog(null);
+    /**
+     * Creates a new instance of Save_Item
+     */
+    public Save_Item() {
+        setText("Save Game");
+        addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SaveFile.showSaveDialog(null);
 
-      }
-    });
-  }
+            }
+        });
+    }
 }

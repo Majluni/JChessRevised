@@ -1,4 +1,3 @@
-
 package MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.File_MenuItems;
 
 import java.awt.event.ActionEvent;
@@ -12,35 +11,37 @@ import MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.File_MenuItems.newGame_D
 
 public class New_Item extends JMenu {
 
-  private final NewGameDialoge Ndial;
+    private final NewGameDialoge Ndial;
 
-  private final JMenuItem OnePlayer = new JMenuItem(" One Player");
-  private final JMenuItem TwoPlayer = new JMenuItem(" Two Player");
+    private final JMenuItem OnePlayer = new JMenuItem(" One Player");
+    private final JMenuItem TwoPlayer = new JMenuItem(" Two Player");
 
-  /** Creates a new instance of New_Item */
-  public New_Item(MainFrame ff) {
-    Ndial = new NewGameDialoge(ff);
-    setText("New Game");
+    /**
+     * Creates a new instance of New_Item
+     */
+    public New_Item(MainFrame ff) {
+        Ndial = new NewGameDialoge(ff);
+        setText("New Game");
 
-    OnePlayer.setEnabled(false);
-    TwoPlayer.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
+        OnePlayer.setEnabled(false);
+        TwoPlayer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        Ndial.setVisible(true);
+                Ndial.setVisible(true);
 
-      }
-    });
-    add(OnePlayer);
-    add(TwoPlayer);
-  }
+            }
+        });
+        add(OnePlayer);
+        add(TwoPlayer);
+    }
 
-  public String getIpAddress() {
-    return Ndial.GetIpAddress();
-  }
+    public String getIpAddress() {
+        return Ndial.GetIpAddress();
+    }
 
-  public String getportNumber() {
-    return Ndial.GetPortnumber();
-  }
+    public String getportNumber() {
+        return Ndial.GetPortnumber();
+    }
 
 }

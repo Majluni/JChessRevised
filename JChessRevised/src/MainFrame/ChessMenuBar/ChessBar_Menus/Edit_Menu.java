@@ -1,4 +1,3 @@
-
 package MainFrame.ChessMenuBar.ChessBar_Menus;
 
 import javax.swing.JMenu;
@@ -8,14 +7,16 @@ import MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.Edit_MenuItems.Undo_move
 
 public class Edit_Menu extends JMenu {
 
-  private final Undo_move Uitem = new Undo_move();
+    private final Undo_move Uitem = new Undo_move();
 
-  private final Redo_move Ritem = new Redo_move();
+    private final Redo_move Ritem = new Redo_move();
 
-  /** Creates a new instance of Edit_Menu */
-  public Edit_Menu() {
-    setText("Edit");
-    add(Uitem);
-    add(Ritem);
-  }
+    /**
+     * Creates a new instance of Edit_Menu
+     */
+    public Edit_Menu() {
+        setText("Edit");
+        add(Uitem);
+        add(Ritem);
+    }
 }

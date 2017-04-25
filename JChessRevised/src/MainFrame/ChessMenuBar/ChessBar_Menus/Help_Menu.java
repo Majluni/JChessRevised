@@ -1,4 +1,3 @@
-
 package MainFrame.ChessMenuBar.ChessBar_Menus;
 
 import javax.swing.JMenu;
@@ -8,15 +7,17 @@ import MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.Help_MenuItems.About_Gam
 
 public class Help_Menu extends JMenu {
 
-  private final About_Chess_Game AboutGame = new About_Chess_Game();
+    private final About_Chess_Game AboutGame = new About_Chess_Game();
 
-  private final About_Game_Programmers AboutUs = new About_Game_Programmers();
+    private final About_Game_Programmers AboutUs = new About_Game_Programmers();
 
-  /** Creates a new instance of Help_Menu */
-  public Help_Menu() {
-    setText("Help");
-    add(AboutGame);
-    add(AboutUs);
-  }
+    /**
+     * Creates a new instance of Help_Menu
+     */
+    public Help_Menu() {
+        setText("Help");
+        add(AboutGame);
+        add(AboutUs);
+    }
 
 }

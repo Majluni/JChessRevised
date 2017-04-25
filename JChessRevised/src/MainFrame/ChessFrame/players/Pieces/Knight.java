@@ -1,123 +1,106 @@
-
 package MainFrame.ChessFrame.players.Pieces;
 
 import java.awt.Image;
 import java.awt.Point;
 
-public class Knight {
+public class Knight extends Piece {
 
-  /** Creates a new instance of Horse */
-  private int X, Y;
-  private Point pixelPoint = new Point();
-  private int pixelX, pixelY;
-  private boolean havelife = true;
-  private Point old = new Point();
-
-  private PieceIcon PieceIcon;
-  private Point p = new Point();
-
-  public Knight(String NameIcon, int startX, int startY) {
-
-    PieceIcon = new PieceIcon(NameIcon);
-
-    X = startX;
-    Y = startY;
-    p.x = X;
-    p.y = Y;
-  }
-
-  public boolean Canmove(int x, int y) {
-
-    if ((x + 1 == X) && (y + 2 == Y) || (x + 1 == X) && (y - 2 == Y) || (x - 1 == X) && (y + 2 == Y)
-        || (x - 1 == X) && (y - 2 == Y) || (x + 2 == X) && (y + 1 == Y)
-        || (x + 2 == X) && (y - 1 == Y) || (x - 2 == X) && (y + 1 == Y)
-        || (x - 2 == X) && (y - 1 == Y)) {
-
-      return true;
-    } else {
-      return false;
+    public Knight(String nameIcon, int startX, int startY) {
+        super(nameIcon, startX, startY);
     }
 
-  }
+    public boolean Canmove(int x, int y) {
 
-  public Point GeneratePossible_Moves() {
-    return new Point();
-  }
+        if ((x + 1 == X) && (y + 2 == Y) || (x + 1 == X) && (y - 2 == Y) || (x - 1 == X) && (y + 2 == Y)
+                || (x - 1 == X) && (y - 2 == Y) || (x + 2 == X) && (y + 1 == Y)
+                || (x + 2 == X) && (y - 1 == Y) || (x - 2 == X) && (y + 1 == Y)
+                || (x - 2 == X) && (y - 1 == Y)) {
 
-  public Point getpixelPoint() {
-    return pixelPoint;
-  }
+            return true;
+        } else {
+            return false;
+        }
 
-  public int getPixelX() {
-    return pixelX;
-  }
-
-  public int getPixelY() {
-    return pixelY;
-  }
-
-  public boolean Inthispostion(int x, int y) {
-    if (p.x == x && p.y == y) {
-      return true;
     }
-    return false;
-  }
 
-  public boolean returnLife() {
-    return havelife;
-  }
+    public Point GeneratePossible_Moves() {
+        return new Point();
+    }
 
-  public Point returnOld() {
-    return (Point) old.clone();
+    public Point getpixelPoint() {
+        return pixelPoint;
+    }
 
-  }
+    public int getPixelX() {
+        return pixelX;
+    }
 
-  public Image returnPieceImage() {
-    return PieceIcon.returnPieceIcon();
-  }
+    public int getPixelY() {
+        return pixelY;
+    }
 
-  public Point returnPostion() {
-    return (Point) p.clone();
-  }
+    public boolean Inthispostion(int x, int y) {
+        if (p.x == x && p.y == y) {
+            return true;
+        }
+        return false;
+    }
 
-  public int returnX() {
-    return X;
-  }
+    public boolean returnLife() {
+        return havelife;
+    }
 
-  public int returnY() {
-    return Y;
-  }
+    public Point returnOld() {
+        return (Point) old.clone();
 
-  public void setPixels(int newpixelX, int newpixelY) {
-    pixelPoint.x = newpixelX;
-    pixelPoint.y = newpixelY;
-  }
+    }
 
-  public void setPoint(Point newPoint) {
-    old.x = p.x;
-    old.y = p.y;
-    X = p.x = newPoint.x;
-    Y = p.y = newPoint.y;
-  }
+    public Image returnPieceImage() {
+        return icon.returnPieceIcon();
+    }
 
-  public void setX(int newX) {
-    X = newX;
-    p.x = X;
-  }
+    public Point returnPostion() {
+        return (Point) p.clone();
+    }
 
-  public void setY(int newY) {
-    Y = newY;
-    p.y = Y;
-  }
+    public int returnX() {
+        return X;
+    }
 
-  public String Tell_me() {
-    return "Horse= (" + p.x + ',' + p.y + ")";
-  }
+    public int returnY() {
+        return Y;
+    }
 
-  public void toOld(Point Old) {
+    public void setPixels(int newpixelX, int newpixelY) {
+        pixelPoint.x = newpixelX;
+        pixelPoint.y = newpixelY;
+    }
 
-    p.x = Old.x;
-    p.y = Old.y;
+    public void setPoint(Point newPoint) {
+        old.x = p.x;
+        old.y = p.y;
+        X = p.x = newPoint.x;
+        Y = p.y = newPoint.y;
+    }
 
-  }
+    public void setX(int newX) {
+        X = newX;
+        p.x = X;
+    }
+
+    public void setY(int newY) {
+        Y = newY;
+        p.y = Y;
+    }
+
+    public String Tell_me() {
+        return "Horse= (" + p.x + ',' + p.y + ")";
+    }
+
+    public void toOld(Point Old) {
+
+        p.x = Old.x;
+        p.y = Old.y;
+
+    }
 }

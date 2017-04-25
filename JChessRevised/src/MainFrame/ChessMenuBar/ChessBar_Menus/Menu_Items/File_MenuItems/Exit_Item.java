@@ -1,4 +1,3 @@
-
 package MainFrame.ChessMenuBar.ChessBar_Menus.Menu_Items.File_MenuItems;
 
 import java.awt.event.ActionEvent;
@@ -8,16 +7,18 @@ import javax.swing.JMenuItem;
 
 public class Exit_Item extends JMenuItem {
 
-  /** Creates a new instance of Exit_Item */
-  public Exit_Item() {
-    setText("Exit");
-    addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        System.exit(0);
-      }
-    });
+    /**
+     * Creates a new instance of Exit_Item
+     */
+    public Exit_Item() {
+        setText("Exit");
+        addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
-  }
+    }
 
 }

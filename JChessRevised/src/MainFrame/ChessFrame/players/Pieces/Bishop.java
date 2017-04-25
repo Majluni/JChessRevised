@@ -1,258 +1,228 @@
-
 package MainFrame.ChessFrame.players.Pieces;
 
 import java.awt.Image;
 import java.awt.Point;
 
-public class Bishop {
+public class Bishop extends Piece {
 
-  /** Creates a new instance of Elephent */
-  private int X, Y;
-  private Point pixelPoint = new Point();
-  private int pixelX, pixelY;
-  private boolean havelife = true;
-  private PieceIcon icon;
-  private Point p = new Point();
-  private Point old = new Point();
+    public Bishop(String nameIcon, int startX, int startY) {
+        super(nameIcon, startX, startY);
+    }
 
-  public Bishop(String NameIcon, int startX, int startY) {
+    public boolean Canmove(int x, int y) {
 
-    icon = new PieceIcon(NameIcon);
+        if ((x - y) == (X - Y)) {
 
-    X = startX;
-    Y = startY;
-    p.x = X;
-    p.y = Y;
-  }
+            return true;
 
-  public boolean Canmove(int x, int y) {
+        } //////////////////////////////////////////////////////////////////////////////////////////
+        else if ((x + y) == (X + Y)) {
+            return true;
 
-    if ((x - y) == (X - Y)) {
-
-      return true;
+        } else {
+            return false;
+        }
 
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////
-    else if ((x + y) == (X + Y)) {
-      return true;
+    public boolean checkKing(int x, int y, Point othersPostion) {
 
-    } else {
-      return false;
+        int j = y;
+        int i = x;
+
+        if ((x - y) == (X - Y)) {
+            if (x > X && y > Y) {
+                while ((j != Y) && (i != X)) {
+                    j--;
+                    i--;
+
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+                        return true;
+                    }
+                }
+            } else if (x < X && y < Y) {
+                while ((j != Y) && (i != X)) {
+                    j++;
+                    i++;
+
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+                        return true;
+                    }
+
+                }
+            }
+        } else if (((x + y)) == ((X + Y))) {
+
+            if ((X < i) && (Y > j)) {
+
+                while (((j != Y)) && ((i != X))) {
+                    j++;
+                    i--;
+
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+
+                        return true;
+                    }
+
+                }
+
+            } else if ((X > i) && (Y < j)) {
+                while ((j != X) && (i != X)) {
+                    j--;
+                    i++;
+
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+                        return true;
+                    }
+
+                }
+            }
+        }
+
+        return false;
     }
 
-  }
-
-  public boolean checkKing(int x, int y, Point othersPostion) {
-
-    int j = y;
-    int i = x;
-
-    if ((x - y) == (X - Y)) {
-      if (x > X && y > Y) {
-        while ((j != Y) && (i != X)) {
-          j--;
-          i--;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-
-      else if (x < X && y < Y) {
-        while ((j != Y) && (i != X)) {
-          j++;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-      }
+    public Point GeneratePossible_Moves() {
+        return new Point();
     }
 
-    else if (((x + y)) == ((X + Y))) {
-
-      if ((X < i) && (Y > j)) {
-
-        while (((j != Y)) && ((i != X))) {
-          j++;
-          i--;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-
-            return true;
-          }
-
-        }
-
-      }
-
-      else if ((X > i) && (Y < j)) {
-        while ((j != X) && (i != X)) {
-          j--;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-      }
+    public Point getpixelPoint() {
+        return pixelPoint;
     }
 
-    return false;
-  }
-
-  public Point GeneratePossible_Moves() {
-    return new Point();
-  }
-
-  public Point getpixelPoint() {
-    return pixelPoint;
-  }
-
-  public int getPixelX() {
-    return pixelX;
-  }
-
-  public int getPixelY() {
-    return pixelY;
-  }
-
-  public boolean Inthispostion(int x, int y) {
-    if (p.x == x && p.y == y) {
-      return true;
-    }
-    return false;
-  }
-
-  public boolean PieceInMYway(int x, int y, Point othersPostion) {
-
-    int j = y;
-    int i = x;
-
-    if ((x - y) == (X - Y)) {
-      if (x > X && y > Y) {
-        while ((j != Y + 1) && (i != X + 1)) {
-          j--;
-          i--;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-        }
-      }
-
-      else if (x < X && y < Y) {
-        while ((j != Y - 1) && (i != X - 1)) {
-          j++;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-      }
+    public int getPixelX() {
+        return pixelX;
     }
 
-    else if (((x + y)) == ((X + Y))) {
-
-      if ((X < i) && (Y > j)) {
-
-        while (((j != Y - 1)) && ((i != X + 1))) {
-          j++;
-          i--;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-
-            return true;
-          }
-
-        }
-
-      }
-
-      else if ((X > i) && (Y < j)) {
-        while ((j != X + 1) && (i != X - 1)) {
-          j--;
-          i++;
-
-          if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
-            return true;
-          }
-
-        }
-      }
+    public int getPixelY() {
+        return pixelY;
     }
 
-    return false;
-  }
+    public boolean Inthispostion(int x, int y) {
+        if (p.x == x && p.y == y) {
+            return true;
+        }
+        return false;
+    }
 
-  public boolean returnLife() {
-    return havelife;
-  }
+    public boolean PieceInMYway(int x, int y, Point othersPostion) {
 
-  public Point returnOld() {
-    return old;
-  }
+        int j = y;
+        int i = x;
 
-  public Image returnPieceImage() {
-    return icon.returnPieceIcon();
-  }
+        if ((x - y) == (X - Y)) {
+            if (x > X && y > Y) {
+                while ((j != Y + 1) && (i != X + 1)) {
+                    j--;
+                    i--;
 
-  public Point returnPostion() {
-    return (Point) p.clone();
-  }
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+                        return true;
+                    }
+                }
+            } else if (x < X && y < Y) {
+                while ((j != Y - 1) && (i != X - 1)) {
+                    j++;
+                    i++;
 
-  public int returnX() {
-    return X;
-  }
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+                        return true;
+                    }
 
-  public int returnY() {
-    return Y;
-  }
+                }
+            }
+        } else if (((x + y)) == ((X + Y))) {
 
-  public void setPixels(int newpixelX, int newpixelY) {
-    pixelPoint.x = newpixelX;
-    pixelPoint.y = newpixelY;
-  }
+            if ((X < i) && (Y > j)) {
 
-  public void setPoint(Point newPoint) {
-    old.x = p.x;
-    old.y = p.y;
+                while (((j != Y - 1)) && ((i != X + 1))) {
+                    j++;
+                    i--;
 
-    p.x = newPoint.x;
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
 
-    p.y = newPoint.y;
-    X = p.x;
-    Y = p.y;
+                        return true;
+                    }
 
-  }
+                }
 
-  public void setX(int newX) {
-    X = newX;
-    p.x = newX;
+            } else if ((X > i) && (Y < j)) {
+                while ((j != X + 1) && (i != X - 1)) {
+                    j--;
+                    i++;
 
-  }
+                    if (((othersPostion.y) == j) && ((othersPostion.x == i))) {
+                        return true;
+                    }
 
-  public void setY(int newY) {
-    Y = newY;
-    p.y = Y;
-  }
+                }
+            }
+        }
 
-  public String Tell_me() {
-    return "Elephent= (" + p.x + ',' + p.y + ")";
-  }
+        return false;
+    }
 
-  public void toOld(Point Old) {
+    public boolean returnLife() {
+        return havelife;
+    }
 
-    p.x = Old.x;
-    p.y = Old.y;
+    public Point returnOld() {
+        return old;
+    }
 
-  }
+    public Image returnPieceImage() {
+        return icon.returnPieceIcon();
+    }
+
+    public Point returnPostion() {
+        return (Point) p.clone();
+    }
+
+    public int returnX() {
+        return X;
+    }
+
+    public int returnY() {
+        return Y;
+    }
+
+    public void setPixels(int newpixelX, int newpixelY) {
+        pixelPoint.x = newpixelX;
+        pixelPoint.y = newpixelY;
+    }
+
+    public void setPoint(Point newPoint) {
+        old.x = p.x;
+        old.y = p.y;
+
+        p.x = newPoint.x;
+
+        p.y = newPoint.y;
+        X = p.x;
+        Y = p.y;
+
+    }
+
+    public void setX(int newX) {
+        X = newX;
+        p.x = newX;
+
+    }
+
+    public void setY(int newY) {
+        Y = newY;
+        p.y = Y;
+    }
+
+    public String Tell_me() {
+        return "Bishop= (" + p.x + ',' + p.y + ")";
+    }
+
+    public void toOld(Point Old) {
+
+        p.x = Old.x;
+        p.y = Old.y;
+
+    }
 
 }
