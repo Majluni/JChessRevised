@@ -27,87 +27,75 @@ public class King extends Piece {
 <span class="fc" id="L27">        pixelPoint.y = newpixelY;</span>
 <span class="fc" id="L28">    }</span>
 
-    public int getPixelX() {
-<span class="nc" id="L31">        return pixelX;</span>
-    }
-
-    public int getPixelY() {
-<span class="nc" id="L35">        return pixelY;</span>
-    }
-
     public Point getpixelPoint() {
-<span class="fc" id="L39">        return pixelPoint;</span>
+<span class="fc" id="L31">        return pixelPoint;</span>
     }
 
     public int returnY() {
-<span class="fc" id="L43">        Y = p.y;</span>
-<span class="fc" id="L44">        return Y;</span>
+<span class="fc" id="L35">        Y = p.y;</span>
+<span class="fc" id="L36">        return Y;</span>
     }
 
     public void setPoint(Point newPoint) {
-<span class="fc" id="L48">        old.x = p.x;</span>
-<span class="fc" id="L49">        old.y = p.y;</span>
+<span class="fc" id="L40">        old.x = p.x;</span>
+<span class="fc" id="L41">        old.y = p.y;</span>
 
-<span class="fc" id="L51">        p.x = newPoint.x;</span>
+<span class="fc" id="L43">        p.x = newPoint.x;</span>
 
-<span class="fc" id="L53">        p.y = newPoint.y;</span>
+<span class="fc" id="L45">        p.y = newPoint.y;</span>
 
-<span class="fc" id="L55">        X = p.x;</span>
-<span class="fc" id="L56">        Y = p.y;</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L47">        X = p.x;</span>
+<span class="fc" id="L48">        Y = p.y;</span>
+<span class="fc" id="L49">    }</span>
 
     public void toOld(Point Old) {
 
-<span class="nc" id="L61">        p.x = Old.x;</span>
-<span class="nc" id="L62">        p.y = Old.y;</span>
+<span class="nc" id="L53">        p.x = Old.x;</span>
+<span class="nc" id="L54">        p.y = Old.y;</span>
 
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L56">    }</span>
 
     public Point returnOld() {
-<span class="fc" id="L67">        return old;</span>
+<span class="fc" id="L59">        return old;</span>
     }
 
     public void setX(int newX) {
-<span class="fc" id="L71">        X = newX;</span>
-<span class="fc" id="L72">        p.x = X;</span>
-<span class="fc" id="L73">    }</span>
+<span class="fc" id="L63">        X = newX;</span>
+<span class="fc" id="L64">        p.x = X;</span>
+<span class="fc" id="L65">    }</span>
 
     public void setY(int newY) {
-<span class="fc" id="L76">        Y = newY;</span>
-<span class="fc" id="L77">        p.y = Y;</span>
-<span class="fc" id="L78">    }</span>
+<span class="fc" id="L68">        Y = newY;</span>
+<span class="fc" id="L69">        p.y = Y;</span>
+<span class="fc" id="L70">    }</span>
 
     public boolean Inthispostion(int x, int y) {
-<span class="nc bnc" id="L81" title="All 4 branches missed.">        if (p.x == x &amp;&amp; p.y == y) {</span>
-<span class="nc" id="L82">            return true;//cant kill the king anymore;</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">        if (p.x == x &amp;&amp; p.y == y) {</span>
+<span class="nc" id="L74">            return true;//cant kill the king anymore;</span>
         }
-<span class="nc" id="L84">        return false;</span>
-    }
-
-    public boolean returnLife() {
-<span class="nc" id="L88">        return havelife;</span>
+<span class="nc" id="L76">        return false;</span>
     }
 
     public boolean Canmove(int x, int y) {
 
-<span class="pc bpc" id="L93" title="4 of 32 branches missed.">        if (((y == Y) &amp;&amp; (x == (X - 1))) || ((y == Y - 1) &amp;&amp; (x == (X + 1)))</span>
+<span class="pc bpc" id="L81" title="6 of 32 branches missed.">        if (((y == Y) &amp;&amp; (x == (X - 1))) || ((y == Y - 1) &amp;&amp; (x == (X + 1)))</span>
                 || ((y == Y - 1) &amp;&amp; (x == (X - 1))) || ((y == Y + 1) &amp;&amp; (x == (X + 1)))
                 || (((y == Y + 1) &amp;&amp; x == (X - 1))) || ((y == Y) &amp;&amp; (x == (X + 1)))
                 || ((y == Y - 1) &amp;&amp; x == ((X))) || ((y == Y + 1) &amp;&amp; (x == (X)))) {
 
-<span class="fc" id="L98">            return true;</span>
+<span class="fc" id="L86">            return true;</span>
         }
 
-<span class="fc" id="L101">        return false;</span>
+<span class="fc" id="L89">        return false;</span>
 
     }
 
     public Point GeneratePossible_Moves() {
-<span class="nc" id="L106">        return new Point();</span>
+<span class="nc" id="L94">        return new Point();</span>
     }
 
     public String Tell_me() {
-<span class="fc" id="L110">        return &quot;King= (&quot; + p.x + ',' + p.y + &quot;)&quot;;</span>
+<span class="fc" id="L98">        return &quot;King= (&quot; + p.x + ',' + p.y + &quot;)&quot;;</span>
     }
 
 }

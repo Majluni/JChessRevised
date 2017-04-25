@@ -150,12 +150,12 @@ public class Player1 {
 
     public Point returnOldPostion(int i) {
 
-<span class="pc bpc" id="L153" title="4 of 17 branches missed.">        switch (i) {</span>
+<span class="pc bpc" id="L153" title="5 of 17 branches missed.">        switch (i) {</span>
 
             case 17:
 <span class="fc" id="L156">                return WC1.returnOld();</span>
             case 18:
-<span class="fc" id="L158">                return WC2.returnOld();</span>
+<span class="nc" id="L158">                return WC2.returnOld();</span>
             case 19:
 <span class="fc" id="L160">                return WH1.returnOld();</span>
             case 20:
@@ -179,11 +179,11 @@ public class Player1 {
             case 29:
 <span class="fc" id="L180">                return WS[4].returnOld();</span>
             case 30:
-<span class="fc" id="L182">                return WS[5].returnOld();</span>
+<span class="nc" id="L182">                return WS[5].returnOld();</span>
             case 31:
 <span class="fc" id="L184">                return WS[6].returnOld();</span>
             case 32:
-<span class="nc" id="L186">                return WS[7].returnOld();</span>
+<span class="fc" id="L186">                return WS[7].returnOld();</span>
         }
 <span class="nc" id="L188">        return new Point(-1, -1);</span>
     }
@@ -343,14 +343,14 @@ public class Player1 {
 
     public void changePixel(int newPixelX, int newPixelY, int i) {
 <span class="fc" id="L345">        choosenOne = i;</span>
-<span class="pc bpc" id="L346" title="4 of 17 branches missed.">        switch (choosenOne) {</span>
+<span class="pc bpc" id="L346" title="5 of 17 branches missed.">        switch (choosenOne) {</span>
 
             case 17:
 <span class="fc" id="L349">                WC1.setPixels(newPixelX, newPixelY);</span>
 <span class="fc" id="L350">                break;</span>
             case 18:
-<span class="fc" id="L352">                WC2.setPixels(newPixelX, newPixelY);</span>
-<span class="fc" id="L353">                break;</span>
+<span class="nc" id="L352">                WC2.setPixels(newPixelX, newPixelY);</span>
+<span class="nc" id="L353">                break;</span>
             case 19:
 <span class="fc" id="L355">                WH1.setPixels(newPixelX, newPixelY);</span>
 <span class="fc" id="L356">                break;</span>
@@ -385,25 +385,25 @@ public class Player1 {
 <span class="fc" id="L385">                WS[4].setPixels(newPixelX, newPixelY);</span>
 <span class="fc" id="L386">                break;</span>
             case 30:
-<span class="fc" id="L388">                WS[5].setPixels(newPixelX, newPixelY);</span>
-<span class="fc" id="L389">                break;</span>
+<span class="nc" id="L388">                WS[5].setPixels(newPixelX, newPixelY);</span>
+<span class="nc" id="L389">                break;</span>
             case 31:
 <span class="fc" id="L391">                WS[6].setPixels(newPixelX, newPixelY);</span>
 <span class="fc" id="L392">                break;</span>
             case 32:
-<span class="nc" id="L394">                WS[7].setPixels(newPixelX, newPixelY);</span>
+<span class="fc" id="L394">                WS[7].setPixels(newPixelX, newPixelY);</span>
                 break;
         }
 <span class="fc" id="L397">    }</span>
 
     public Point getPixelPoint(int i) {
 <span class="fc" id="L400">        choosenOne = i;</span>
-<span class="pc bpc" id="L401" title="4 of 17 branches missed.">        switch (choosenOne) {</span>
+<span class="pc bpc" id="L401" title="5 of 17 branches missed.">        switch (choosenOne) {</span>
 
             case 17:
 <span class="fc" id="L404">                return WC1.getpixelPoint();</span>
             case 18:
-<span class="fc" id="L406">                return WC2.getpixelPoint();</span>
+<span class="nc" id="L406">                return WC2.getpixelPoint();</span>
             case 19:
 <span class="fc" id="L408">                return WH1.getpixelPoint();</span>
             case 20:
@@ -427,11 +427,11 @@ public class Player1 {
             case 29:
 <span class="fc" id="L428">                return WS[4].getpixelPoint();</span>
             case 30:
-<span class="fc" id="L430">                return WS[5].getpixelPoint();</span>
+<span class="nc" id="L430">                return WS[5].getpixelPoint();</span>
             case 31:
 <span class="fc" id="L432">                return WS[6].getpixelPoint();</span>
             case 32:
-<span class="nc" id="L434">                return WS[7].getpixelPoint();</span>
+<span class="fc" id="L434">                return WS[7].getpixelPoint();</span>
         }
 <span class="nc" id="L436">        return null;</span>
     }
@@ -467,11 +467,11 @@ public class Player1 {
             case 29:
 <span class="fc" id="L468">                return WS[4].Canmove(newP.x, newP.y, Color);</span>
             case 30:
-<span class="fc" id="L470">                return WS[5].Canmove(newP.x, newP.y, Color);</span>
+<span class="nc" id="L470">                return WS[5].Canmove(newP.x, newP.y, Color);</span>
             case 31:
 <span class="fc" id="L472">                return WS[6].Canmove(newP.x, newP.y, Color);</span>
             case 32:
-<span class="nc" id="L474">                return WS[7].Canmove(newP.x, newP.y, Color);</span>
+<span class="fc" id="L474">                return WS[7].Canmove(newP.x, newP.y, Color);</span>
         }
 <span class="nc" id="L476">        return false;</span>
     }
@@ -507,9 +507,9 @@ public class Player1 {
             case 27:
 <span class="nc" id="L508">                return WS[2].returnMyseen();</span>
             case 28:
-<span class="nc" id="L510">                return WS[3].returnMyseen();</span>
+<span class="fc" id="L510">                return WS[3].returnMyseen();</span>
             case 29:
-<span class="fc" id="L512">                return WS[4].returnMyseen();</span>
+<span class="nc" id="L512">                return WS[4].returnMyseen();</span>
             case 30:
 <span class="nc" id="L514">                return WS[5].returnMyseen();</span>
             case 31:
@@ -521,12 +521,12 @@ public class Player1 {
     }
 
     public boolean checktheWay(Point newP, Point postionFromOthers, int i) {
-<span class="pc bpc" id="L524" title="3 of 14 branches missed.">        switch (i) {</span>
+<span class="pc bpc" id="L524" title="4 of 14 branches missed.">        switch (i) {</span>
 
             case 17:
 <span class="fc" id="L527">                return WC1.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
             case 18:
-<span class="fc" id="L529">                return WC2.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
+<span class="nc" id="L529">                return WC2.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
             case 21:
 <span class="fc" id="L531">                return WE1.PieceInMYway(newP.x, newP.y, postionFromOthers);</span>
             case 22:
@@ -544,11 +544,11 @@ public class Player1 {
             case 29:
 <span class="fc" id="L545">                return WS[4].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
             case 30:
-<span class="fc" id="L547">                return WS[5].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+<span class="nc" id="L547">                return WS[5].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
             case 31:
 <span class="fc" id="L549">                return WS[6].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
             case 32:
-<span class="nc" id="L551">                return WS[7].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
+<span class="fc" id="L551">                return WS[7].PieceInMYway(newP.x, newP.y, postionFromOthers, Color);</span>
 
         }
 <span class="fc" id="L554">        return false;</span>
@@ -556,7 +556,7 @@ public class Player1 {
 
     public boolean Killedpiec(int i) {
 <span class="fc" id="L558">        Point out = new Point(13, 13);</span>
-<span class="pc bpc" id="L559" title="3 of 17 branches missed.">        switch (i) {</span>
+<span class="pc bpc" id="L559" title="4 of 17 branches missed.">        switch (i) {</span>
 
             case 17:
 <span class="fc" id="L562">                WC1.setPoint(out);</span>
@@ -565,8 +565,8 @@ public class Player1 {
 <span class="fc" id="L565">                WC2.setPoint(out);</span>
 <span class="fc" id="L566">                return true;</span>
             case 19:
-<span class="fc" id="L568">                WH1.setPoint(out);</span>
-<span class="fc" id="L569">                return true;</span>
+<span class="nc" id="L568">                WH1.setPoint(out);</span>
+<span class="nc" id="L569">                return true;</span>
             case 20:
 <span class="fc" id="L571">                WH2.setPoint(out);</span>
 <span class="fc" id="L572">                return true;</span>
@@ -574,22 +574,22 @@ public class Player1 {
 <span class="fc" id="L574">                WE1.setPoint(out);</span>
 <span class="fc" id="L575">                return true;</span>
             case 22:
-<span class="fc" id="L577">                WE2.setPoint(out);</span>
-<span class="fc" id="L578">                return true;</span>
+<span class="nc" id="L577">                WE2.setPoint(out);</span>
+<span class="nc" id="L578">                return true;</span>
             case 23:
 <span class="fc" id="L580">                WQ.setPoint(out);</span>
 <span class="fc" id="L581">                return true;</span>
             case 24:
-<span class="fc" id="L583">                return false;</span>
+<span class="nc" id="L583">                return false;</span>
             case 25:
 <span class="fc" id="L585">                WS[0].setPoint(out);</span>
 <span class="fc" id="L586">                return true;</span>
             case 26:
-<span class="nc" id="L588">                WS[1].setPoint(out);</span>
-<span class="nc" id="L589">                return true;</span>
+<span class="fc" id="L588">                WS[1].setPoint(out);</span>
+<span class="fc" id="L589">                return true;</span>
             case 27:
-<span class="nc" id="L591">                WS[2].setPoint(out);</span>
-<span class="nc" id="L592">                return true;</span>
+<span class="fc" id="L591">                WS[2].setPoint(out);</span>
+<span class="fc" id="L592">                return true;</span>
             case 28:
 <span class="fc" id="L594">                WS[3].setPoint(out);</span>
 <span class="fc" id="L595">                return true;</span>
@@ -682,10 +682,10 @@ public class Player1 {
 
     public boolean Check_Mate_GameOver(Player2 Enemy) {
 
-<span class="nc bnc" id="L685" title="All 2 branches missed.">        if (!KingGenerate_moves(Enemy)) {</span>
+<span class="pc bpc" id="L685" title="1 of 2 branches missed.">        if (!KingGenerate_moves(Enemy)) {</span>
 
-<span class="nc" id="L687">            inHand = -1;</span>
-<span class="nc" id="L688">            return false;</span>
+<span class="fc" id="L687">            inHand = -1;</span>
+<span class="fc" id="L688">            return false;</span>
 <span class="nc bnc" id="L689" title="All 2 branches missed.">        } else if (!CastleGenerate_moves(Enemy, WC1)) {</span>
 
 <span class="nc" id="L691">            inHand = -1;</span>
@@ -767,9 +767,9 @@ public class Player1 {
 
                     }
 
-<span class="pc bpc" id="L770" title="1 of 2 branches missed.">                    if (flag) {</span>
+<span class="fc bfc" id="L770" title="All 2 branches covered.">                    if (flag) {</span>
 
-<span class="nc" id="L772">                        break;</span>
+<span class="fc" id="L772">                        break;</span>
                     }
 
                 }
@@ -788,7 +788,7 @@ public class Player1 {
             }
         }
 
-<span class="nc" id="L791">        return true;</span>
+<span class="fc" id="L791">        return true;</span>
     }
 
     public boolean Pice_already_there(Point newP) {
@@ -800,9 +800,9 @@ public class Player1 {
                 //Check if there is White Pices in the new Point
                 //If so we Can't move (Same Color)!!
 <span class="fc" id="L802">                samePostion = returnPostion(i);</span>
-<span class="pc bpc" id="L803" title="1 of 4 branches missed.">                if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
+<span class="fc bfc" id="L803" title="All 4 branches covered.">                if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
 
-<span class="nc" id="L805">                    return false;</span>
+<span class="fc" id="L805">                    return false;</span>
 
                 }
             }
@@ -840,46 +840,46 @@ public class Player1 {
     }
 
     public boolean KingGenerate_moves(Player2 enemy) {
-<span class="nc" id="L843">        boolean somthing_killed = false;</span>
-<span class="nc" id="L844">        Point Oldp = new Point();</span>
+<span class="fc" id="L843">        boolean somthing_killed = false;</span>
+<span class="fc" id="L844">        Point Oldp = new Point();</span>
 
-<span class="nc" id="L846">        Point PlaceCheck = new Point();</span>
-<span class="nc" id="L847">        inHand = 24;</span>
+<span class="fc" id="L846">        Point PlaceCheck = new Point();</span>
+<span class="fc" id="L847">        inHand = 24;</span>
 
-<span class="nc" id="L849">        int x = WK.returnX();</span>
-<span class="nc" id="L850">        int y = WK.returnY();</span>
-<span class="nc" id="L851">        Oldp.x = x;</span>
-<span class="nc" id="L852">        Oldp.y = y;</span>
+<span class="fc" id="L849">        int x = WK.returnX();</span>
+<span class="fc" id="L850">        int y = WK.returnY();</span>
+<span class="fc" id="L851">        Oldp.x = x;</span>
+<span class="fc" id="L852">        Oldp.y = y;</span>
 
-<span class="nc bnc" id="L854" title="All 2 branches missed.">        if (x + 1 &lt;= 8) {</span>
+<span class="pc bpc" id="L854" title="1 of 2 branches missed.">        if (x + 1 &lt;= 8) {</span>
 
-<span class="nc" id="L856">            WK.setX(x + 1);</span>
-<span class="nc" id="L857">            WK.setY(y);</span>
-<span class="nc" id="L858">            PlaceCheck.x = x + 1;</span>
-<span class="nc" id="L859">            PlaceCheck.y = y;</span>
+<span class="fc" id="L856">            WK.setX(x + 1);</span>
+<span class="fc" id="L857">            WK.setY(y);</span>
+<span class="fc" id="L858">            PlaceCheck.x = x + 1;</span>
+<span class="fc" id="L859">            PlaceCheck.y = y;</span>
 
-<span class="nc bnc" id="L861" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="pc bpc" id="L861" title="1 of 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
 <span class="nc" id="L862">                somthing_killed = true;</span>
             }
-<span class="nc bnc" id="L864" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
-<span class="nc bnc" id="L865" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+<span class="fc bfc" id="L864" title="All 2 branches covered.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="pc bpc" id="L865" title="1 of 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
 
-<span class="nc" id="L867">                    WK.setPoint(Oldp);</span>
-<span class="nc bnc" id="L868" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="fc" id="L867">                    WK.setPoint(Oldp);</span>
+<span class="pc bpc" id="L868" title="1 of 2 branches missed.">                    if (somthing_killed) {</span>
 <span class="nc" id="L869">                        enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L870">                        somthing_killed = false;</span>
                     }
-<span class="nc" id="L872">                    return false;</span>
+<span class="fc" id="L872">                    return false;</span>
                 }
             }
 
         }
-<span class="nc" id="L877">        WK.setPoint(Oldp);</span>
-<span class="nc bnc" id="L878" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="fc" id="L877">        WK.setPoint(Oldp);</span>
+<span class="pc bpc" id="L878" title="1 of 2 branches missed.">        if (somthing_killed) {</span>
 <span class="nc" id="L879">            enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L880">            somthing_killed = false;</span>
         }
-<span class="nc bnc" id="L882" title="All 2 branches missed.">        if (y + 1 &lt;= 8) {</span>
+<span class="pc bpc" id="L882" title="1 of 2 branches missed.">        if (y + 1 &lt;= 8) {</span>
 
 <span class="nc" id="L884">            WK.setX(x);</span>
 <span class="nc" id="L885">            WK.setY(y + 1);</span>
@@ -902,25 +902,25 @@ public class Player1 {
             }
 
         }
-<span class="nc" id="L905">        WK.setPoint(Oldp);</span>
-<span class="nc bnc" id="L906" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="fc" id="L905">        WK.setPoint(Oldp);</span>
+<span class="pc bpc" id="L906" title="1 of 2 branches missed.">        if (somthing_killed) {</span>
 <span class="nc" id="L907">            enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L908">            somthing_killed = false;</span>
         }
 
-<span class="nc bnc" id="L911" title="All 2 branches missed.">        if (y - 1 &gt; 0) {</span>
+<span class="pc bpc" id="L911" title="1 of 2 branches missed.">        if (y - 1 &gt; 0) {</span>
 
-<span class="nc" id="L913">            WK.setX(x);</span>
-<span class="nc" id="L914">            WK.setY(y - 1);</span>
+<span class="fc" id="L913">            WK.setX(x);</span>
+<span class="fc" id="L914">            WK.setY(y - 1);</span>
 
-<span class="nc" id="L916">            PlaceCheck.x = x;</span>
-<span class="nc" id="L917">            PlaceCheck.y = y - 1;</span>
+<span class="fc" id="L916">            PlaceCheck.x = x;</span>
+<span class="fc" id="L917">            PlaceCheck.y = y - 1;</span>
 
-<span class="nc bnc" id="L919" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="pc bpc" id="L919" title="1 of 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
 <span class="nc" id="L920">                somthing_killed = true;</span>
             }
 
-<span class="nc bnc" id="L923" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="pc bpc" id="L923" title="1 of 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
 <span class="nc bnc" id="L924" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
 
 <span class="nc" id="L926">                    WK.setPoint(Oldp);</span>
@@ -934,23 +934,23 @@ public class Player1 {
             }
 
         }
-<span class="nc" id="L937">        WK.setPoint(Oldp);</span>
-<span class="nc bnc" id="L938" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="fc" id="L937">        WK.setPoint(Oldp);</span>
+<span class="pc bpc" id="L938" title="1 of 2 branches missed.">        if (somthing_killed) {</span>
 <span class="nc" id="L939">            enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L940">            somthing_killed = false;</span>
         }
-<span class="nc bnc" id="L942" title="All 2 branches missed.">        if (x - 1 &gt; 0) {</span>
+<span class="pc bpc" id="L942" title="1 of 2 branches missed.">        if (x - 1 &gt; 0) {</span>
 
-<span class="nc" id="L944">            WK.setX(x - 1);</span>
-<span class="nc" id="L945">            WK.setY(y);</span>
+<span class="fc" id="L944">            WK.setX(x - 1);</span>
+<span class="fc" id="L945">            WK.setY(y);</span>
 
-<span class="nc" id="L947">            PlaceCheck.x = x - 1;</span>
-<span class="nc" id="L948">            PlaceCheck.y = y;</span>
-<span class="nc bnc" id="L949" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="fc" id="L947">            PlaceCheck.x = x - 1;</span>
+<span class="fc" id="L948">            PlaceCheck.y = y;</span>
+<span class="pc bpc" id="L949" title="1 of 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
 <span class="nc" id="L950">                somthing_killed = true;</span>
             }
-<span class="nc bnc" id="L952" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
-<span class="nc bnc" id="L953" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+<span class="pc bpc" id="L952" title="1 of 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="pc bpc" id="L953" title="1 of 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
 <span class="nc bnc" id="L954" title="All 2 branches missed.">                    if (somthing_killed) {</span>
 <span class="nc" id="L955">                        enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L956">                        somthing_killed = false;</span>
@@ -961,24 +961,24 @@ public class Player1 {
             }
 
         }
-<span class="nc" id="L964">        WK.setPoint(Oldp);</span>
-<span class="nc bnc" id="L965" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="fc" id="L964">        WK.setPoint(Oldp);</span>
+<span class="pc bpc" id="L965" title="1 of 2 branches missed.">        if (somthing_killed) {</span>
 <span class="nc" id="L966">            enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L967">            somthing_killed = false;</span>
         }
-<span class="nc bnc" id="L969" title="All 4 branches missed.">        if (y - 1 &gt; 0 &amp;&amp; x - 1 &gt; 0) {</span>
+<span class="pc bpc" id="L969" title="2 of 4 branches missed.">        if (y - 1 &gt; 0 &amp;&amp; x - 1 &gt; 0) {</span>
 
-<span class="nc" id="L971">            WK.setX(x - 1);</span>
-<span class="nc" id="L972">            WK.setY(y - 1);</span>
+<span class="fc" id="L971">            WK.setX(x - 1);</span>
+<span class="fc" id="L972">            WK.setY(y - 1);</span>
 
-<span class="nc" id="L974">            PlaceCheck.x = x - 1;</span>
-<span class="nc" id="L975">            PlaceCheck.y = y - 1;</span>
+<span class="fc" id="L974">            PlaceCheck.x = x - 1;</span>
+<span class="fc" id="L975">            PlaceCheck.y = y - 1;</span>
 
-<span class="nc bnc" id="L977" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="pc bpc" id="L977" title="1 of 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
 <span class="nc" id="L978">                somthing_killed = true;</span>
             }
-<span class="nc bnc" id="L980" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
-<span class="nc bnc" id="L981" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+<span class="pc bpc" id="L980" title="1 of 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="pc bpc" id="L981" title="1 of 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
 
 <span class="nc bnc" id="L983" title="All 2 branches missed.">                    if (somthing_killed) {</span>
 <span class="nc" id="L984">                        enemy.changePostion(other, ate_to_protect);</span>
@@ -990,12 +990,12 @@ public class Player1 {
             }
 
         }
-<span class="nc" id="L993">        WK.setPoint(Oldp);</span>
-<span class="nc bnc" id="L994" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="fc" id="L993">        WK.setPoint(Oldp);</span>
+<span class="pc bpc" id="L994" title="1 of 2 branches missed.">        if (somthing_killed) {</span>
 <span class="nc" id="L995">            enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L996">            somthing_killed = false;</span>
         }
-<span class="nc bnc" id="L998" title="All 4 branches missed.">        if (y + 1 &lt;= 8 &amp;&amp; x + 1 &lt;= 8) {</span>
+<span class="pc bpc" id="L998" title="3 of 4 branches missed.">        if (y + 1 &lt;= 8 &amp;&amp; x + 1 &lt;= 8) {</span>
 
 <span class="nc" id="L1000">            WK.setX(x + 1);</span>
 <span class="nc" id="L1001">            WK.setY(y + 1);</span>
@@ -1018,29 +1018,29 @@ public class Player1 {
             }
 
         }
-<span class="nc" id="L1021">        WK.setPoint(Oldp);</span>
-<span class="nc bnc" id="L1022" title="All 2 branches missed.">        if (somthing_killed) {</span>
+<span class="fc" id="L1021">        WK.setPoint(Oldp);</span>
+<span class="pc bpc" id="L1022" title="1 of 2 branches missed.">        if (somthing_killed) {</span>
 <span class="nc" id="L1023">            enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L1024">            somthing_killed = false;</span>
         }
-<span class="nc bnc" id="L1026" title="All 4 branches missed.">        if (y - 1 &gt; 0 &amp;&amp; x + 1 &lt;= 8) {</span>
+<span class="pc bpc" id="L1026" title="2 of 4 branches missed.">        if (y - 1 &gt; 0 &amp;&amp; x + 1 &lt;= 8) {</span>
 
-<span class="nc" id="L1028">            WK.setX(x + 1);</span>
-<span class="nc" id="L1029">            WK.setY(y - 1);</span>
+<span class="fc" id="L1028">            WK.setX(x + 1);</span>
+<span class="fc" id="L1029">            WK.setY(y - 1);</span>
 
-<span class="nc" id="L1031">            PlaceCheck.x = x + 1;</span>
-<span class="nc" id="L1032">            PlaceCheck.y = y - 1;</span>
-<span class="nc bnc" id="L1033" title="All 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
+<span class="fc" id="L1031">            PlaceCheck.x = x + 1;</span>
+<span class="fc" id="L1032">            PlaceCheck.y = y - 1;</span>
+<span class="pc bpc" id="L1033" title="1 of 2 branches missed.">            if (kill_to_protect_king(enemy, returnPostion(inHand))) {</span>
 <span class="nc" id="L1034">                somthing_killed = true;</span>
             }
-<span class="nc bnc" id="L1036" title="All 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
-<span class="nc bnc" id="L1037" title="All 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
-<span class="nc bnc" id="L1038" title="All 2 branches missed.">                    if (somthing_killed) {</span>
+<span class="pc bpc" id="L1036" title="1 of 2 branches missed.">            if (Pice_already_there(PlaceCheck)) {</span>
+<span class="pc bpc" id="L1037" title="1 of 2 branches missed.">                if (!seeIfChecked(enemy)) {</span>
+<span class="pc bpc" id="L1038" title="1 of 2 branches missed.">                    if (somthing_killed) {</span>
 <span class="nc" id="L1039">                        enemy.changePostion(other, ate_to_protect);</span>
 <span class="nc" id="L1040">                        somthing_killed = false;</span>
                     }
-<span class="nc" id="L1042">                    WK.setPoint(Oldp);</span>
-<span class="nc" id="L1043">                    return false;</span>
+<span class="fc" id="L1042">                    WK.setPoint(Oldp);</span>
+<span class="fc" id="L1043">                    return false;</span>
                 }
             }
 
@@ -1751,10 +1751,10 @@ public class Player1 {
 
     public boolean kill_to_protect_king(Player2 enemy, Point newP) {
 
-<span class="nc bnc" id="L1754" title="All 2 branches missed.">        for (int i = 1; i &lt; 17; i++) {</span>
+<span class="fc bfc" id="L1754" title="All 2 branches covered.">        for (int i = 1; i &lt; 17; i++) {</span>
 
-<span class="nc" id="L1756">            other = enemy.returnPostion(i);</span>
-<span class="nc bnc" id="L1757" title="All 4 branches missed.">            if (other.x == newP.x &amp;&amp; other.y == newP.y) {</span>
+<span class="fc" id="L1756">            other = enemy.returnPostion(i);</span>
+<span class="pc bpc" id="L1757" title="1 of 4 branches missed.">            if (other.x == newP.x &amp;&amp; other.y == newP.y) {</span>
 <span class="nc" id="L1758">                ate_to_protect = i;</span>
 
 <span class="nc" id="L1760">                enemy.Killedpiec(i);</span>
@@ -1762,16 +1762,16 @@ public class Player1 {
             }
         }
 
-<span class="nc" id="L1765">        return false;</span>
+<span class="fc" id="L1765">        return false;</span>
     }
 
     public String Tell_me_About_last_move() {
-<span class="pc bpc" id="L1769" title="4 of 17 branches missed.">        switch (inHand) {</span>
+<span class="pc bpc" id="L1769" title="5 of 17 branches missed.">        switch (inHand) {</span>
 
             case 17:
 <span class="fc" id="L1772">                return WC1.Tell_me();</span>
             case 18:
-<span class="fc" id="L1774">                return WC2.Tell_me();</span>
+<span class="nc" id="L1774">                return WC2.Tell_me();</span>
             case 19:
 <span class="fc" id="L1776">                return WH1.Tell_me();</span>
             case 20:
@@ -1795,11 +1795,11 @@ public class Player1 {
             case 29:
 <span class="fc" id="L1796">                return WS[4].Tell_me();</span>
             case 30:
-<span class="fc" id="L1798">                return WS[5].Tell_me();</span>
+<span class="nc" id="L1798">                return WS[5].Tell_me();</span>
             case 31:
 <span class="fc" id="L1800">                return WS[6].Tell_me();</span>
             case 32:
-<span class="nc" id="L1802">                return WS[7].Tell_me();</span>
+<span class="fc" id="L1802">                return WS[7].Tell_me();</span>
         }
 <span class="nc" id="L1804">        return null;</span>
     }

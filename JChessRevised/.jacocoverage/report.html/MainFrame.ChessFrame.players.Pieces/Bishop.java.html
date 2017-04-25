@@ -90,140 +90,128 @@ public class Bishop extends Piece {
 <span class="fc" id="L90">        return pixelPoint;</span>
     }
 
-    public int getPixelX() {
-<span class="nc" id="L94">        return pixelX;</span>
-    }
-
-    public int getPixelY() {
-<span class="nc" id="L98">        return pixelY;</span>
-    }
-
     public boolean Inthispostion(int x, int y) {
-<span class="nc bnc" id="L102" title="All 4 branches missed.">        if (p.x == x &amp;&amp; p.y == y) {</span>
-<span class="nc" id="L103">            return true;</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">        if (p.x == x &amp;&amp; p.y == y) {</span>
+<span class="nc" id="L95">            return true;</span>
         }
-<span class="nc" id="L105">        return false;</span>
+<span class="nc" id="L97">        return false;</span>
     }
 
     public boolean PieceInMYway(int x, int y, Point othersPostion) {
 
-<span class="fc" id="L110">        int j = y;</span>
-<span class="fc" id="L111">        int i = x;</span>
+<span class="fc" id="L102">        int j = y;</span>
+<span class="fc" id="L103">        int i = x;</span>
 
-<span class="fc bfc" id="L113" title="All 2 branches covered.">        if ((x - y) == (X - Y)) {</span>
-<span class="pc bpc" id="L114" title="3 of 4 branches missed.">            if (x &gt; X &amp;&amp; y &gt; Y) {</span>
-<span class="nc bnc" id="L115" title="All 4 branches missed.">                while ((j != Y + 1) &amp;&amp; (i != X + 1)) {</span>
-<span class="nc" id="L116">                    j--;</span>
-<span class="nc" id="L117">                    i--;</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        if ((x - y) == (X - Y)) {</span>
+<span class="pc bpc" id="L106" title="1 of 4 branches missed.">            if (x &gt; X &amp;&amp; y &gt; Y) {</span>
+<span class="pc bpc" id="L107" title="3 of 4 branches missed.">                while ((j != Y + 1) &amp;&amp; (i != X + 1)) {</span>
+<span class="nc" id="L108">                    j--;</span>
+<span class="nc" id="L109">                    i--;</span>
 
-<span class="nc bnc" id="L119" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
-<span class="nc" id="L120">                        return true;</span>
+<span class="nc bnc" id="L111" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L112">                        return true;</span>
                     }
                 }
-<span class="pc bpc" id="L123" title="1 of 4 branches missed.">            } else if (x &lt; X &amp;&amp; y &lt; Y) {</span>
-<span class="pc bpc" id="L124" title="1 of 4 branches missed.">                while ((j != Y - 1) &amp;&amp; (i != X - 1)) {</span>
-<span class="fc" id="L125">                    j++;</span>
-<span class="fc" id="L126">                    i++;</span>
+<span class="pc bpc" id="L115" title="1 of 4 branches missed.">            } else if (x &lt; X &amp;&amp; y &lt; Y) {</span>
+<span class="pc bpc" id="L116" title="1 of 4 branches missed.">                while ((j != Y - 1) &amp;&amp; (i != X - 1)) {</span>
+<span class="fc" id="L117">                    j++;</span>
+<span class="fc" id="L118">                    i++;</span>
 
-<span class="fc bfc" id="L128" title="All 4 branches covered.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
-<span class="fc" id="L129">                        return true;</span>
+<span class="fc bfc" id="L120" title="All 4 branches covered.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="fc" id="L121">                        return true;</span>
                     }
 
                 }
             }
-<span class="pc bpc" id="L134" title="1 of 2 branches missed.">        } else if (((x + y)) == ((X + Y))) {</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">        } else if (((x + y)) == ((X + Y))) {</span>
 
-<span class="pc bpc" id="L136" title="2 of 4 branches missed.">            if ((X &lt; i) &amp;&amp; (Y &gt; j)) {</span>
+<span class="pc bpc" id="L128" title="1 of 4 branches missed.">            if ((X &lt; i) &amp;&amp; (Y &gt; j)) {</span>
 
-<span class="pc bpc" id="L138" title="1 of 4 branches missed.">                while (((j != Y - 1)) &amp;&amp; ((i != X + 1))) {</span>
-<span class="fc" id="L139">                    j++;</span>
-<span class="fc" id="L140">                    i--;</span>
+<span class="pc bpc" id="L130" title="1 of 4 branches missed.">                while (((j != Y - 1)) &amp;&amp; ((i != X + 1))) {</span>
+<span class="fc" id="L131">                    j++;</span>
+<span class="fc" id="L132">                    i--;</span>
 
-<span class="pc bpc" id="L142" title="1 of 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="pc bpc" id="L134" title="1 of 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
 
-<span class="nc" id="L144">                        return true;</span>
+<span class="nc" id="L136">                        return true;</span>
                     }
 
                 }
 
-<span class="nc bnc" id="L149" title="All 4 branches missed.">            } else if ((X &gt; i) &amp;&amp; (Y &lt; j)) {</span>
-<span class="nc bnc" id="L150" title="All 4 branches missed.">                while ((j != X + 1) &amp;&amp; (i != X - 1)) {</span>
-<span class="nc" id="L151">                    j--;</span>
-<span class="nc" id="L152">                    i++;</span>
+<span class="pc bpc" id="L141" title="2 of 4 branches missed.">            } else if ((X &gt; i) &amp;&amp; (Y &lt; j)) {</span>
+<span class="pc bpc" id="L142" title="2 of 4 branches missed.">                while ((j != X + 1) &amp;&amp; (i != X - 1)) {</span>
+<span class="nc" id="L143">                    j--;</span>
+<span class="nc" id="L144">                    i++;</span>
 
-<span class="nc bnc" id="L154" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
-<span class="nc" id="L155">                        return true;</span>
+<span class="nc bnc" id="L146" title="All 4 branches missed.">                    if (((othersPostion.y) == j) &amp;&amp; ((othersPostion.x == i))) {</span>
+<span class="nc" id="L147">                        return true;</span>
                     }
 
                 }
             }
         }
 
-<span class="fc" id="L162">        return false;</span>
-    }
-
-    public boolean returnLife() {
-<span class="nc" id="L166">        return havelife;</span>
+<span class="fc" id="L154">        return false;</span>
     }
 
     public Point returnOld() {
-<span class="fc" id="L170">        return old;</span>
+<span class="fc" id="L158">        return old;</span>
     }
 
     public Image returnPieceImage() {
-<span class="fc" id="L174">        return icon.returnPieceIcon();</span>
+<span class="fc" id="L162">        return icon.returnPieceIcon();</span>
     }
 
     public Point returnPostion() {
-<span class="fc" id="L178">        return (Point) p.clone();</span>
+<span class="fc" id="L166">        return (Point) p.clone();</span>
     }
 
     public int returnX() {
-<span class="nc" id="L182">        return X;</span>
+<span class="nc" id="L170">        return X;</span>
     }
 
     public int returnY() {
-<span class="nc" id="L186">        return Y;</span>
+<span class="nc" id="L174">        return Y;</span>
     }
 
     public void setPixels(int newpixelX, int newpixelY) {
-<span class="fc" id="L190">        pixelPoint.x = newpixelX;</span>
-<span class="fc" id="L191">        pixelPoint.y = newpixelY;</span>
-<span class="fc" id="L192">    }</span>
+<span class="fc" id="L178">        pixelPoint.x = newpixelX;</span>
+<span class="fc" id="L179">        pixelPoint.y = newpixelY;</span>
+<span class="fc" id="L180">    }</span>
 
     public void setPoint(Point newPoint) {
-<span class="fc" id="L195">        old.x = p.x;</span>
-<span class="fc" id="L196">        old.y = p.y;</span>
+<span class="fc" id="L183">        old.x = p.x;</span>
+<span class="fc" id="L184">        old.y = p.y;</span>
 
-<span class="fc" id="L198">        p.x = newPoint.x;</span>
+<span class="fc" id="L186">        p.x = newPoint.x;</span>
 
-<span class="fc" id="L200">        p.y = newPoint.y;</span>
-<span class="fc" id="L201">        X = p.x;</span>
-<span class="fc" id="L202">        Y = p.y;</span>
+<span class="fc" id="L188">        p.y = newPoint.y;</span>
+<span class="fc" id="L189">        X = p.x;</span>
+<span class="fc" id="L190">        Y = p.y;</span>
 
-<span class="fc" id="L204">    }</span>
+<span class="fc" id="L192">    }</span>
 
     public void setX(int newX) {
-<span class="fc" id="L207">        X = newX;</span>
-<span class="fc" id="L208">        p.x = newX;</span>
+<span class="fc" id="L195">        X = newX;</span>
+<span class="fc" id="L196">        p.x = newX;</span>
 
-<span class="fc" id="L210">    }</span>
+<span class="fc" id="L198">    }</span>
 
     public void setY(int newY) {
-<span class="fc" id="L213">        Y = newY;</span>
-<span class="fc" id="L214">        p.y = Y;</span>
-<span class="fc" id="L215">    }</span>
+<span class="fc" id="L201">        Y = newY;</span>
+<span class="fc" id="L202">        p.y = Y;</span>
+<span class="fc" id="L203">    }</span>
 
     public String Tell_me() {
-<span class="fc" id="L218">        return &quot;Bishop= (&quot; + p.x + ',' + p.y + &quot;)&quot;;</span>
+<span class="fc" id="L206">        return &quot;Bishop= (&quot; + p.x + ',' + p.y + &quot;)&quot;;</span>
     }
 
     public void toOld(Point Old) {
 
-<span class="nc" id="L223">        p.x = Old.x;</span>
-<span class="nc" id="L224">        p.y = Old.y;</span>
+<span class="nc" id="L211">        p.x = Old.x;</span>
+<span class="nc" id="L212">        p.y = Old.y;</span>
 
-<span class="nc" id="L226">    }</span>
+<span class="nc" id="L214">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

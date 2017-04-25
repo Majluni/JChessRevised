@@ -134,20 +134,20 @@ public class MainPanel extends JPanel {
 
 <span class="fc" id="L135">                                            int inHand = P1.GetInhand();</span>
 
-<span class="pc bpc" id="L137" title="1 of 4 branches missed.">                                            if (inHand &gt; 24 &amp;&amp; P1.returnPawnSeen(inHand)) {</span>
+<span class="pc bpc" id="L137" title="2 of 4 branches missed.">                                            if (inHand &gt; 24 &amp;&amp; P1.returnPawnSeen(inHand)) {</span>
 <span class="fc" id="L138">                                                kill = true;</span>
 
 <span class="fc" id="L140">                                                f.x = other.x;</span>
 <span class="fc" id="L141">                                                f.y = other.y;</span>
 
 <span class="fc" id="L143">                                                P2.Killedpiec(k);</span>
-<span class="pc bpc" id="L144" title="1 of 2 branches missed.">                                            } else if (inHand &lt;= 24) {</span>
-<span class="fc" id="L145">                                                kill = true;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">                                            } else if (inHand &lt;= 24) {</span>
+<span class="nc" id="L145">                                                kill = true;</span>
 
-<span class="fc" id="L147">                                                f.x = other.x;</span>
-<span class="fc" id="L148">                                                f.y = other.y;</span>
+<span class="nc" id="L147">                                                f.x = other.x;</span>
+<span class="nc" id="L148">                                                f.y = other.y;</span>
 
-<span class="fc" id="L150">                                                P2.Killedpiec(k);</span>
+<span class="nc" id="L150">                                                P2.Killedpiec(k);</span>
                                             } else {
 <span class="nc" id="L152">                                                P1.changePostion(myold, inHand);</span>
 <span class="nc" id="L153">                                                end_move = false;</span>
@@ -168,19 +168,19 @@ public class MainPanel extends JPanel {
                                     }
 
 <span class="fc" id="L170">                                    P1.checkKing(false);</span>
-<span class="pc bpc" id="L171" title="1 of 2 branches missed.">                                    if (P1.seeIfChecked(P2)) // if my king will be in check if i move</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">                                    if (P1.seeIfChecked(P2)) // if my king will be in check if i move</span>
                                     // so i can't move and i will return back to old postion'
                                     {
-<span class="nc" id="L174">                                        P1.changePostion(myold, P1.GetInhand());</span>
-<span class="nc" id="L175">                                        P1.checkKing(true);</span>
-<span class="nc" id="L176">                                        end_move = false;</span>
+<span class="fc" id="L174">                                        P1.changePostion(myold, P1.GetInhand());</span>
+<span class="fc" id="L175">                                        P1.checkKing(true);</span>
+<span class="fc" id="L176">                                        end_move = false;</span>
                                     }
 <span class="pc bpc" id="L178" title="1 of 4 branches missed.">                                    if (kill &amp;&amp; P1.returncheckKing()) {</span>
 <span class="nc" id="L179">                                        P2.changePostion(f, killed);</span>
 
                                     }
 
-<span class="pc bpc" id="L183" title="1 of 2 branches missed.">                                    if (!P1.returncheckKing()) {</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">                                    if (!P1.returncheckKing()) {</span>
 
 <span class="fc bfc" id="L185" title="All 2 branches covered.">                                        if (P2.seeIfChecked(P1)) // if my king will be in check if i move</span>
                                         // so i can't move and i will return back to old postion'
@@ -290,9 +290,9 @@ public class MainPanel extends JPanel {
 <span class="fc bfc" id="L290" title="All 2 branches covered.">                                    if (P2.GetInhand() != i) {</span>
 <span class="pc bpc" id="L291" title="1 of 2 branches missed.">                                        if (flag == false) {</span>
 <span class="fc" id="L292">                                            samePostion = P2.returnPostion(i);</span>
-<span class="fc bfc" id="L293" title="All 4 branches covered.">                                            if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
-<span class="fc" id="L294">                                                flag = true;</span>
-<span class="fc" id="L295">                                                break;</span>
+<span class="pc bpc" id="L293" title="1 of 4 branches missed.">                                            if (newP.x == samePostion.x &amp;&amp; newP.y == samePostion.y) {</span>
+<span class="nc" id="L294">                                                flag = true;</span>
+<span class="nc" id="L295">                                                break;</span>
 
                                             }
                                         }
@@ -304,7 +304,7 @@ public class MainPanel extends JPanel {
                                     }
                                 }
 
-<span class="fc bfc" id="L307" title="All 2 branches covered.">                                if (!flag) {</span>
+<span class="pc bpc" id="L307" title="1 of 2 branches missed.">                                if (!flag) {</span>
 <span class="fc" id="L308">                                    P2.returnPostion(8);</span>
 <span class="fc" id="L309">                                    Point myold = new Point();</span>
 <span class="fc" id="L310">                                    Point o = P2.returnPostion(P2.GetInhand());</span>
@@ -375,28 +375,28 @@ public class MainPanel extends JPanel {
                                     }
 
 <span class="fc bfc" id="L377" title="All 2 branches covered.">                                    if (!P2.returncheckKing()) {</span>
-<span class="pc bpc" id="L378" title="1 of 2 branches missed.">                                        if (P1.seeIfChecked(P2)) // if my king will be in check if i move</span>
+<span class="fc bfc" id="L378" title="All 2 branches covered.">                                        if (P1.seeIfChecked(P2)) // if my king will be in check if i move</span>
                                         // so i can't move and i will return back to old postion'
                                         {
 
-<span class="nc" id="L382">                                            P1.checkKing(true);</span>
-<span class="nc" id="L383">                                            end_move = false;</span>
+<span class="fc" id="L382">                                            P1.checkKing(true);</span>
+<span class="fc" id="L383">                                            end_move = false;</span>
 
-<span class="nc bnc" id="L385" title="All 2 branches missed.">                                            if (P1.Check_Mate_GameOver(P2)) {</span>
+<span class="pc bpc" id="L385" title="1 of 2 branches missed.">                                            if (P1.Check_Mate_GameOver(P2)) {</span>
 <span class="nc" id="L386">                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
 <span class="nc" id="L387">                                                        + Integer.toString(newP.y);</span>
 <span class="nc" id="L388">                                                GameOver();</span>
 
 <span class="nc" id="L390">                                                can_Send = true;</span>
                                             } else {
-<span class="nc" id="L392">                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
-<span class="nc" id="L393">                                                        + Integer.toString(newP.y);</span>
-<span class="nc" id="L394">                                                CheckStatus();</span>
-<span class="nc" id="L395">                                                can_Send = true;</span>
+<span class="fc" id="L392">                                                Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
+<span class="fc" id="L393">                                                        + Integer.toString(newP.y);</span>
+<span class="fc" id="L394">                                                CheckStatus();</span>
+<span class="fc" id="L395">                                                can_Send = true;</span>
                                             }
                                         }
 
-<span class="pc bpc" id="L399" title="1 of 2 branches missed.">                                        if (end_move) {</span>
+<span class="fc bfc" id="L399" title="All 2 branches covered.">                                        if (end_move) {</span>
 <span class="fc" id="L400">                                            Box = Integer.toString(P2.GetInhand()) + Integer.toString(newP.x)</span>
 <span class="fc" id="L401">                                                    + Integer.toString(newP.y);</span>
 <span class="fc" id="L402">                                            ChangeTurn();</span>
@@ -668,16 +668,16 @@ public class MainPanel extends JPanel {
 <span class="fc" id="L668">    }</span>
 
     private void CheckStatus() {
-<span class="pc bpc" id="L671" title="1 of 2 branches missed.">        if (players_turn == 1) {</span>
+<span class="fc bfc" id="L671" title="All 2 branches covered.">        if (players_turn == 1) {</span>
 
 <span class="fc" id="L673">            players_turn = 2;</span>
 <span class="fc" id="L674">            myTool.add_to_History(&quot;White : &quot; + P1.Tell_me_About_last_move());</span>
 <span class="fc" id="L675">            myTool.change_to_Timer2();</span>
-<span class="nc bnc" id="L676" title="All 2 branches missed.">        } else if (players_turn == 2) {</span>
+<span class="pc bpc" id="L676" title="1 of 2 branches missed.">        } else if (players_turn == 2) {</span>
 
-<span class="nc" id="L678">            players_turn = 1;</span>
-<span class="nc" id="L679">            myTool.add_to_History(&quot;Black : &quot; + P2.Tell_me_About_last_move());</span>
-<span class="nc" id="L680">            myTool.change_to_Timer1();</span>
+<span class="fc" id="L678">            players_turn = 1;</span>
+<span class="fc" id="L679">            myTool.add_to_History(&quot;Black : &quot; + P2.Tell_me_About_last_move());</span>
+<span class="fc" id="L680">            myTool.change_to_Timer1();</span>
         }
 
 <span class="fc" id="L683">        myStatus.changeStatus(&quot; Check! &quot;);</span>

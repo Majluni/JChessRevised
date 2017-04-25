@@ -6,22 +6,19 @@ public abstract class Piece {
 
     protected int X, Y;
     protected Point pixelPoint;
-    protected int pixelX, pixelY;
-    protected boolean havelife;
     protected final PieceIcon icon;
     protected Point p;
     protected Point old;
 
-<span class="fc" id="L15">    public Piece(String nameIcon, int startX, int startY) {</span>
-<span class="fc" id="L16">        icon = new PieceIcon(nameIcon);</span>
-<span class="fc" id="L17">        pixelPoint = new Point();</span>
-<span class="fc" id="L18">        old = new Point();</span>
-<span class="fc" id="L19">        p = new Point();</span>
-<span class="fc" id="L20">        havelife = true;</span>
-<span class="fc" id="L21">        X = startX;</span>
-<span class="fc" id="L22">        Y = startY;</span>
-<span class="fc" id="L23">        p.x = X;</span>
-<span class="fc" id="L24">        p.y = Y;</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L13">    public Piece(String nameIcon, int startX, int startY) {</span>
+<span class="fc" id="L14">        icon = new PieceIcon(nameIcon);</span>
+<span class="fc" id="L15">        pixelPoint = new Point();</span>
+<span class="fc" id="L16">        old = new Point();</span>
+<span class="fc" id="L17">        p = new Point();</span>
+<span class="fc" id="L18">        X = startX;</span>
+<span class="fc" id="L19">        Y = startY;</span>
+<span class="fc" id="L20">        p.x = X;</span>
+<span class="fc" id="L21">        p.y = Y;</span>
+<span class="fc" id="L22">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
