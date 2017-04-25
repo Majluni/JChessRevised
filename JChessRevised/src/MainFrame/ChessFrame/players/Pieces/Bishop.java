@@ -11,13 +11,13 @@ public class Bishop {
   private Point pixelPoint = new Point();
   private int pixelX, pixelY;
   private boolean havelife = true;
-  private PieceIcon PieceIcon;
+  private PieceIcon icon;
   private Point p = new Point();
   private Point old = new Point();
 
   public Bishop(String NameIcon, int startX, int startY) {
 
-    PieceIcon = new PieceIcon(NameIcon);
+    icon = new PieceIcon(NameIcon);
 
     X = startX;
     Y = startY;
@@ -201,7 +201,7 @@ public class Bishop {
   }
 
   public Image returnPieceImage() {
-    return PieceIcon.returnPieceIcon();
+    return icon.returnPieceIcon();
   }
 
   public Point returnPostion() {
