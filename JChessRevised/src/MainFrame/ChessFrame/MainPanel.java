@@ -75,7 +75,7 @@ public class MainPanel extends JPanel {
 
           if (Iam_Server || local) {
 
-            // set the seen of the solider -white
+            // set the seen of the Pawn -white
             if (P1.GetInhand() < 33 && P1.GetInhand() > 24) {
               for (int i = 1; i < 17; i++) {
                 samePostion = P2.returnPostion(i);
@@ -139,7 +139,7 @@ public class MainPanel extends JPanel {
 
                       int inHand = P1.GetInhand();
 
-                      if (inHand > 24 && P1.returnsoliderSeen(inHand)) {
+                      if (inHand > 24 && P1.returnPawnSeen(inHand)) {
                         kill = true;
 
                         f.x = other.x;
@@ -173,7 +173,7 @@ public class MainPanel extends JPanel {
                   }
 
                   P1.checkKing(false);
-                  if (P1.see_king_Check(P2))
+                  if (P1.seeIfChecked(P2))
                   // if my king will be in check if i move
                   // so i can't move and i will return back to old postion'
                   {
@@ -188,7 +188,7 @@ public class MainPanel extends JPanel {
 
                   if (!P1.returncheckKing()) {
 
-                    if (P2.see_King_Check(P1))
+                    if (P2.seeIfChecked(P1))
                     // if my king will be in check if i move
                     // so i can't move and i will return back to old postion'
                     {
@@ -264,9 +264,9 @@ public class MainPanel extends JPanel {
             P2.returnOldPostion(P2.GetInhand());
             Point present = P2.returnPostion(P2.GetInhand());
 
-            // set the seen of the solider -black
-            // set the seen of the solider -black
-            // set the seen of the solider -black
+            // set the seen of the Pawn -black
+            // set the seen of the Pawn -black
+            // set the seen of the Pawn -black
             if (P2.GetInhand() < 17 && P2.GetInhand() > 8) {
               for (int i = 17; i < 33; i++) {
                 samePostion = P1.returnPostion(i);
@@ -367,7 +367,7 @@ public class MainPanel extends JPanel {
                   }
 
                   P2.checkKing(false);
-                  if (P2.see_King_Check(P1))
+                  if (P2.seeIfChecked(P1))
                   // if my king will be in check if i move
                   // so i can't move and i will return back to old postion'
                   {
@@ -387,7 +387,7 @@ public class MainPanel extends JPanel {
                   }
 
                   if (!P2.returncheckKing()) {
-                    if (P1.see_king_Check(P2))
+                    if (P1.seeIfChecked(P2))
                     // if my king will be in check if i move
                     // so i can't move and i will return back to old postion'
                     {
@@ -507,7 +507,7 @@ public class MainPanel extends JPanel {
             P2.Killedpiec(P1.Get_Pice_already_there_from_enemy(new Point(newX, newY), P2));
             P2.checkKing(false);
 
-            if (P2.see_King_Check(P1))
+            if (P2.seeIfChecked(P1))
             // if my king will be in check if i move
             // so i can't move and i will return back to old postion'
             {
@@ -539,7 +539,7 @@ public class MainPanel extends JPanel {
             players_turn = 1;
 
             P1.checkKing(false);
-            if (P1.see_king_Check(P2))
+            if (P1.seeIfChecked(P2))
             // if my king will be in check if i move
             // so i can't move and i will return back to old postion'
             {
