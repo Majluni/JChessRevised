@@ -188,7 +188,7 @@ public class MainPanel extends JPanel {
 
                   if (!P1.returncheckKing()) {
 
-                    if (P2.see_king_Check(P1))
+                    if (P2.see_King_Check(P1))
                     // if my king will be in check if i move
                     // so i can't move and i will return back to old postion'
                     {
@@ -367,7 +367,7 @@ public class MainPanel extends JPanel {
                   }
 
                   P2.checkKing(false);
-                  if (P2.see_king_Check(P1))
+                  if (P2.see_King_Check(P1))
                   // if my king will be in check if i move
                   // so i can't move and i will return back to old postion'
                   {
@@ -507,7 +507,7 @@ public class MainPanel extends JPanel {
             P2.Killedpiec(P1.Get_Pice_already_there_from_enemy(new Point(newX, newY), P2));
             P2.checkKing(false);
 
-            if (P2.see_king_Check(P1))
+            if (P2.see_King_Check(P1))
             // if my king will be in check if i move
             // so i can't move and i will return back to old postion'
             {
