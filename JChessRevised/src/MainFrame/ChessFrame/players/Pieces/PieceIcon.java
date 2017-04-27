@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 public class PieceIcon {
 
     private Toolkit kit = Toolkit.getDefaultToolkit();
-    private Image image;
+    protected Image image;
 
     public PieceIcon(String NameIcon) //throws IOException
     {
