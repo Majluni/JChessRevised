@@ -11,15 +11,10 @@ public class Knight extends Piece {
 
     public boolean Canmove(int x, int y) {
 
-        if ((x + 1 == X) && (y + 2 == Y) || (x + 1 == X) && (y - 2 == Y) || (x - 1 == X) && (y + 2 == Y)
+        return (x + 1 == X) && (y + 2 == Y) || (x + 1 == X) && (y - 2 == Y) || (x - 1 == X) && (y + 2 == Y)
                 || (x - 1 == X) && (y - 2 == Y) || (x + 2 == X) && (y + 1 == Y)
                 || (x + 2 == X) && (y - 1 == Y) || (x - 2 == X) && (y + 1 == Y)
-                || (x - 2 == X) && (y - 1 == Y)) {
-
-            return true;
-        } else {
-            return false;
-        }
+                || (x - 2 == X) && (y - 1 == Y);
 
     }
 
@@ -32,10 +27,7 @@ public class Knight extends Piece {
     }
 
     public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;
-        }
-        return false;
+        return p.x == x && p.y == y;
     }
 
     public Point returnOld() {

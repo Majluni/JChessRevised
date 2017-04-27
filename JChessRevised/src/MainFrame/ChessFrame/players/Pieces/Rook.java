@@ -12,12 +12,7 @@ public class Rook extends Piece {
     public boolean Canmove(int x, int y) {
         if (((y == Y) && (x > (X) || (x < (X))))) {
             return true;
-        } else if ((((y > Y) || (y < Y)) && (x == (X)))) {
-            return true;
-        } else {
-
-            return false;
-        }
+        } else return ((y > Y) || (y < Y)) && (x == (X));
 
     }
 
@@ -73,10 +68,7 @@ public class Rook extends Piece {
     }
 
     public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;
-        }
-        return false;
+        return p.x == x && p.y == y;
     }
 
     public boolean PieceInMYway(int x, int y, Point othersPostion) {

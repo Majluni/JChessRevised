@@ -672,7 +672,7 @@ public class Player2 {
     public boolean seeIfChecked(Player1 White) {
 
         Point My_King_Postion = BK.returnPostion();
-        boolean flag = false;
+        boolean flag;
 
         //////////    Start Checking the King ////////////
         for (int i = 17; i < 33; i++) {
@@ -1188,7 +1188,7 @@ public class Player2 {
 
     public boolean ElephentGenerate_moves(Player1 enemy, Bishop BE) {
         boolean somthing_killed = false;
-        Point Oldp1 = new Point();
+        Point Oldp1;
         Point PlaceCheck = new Point();
 
         Oldp1 = BE.returnPostion();
@@ -1276,7 +1276,7 @@ public class Player2 {
     }
 
     public boolean HosreGenerate_moves(Player1 enemy, Knight BH) {
-        Point oldp1 = new Point();
+        Point oldp1;
         boolean somthing_killed = false;
         oldp1 = BH.returnPostion();
 
@@ -1509,7 +1509,7 @@ public class Player2 {
     public boolean QueenGenerate_moves(Player1 enemy) {
         boolean somthing_killed = false;
 
-        Point Oldp1 = new Point();
+        Point Oldp1;
 
         Oldp1 = BQ.returnPostion();
 
@@ -1661,7 +1661,7 @@ public class Player2 {
     }
 
     public boolean SoliderGenerate_moves(Player1 enemy, Pawn Sold) {
-        Point Oldp1 = new Point();
+        Point Oldp1;
         Oldp1 = Sold.returnPostion();
         Point PlaceCheck = new Point();
         PlaceCheck.x = Oldp1.x;
@@ -1732,7 +1732,7 @@ public class Player2 {
     }
 
     public boolean Check_The_Way_to_Postion(Player1 enemy, Point newP) {
-        boolean flag = false;
+        boolean flag;
 
         for (int i = 1; i <= 32; i++) {
             if (inHand != i)// check if there is peices in the WAY

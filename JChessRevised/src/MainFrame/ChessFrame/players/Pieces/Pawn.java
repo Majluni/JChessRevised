@@ -22,21 +22,13 @@ public class Pawn extends Piece {
             } else if ((((y - 2 == Y) && (x == (X)))) && !movedbefore) {
 
                 return true;
-            } else if ((y - 1 == Y && x + 1 == (X) || (y - 1 == Y && x - 1 == (X))) && myseen) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return (y - 1 == Y && x + 1 == (X) || (y - 1 == Y && x - 1 == (X))) && myseen;
         } else if (typeColor.equals("white")) {
             if (((y + 1 == Y) && (x == (X))) /* &&!Check_Solider_Sees(x,y) */) {
                 return true;
             } else if ((((y + 2 == Y) && (x == (X)))) && !movedbefore) {
                 return true;
-            } else if ((y + 1 == Y && x + 1 == (X) || (y + 1 == Y && x - 1 == (X))) && myseen) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return (y + 1 == Y && x + 1 == (X) || (y + 1 == Y && x - 1 == (X))) && myseen;
         }
         return false;
 
@@ -51,30 +43,17 @@ public class Pawn extends Piece {
     }
 
     public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;
-        }
-        return false;
+        return p.x == x && p.y == y;
     }
 
     public boolean PieceInMYway(int x, int y, Point othersPostion, String typeColor) {
         if (Y - y == 2 || Y - y == -2) {
             if ((typeColor.equals("black"))) {
 
-                if ((((y - 1 == othersPostion.y) && (x == (othersPostion.x)))) && !movedbefore) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return (((y - 1 == othersPostion.y) && (x == (othersPostion.x)))) && !movedbefore;
             } else if (typeColor.equals("white")) {
 
-                if (((y + 1 == othersPostion.y) && (x == (othersPostion.x)) && !movedbefore)) {
-
-                    return true;
-
-                } else {
-                    return false;
-                }
+                return (y + 1 == othersPostion.y) && (x == (othersPostion.x)) && !movedbefore;
             }
         }
 

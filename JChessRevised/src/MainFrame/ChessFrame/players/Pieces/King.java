@@ -70,23 +70,17 @@ public class King extends Piece {
     }
 
     public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;//cant kill the king anymore;
-        }
-        return false;
+        //cant kill the king anymore;
+        
+        return p.x == x && p.y == y;
     }
 
     public boolean Canmove(int x, int y) {
 
-        if (((y == Y) && (x == (X - 1))) || ((y == Y - 1) && (x == (X + 1)))
+        return ((y == Y) && (x == (X - 1))) || ((y == Y - 1) && (x == (X + 1)))
                 || ((y == Y - 1) && (x == (X - 1))) || ((y == Y + 1) && (x == (X + 1)))
                 || (((y == Y + 1) && x == (X - 1))) || ((y == Y) && (x == (X + 1)))
-                || ((y == Y - 1) && x == ((X))) || ((y == Y + 1) && (x == (X)))) {
-
-            return true;
-        }
-
-        return false;
+                || ((y == Y - 1) && x == ((X))) || ((y == Y + 1) && (x == (X)));
 
     }
 

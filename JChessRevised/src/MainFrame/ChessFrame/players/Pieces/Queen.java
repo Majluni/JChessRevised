@@ -19,13 +19,7 @@ public class Queen extends Piece {
         } else if ((x - y) == (X - Y)) {
             return true;
 
-        } else if ((x + y) == (X + Y)) {
-            return true;
-
-        } else {
-
-            return false;
-        }
+        } else return (x + y) == (X + Y);
 
     }
 
@@ -124,10 +118,7 @@ public class Queen extends Piece {
     }
 
     public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;
-        }
-        return false;
+        return p.x == x && p.y == y;
     }
 
     public boolean PieceInMYway(int x, int y, Point othersPostion) {

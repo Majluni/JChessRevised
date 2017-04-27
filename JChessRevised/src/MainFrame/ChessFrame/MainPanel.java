@@ -118,7 +118,7 @@ public class MainPanel extends JPanel {
                                     Point o = P1.returnPostion(P1.GetInhand());
                                     myold.x = o.x;
                                     myold.y = o.y;
-                                    Point other = new Point();
+                                    Point other;
                                     Point f = new Point();
                                     boolean kill = false;
                                     int killed = -1;
@@ -310,7 +310,7 @@ public class MainPanel extends JPanel {
                                     Point o = P2.returnPostion(P2.GetInhand());
                                     myold.x = o.x;
                                     myold.y = o.y;
-                                    Point other = new Point();
+                                    Point other;
                                     Point f = new Point();
                                     boolean kill = false;
                                     boolean end_move = true;
