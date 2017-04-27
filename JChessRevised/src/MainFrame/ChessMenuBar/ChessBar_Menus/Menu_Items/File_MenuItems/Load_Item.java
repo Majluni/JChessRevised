@@ -33,6 +33,7 @@ public class Load_Item extends JMenuItem {
     public void readFile() {
         try {
             Scanner scanLine = new Scanner(file);
+            
             while(scanLine.hasNext()) {
                 String line = scanLine.nextLine();
                 Scanner scan = new Scanner(line);
