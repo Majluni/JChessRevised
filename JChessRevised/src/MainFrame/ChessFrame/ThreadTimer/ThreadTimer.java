@@ -5,15 +5,18 @@ import javax.swing.JOptionPane;
 
 public class ThreadTimer extends Thread {
 
-    private short mytime = 500;
+    private double mytime = 500;
     private JLabel myScreen;
 
     /**
      * Creates a new instance of ThreadTimer
      */
+    public ThreadTimer(double mytime) {
+    	setTime(mytime);
+    }
     public ThreadTimer(JLabel mynewScreen) {
         myScreen = mynewScreen;
-        myScreen.setText(Short.toString(mytime) + " Seconds");
+        myScreen.setText(Double.toString(mytime) + " Seconds");
     }
 
     @Override
@@ -28,7 +31,7 @@ public class ThreadTimer extends Thread {
                 ex.printStackTrace();
             }
 
-            myScreen.setText(Float.toString(mytime) + " Seconds");
+            myScreen.setText(Double.toString(mytime) + " Seconds");
             if (mytime == 0) {
 
                 JOptionPane.showConfirmDialog(null, " Game Over!\n Timeout", "Timeout",
@@ -40,6 +43,15 @@ public class ThreadTimer extends Thread {
             }
         }
 
+    }
+    
+    public void setTime(double time) {
+    	time = mytime;
+    }
+    
+    public double getTime() {
+    	return mytime;
+    	
     }
 
 }
