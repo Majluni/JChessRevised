@@ -66,8 +66,8 @@ public class MainPanel extends JPanel {
                     newP.y /= Divide;
                     newP.x++;
                     newP.y++;
-                    P1.returnOldPostion(P1.GetInhand());
-                    Point present = P1.returnPostion(P1.GetInhand());
+                    P1.getPiecePosition(P1.GetInhand());
+                    Point present = P1.getPiecePosition(P1.GetInhand());
 
                     ///////////////////////////////////////////////////////////////////////////
                     ///////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ public class MainPanel extends JPanel {
                         // set the seen of the Pawn -white
                         if (P1.GetInhand() < 33 && P1.GetInhand() > 24) {
                             for (int i = 1; i < 17; i++) {
-                                samePostion = P2.returnPostion(i);
+                                samePostion = P2.getPiecePosition(i);
                                 if (samePostion.x == newP.x && samePostion.y == newP.y) {
                                     if (P1.setSeentoSiliders(P1.GetInhand(), samePostion)) {
                                         break;
@@ -95,13 +95,13 @@ public class MainPanel extends JPanel {
                                     if (P1.GetInhand() != i)// check if there is peices in the WAY
                                     {
                                         if (i < 17) {
-                                            flag = P1.checktheWay(newP, P2.returnPostion(i), P1.GetInhand());// Means
+                                            flag = P1.checktheWay(newP, P2.getPiecePosition(i), P1.GetInhand());// Means
                                             // there is
                                             // somting in
                                             // the Way so
                                             // can't move
                                         } else {
-                                            flag = P1.checktheWay(newP, P1.returnPostion(i), P1.GetInhand());
+                                            flag = P1.checktheWay(newP, P1.getPiecePosition(i), P1.GetInhand());
                                         }
 
                                         if (flag == true) {
@@ -115,10 +115,10 @@ public class MainPanel extends JPanel {
                                 if (!flag && P1.Pice_already_there(newP)) // (if flag =false this means "The pice able to MOVE as logic""
                                 {
                                     Point myold = new Point();
-                                    Point o = P1.returnPostion(P1.GetInhand());
+                                    Point o = P1.getPiecePosition(P1.GetInhand());
                                     myold.x = o.x;
                                     myold.y = o.y;
-                                    Point other = new Point();
+                                    Point other;
                                     Point f = new Point();
                                     boolean kill = false;
                                     int killed = -1;
@@ -128,7 +128,7 @@ public class MainPanel extends JPanel {
                                     for (int k = 1; k < 17; k++) {
                                         // I have to Check the Place
 
-                                        other = P2.returnPostion(k);
+                                        other = P2.getPiecePosition(k);
 
                                         if (newP.x == other.x && newP.y == other.y) {
 
@@ -250,15 +250,15 @@ public class MainPanel extends JPanel {
                         newP.y /= Divide;
                         newP.x++;
                         newP.y++;
-                        P2.returnOldPostion(P2.GetInhand());
-                        Point present = P2.returnPostion(P2.GetInhand());
+                        P2.getPieceOldPosition(P2.GetInhand());
+                        Point present = P2.getPiecePosition(P2.GetInhand());
 
                         // set the seen of the Pawn -black
                         // set the seen of the Pawn -black
                         // set the seen of the Pawn -black
                         if (P2.GetInhand() < 17 && P2.GetInhand() > 8) {
                             for (int i = 17; i < 33; i++) {
-                                samePostion = P1.returnPostion(i);
+                                samePostion = P1.getPiecePosition(i);
 
                                 if (samePostion.x == newP.x && samePostion.y == newP.y) {
                                     if (P2.setSeentoSiliders(P2.GetInhand(), samePostion)) {
@@ -275,9 +275,9 @@ public class MainPanel extends JPanel {
                                 for (int i = 1; i <= 32; i++) {
                                     if (P2.GetInhand() != i) {
                                         if (i < 17) {
-                                            flag = P2.checktheWay(newP, P2.returnPostion(i), P2.GetInhand());
+                                            flag = P2.checktheWay(newP, P2.getPiecePosition(i), P2.GetInhand());
                                         } else {
-                                            flag = P2.checktheWay(newP, P1.returnPostion(i), P2.GetInhand());
+                                            flag = P2.checktheWay(newP, P1.getPiecePosition(i), P2.GetInhand());
                                         }
 
                                         if (flag) {
@@ -289,7 +289,7 @@ public class MainPanel extends JPanel {
                                 for (int i = 1; i <= 16 && !flag; i++) {
                                     if (P2.GetInhand() != i) {
                                         if (flag == false) {
-                                            samePostion = P2.returnPostion(i);
+                                            samePostion = P2.getPiecePosition(i);
                                             if (newP.x == samePostion.x && newP.y == samePostion.y) {
                                                 flag = true;
                                                 break;
@@ -305,19 +305,19 @@ public class MainPanel extends JPanel {
                                 }
 
                                 if (!flag) {
-                                    P2.returnPostion(8);
+                                    P2.getPiecePosition(8);
                                     Point myold = new Point();
-                                    Point o = P2.returnPostion(P2.GetInhand());
+                                    Point o = P2.getPiecePosition(P2.GetInhand());
                                     myold.x = o.x;
                                     myold.y = o.y;
-                                    Point other = new Point();
+                                    Point other;
                                     Point f = new Point();
                                     boolean kill = false;
                                     boolean end_move = true;
                                     int killed = -1;
 
                                     for (int k = 17; k < 33; k++) {
-                                        other = P1.returnPostion(k);
+                                        other = P1.getPiecePosition(k);
                                         if (newP.x == other.x && newP.y == other.y) {
 
                                             int inHand = P2.GetInhand();
@@ -325,7 +325,7 @@ public class MainPanel extends JPanel {
                                             if (inHand > 8 && P2.returnsoliderSeen(inHand)) {
                                                 kill = true;
 
-                                                other = P1.returnPostion(k);
+                                                other = P1.getPiecePosition(k);
 
                                                 f.x = other.x;
                                                 f.y = other.y;
@@ -334,7 +334,7 @@ public class MainPanel extends JPanel {
                                             } else if (inHand <= 8) {
                                                 kill = true;
 
-                                                other = P1.returnPostion(k);
+                                                other = P1.getPiecePosition(k);
 
                                                 f.x = other.x;
                                                 f.y = other.y;
@@ -618,7 +618,7 @@ public class MainPanel extends JPanel {
                 if (players_turn == 1 && P1.GetInhand() == -1)// Player 1
                 {
                     for (int i = 17; i <= 32; i++) {
-                        Point p = P1.returnPostion(i);
+                        Point p = P1.getPiecePosition(i);
                         if (p.x == newX && p.y == newY) {
                             P1.SetInhand(i);
                             whenHandleAndPice(x, y);
@@ -628,7 +628,7 @@ public class MainPanel extends JPanel {
                 } else if (players_turn == 2 && P2.GetInhand() == -1)// Player 2
                 {
                     for (int i = 1; i <= 16; i++) {
-                        Point p = P2.returnPostion(i);
+                        Point p = P2.getPiecePosition(i);
                         if (p.x == newX && p.y == newY) {
                             P2.SetInhand(i);
                             whenHandleAndPice(x, y);
@@ -655,12 +655,12 @@ public class MainPanel extends JPanel {
     private void ChangeTurn() {
         if (players_turn == 1) {
             players_turn = 2;
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+            myTool.add_to_History("White : " + P1.AboutLastMove());
             myStatus.changeStatus(" Black player turn");
             myTool.change_to_Timer2();
         } else if (players_turn == 2) {
             players_turn = 1;
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+            myTool.add_to_History("Black : " + P2.AboutLastMove());
             myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
@@ -671,12 +671,12 @@ public class MainPanel extends JPanel {
         if (players_turn == 1) {
 
             players_turn = 2;
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+            myTool.add_to_History("White : " + P1.AboutLastMove());
             myTool.change_to_Timer2();
         } else if (players_turn == 2) {
 
             players_turn = 1;
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+            myTool.add_to_History("Black : " + P2.AboutLastMove());
             myTool.change_to_Timer1();
         }
 
@@ -717,12 +717,12 @@ public class MainPanel extends JPanel {
     private void NetChangeTurn() {
         if (players_turn == 2) {
 
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+            myTool.add_to_History("White : " + P1.AboutLastMove());
             myStatus.changeStatus(" Black player turn");
             myTool.change_to_Timer2();
         } else if (players_turn == 1) {
 
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+            myTool.add_to_History("Black : " + P2.AboutLastMove());
             myTool.change_to_Timer1();
             myStatus.changeStatus(" White player turn");
         }
@@ -732,11 +732,11 @@ public class MainPanel extends JPanel {
     private void NeTGameCheckStatus() {
         if (players_turn == 1) {
 
-            myTool.add_to_History("White : " + P1.Tell_me_About_last_move());
+            myTool.add_to_History("White : " + P1.AboutLastMove());
             myTool.change_to_Timer2();
         } else if (players_turn == 2) {
 
-            myTool.add_to_History("Black : " + P2.Tell_me_About_last_move());
+            myTool.add_to_History("Black : " + P2.AboutLastMove());
             myTool.change_to_Timer1();
         }
         myStatus.changeStatus(" Check! ");
@@ -774,7 +774,7 @@ public class MainPanel extends JPanel {
                     postionPoint = P2.getPixelPoint(i);
 
                 } else {
-                    postionPoint = P2.returnPostion(i);
+                    postionPoint = P2.getPiecePosition(i);
                 }
                 img = P2.returnIconImage(i);
 
@@ -785,7 +785,7 @@ public class MainPanel extends JPanel {
                     postionPoint = P1.getPixelPoint(i);
 
                 } else {
-                    postionPoint = P1.returnPostion(i);
+                    postionPoint = P1.getPiecePosition(i);
                 }
                 img = P1.returnIconImage(i);
             }

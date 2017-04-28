@@ -27,68 +27,7 @@ public class Knight extends Piece {
         return new Point();
     }
 
-    public Point getpixelPoint() {
-        return pixelPoint;
-    }
-
-    public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;
-        }
-        return false;
-    }
-
-    public Point returnOld() {
-        return (Point) old.clone();
-
-    }
-
-    public Image returnPieceImage() {
-        return icon.returnPieceIcon();
-    }
-
-    public Point returnPostion() {
-        return (Point) p.clone();
-    }
-
-    public int returnX() {
-        return X;
-    }
-
-    public int returnY() {
-        return Y;
-    }
-
-    public void setPixels(int newpixelX, int newpixelY) {
-        pixelPoint.x = newpixelX;
-        pixelPoint.y = newpixelY;
-    }
-
-    public void setPoint(Point newPoint) {
-        old.x = p.x;
-        old.y = p.y;
-        X = p.x = newPoint.x;
-        Y = p.y = newPoint.y;
-    }
-
-    public void setX(int newX) {
-        X = newX;
-        p.x = X;
-    }
-
-    public void setY(int newY) {
-        Y = newY;
-        p.y = Y;
-    }
-
-    public String Tell_me() {
-        return "Horse= (" + p.x + ',' + p.y + ")";
-    }
-
-    public void toOld(Point Old) {
-
-        p.x = Old.x;
-        p.y = Old.y;
-
+    public String toString() {
+        return "Knight to (" + p.x + ',' + p.y + ")";
     }
 }

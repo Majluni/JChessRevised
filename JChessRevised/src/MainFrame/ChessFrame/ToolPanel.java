@@ -109,6 +109,11 @@ public class ToolPanel extends JPanel {
         add(HistoryScroll);
 
     }
+    
+    public void setTimers(short time1, short time2) {
+        Timer1.setTime(time1);
+        Timer2.setTime(time2);
+    }
 
     public void add_to_History(Object newItem) {
         HistoryList.addElemen_tolist(newItem);

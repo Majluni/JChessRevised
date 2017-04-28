@@ -1,6 +1,5 @@
 package MainFrame.ChessFrame.players.Pieces;
 
-import java.awt.Image;
 import java.awt.Point;
 
 public class Rook extends Piece {
@@ -68,17 +67,6 @@ public class Rook extends Piece {
         return new Point();
     }
 
-    public Point getpixelPoint() {
-        return pixelPoint;
-    }
-
-    public boolean Inthispostion(int x, int y) {
-        if (p.x == x && p.y == y) {
-            return true;
-        }
-        return false;
-    }
-
     public boolean PieceInMYway(int x, int y, Point othersPostion) {
         int j = y;
         int i = x;
@@ -122,59 +110,7 @@ public class Rook extends Piece {
         return false;
     }
 
-    public Point returnOld() {
-        return old;
-    }
-
-    public Image returnPieceImage() {
-        return icon.returnPieceIcon();
-    }
-
-    public Point returnPostion() {
-
-        return (Point) p.clone();
-    }
-
-    public int returnX() {
-        X = p.x;
-        return X;
-    }
-
-    public int returnY() {
-        Y = p.y;
-        return Y;
-    }
-
-    public void setPixels(int newpixelX, int newpixelY) {
-        pixelPoint.x = newpixelX;
-        pixelPoint.y = newpixelY;
-    }
-
-    public void setPoint(Point newPoint) {
-        old.x = p.x;
-        old.y = p.y;
-        X = p.x = newPoint.x;
-        Y = p.y = newPoint.y;
-    }
-
-    public void setX(int newX) {
-        X = newX;
-        p.x = newX;
-    }
-
-    public void setY(int newY) {
-        Y = newY;
-        p.y = newY;
-    }
-
-    public String Tell_me() {
-        return "Castle= (" + p.x + ',' + p.y + ")";
-    }
-
-    public void toOld(Point Old) {
-
-        p.x = Old.x;
-        p.y = Old.y;
-
+    public String toString() {
+        return "Rook to (" + p.x + ',' + p.y + ")";
     }
 }
