@@ -1,11 +1,11 @@
 package MainFrame.ChessFrame.players;
 
-import MainFrame.ChessFrame.players.Pieces.Bishop;
-import MainFrame.ChessFrame.players.Pieces.King;
-import MainFrame.ChessFrame.players.Pieces.Knight;
-import MainFrame.ChessFrame.players.Pieces.Pawn;
-import MainFrame.ChessFrame.players.Pieces.Queen;
 import MainFrame.ChessFrame.players.Pieces.Rook;
+import MainFrame.ChessFrame.players.Pieces.Bishop;
+import MainFrame.ChessFrame.players.Pieces.Knight;
+import MainFrame.ChessFrame.players.Pieces.Queen;
+import MainFrame.ChessFrame.players.Pieces.Pawn;
+import MainFrame.ChessFrame.players.Pieces.King;
 import java.awt.Image;
 import java.awt.Point;
 
@@ -46,82 +46,81 @@ public class Player1 {
         }
     }
 
-    public Point returnPostion(int i) {
-
+    public Point getPiecePosition(int i) {
         switch (i) {
 
             case 17:
-                return WC1.returnPostion();
+                return WC1.getP();
             case 18:
-                return WC2.returnPostion();
+                return WC2.getP();
             case 19:
-                return WH1.returnPostion();
+                return WH1.getP();
             case 20:
-                return WH2.returnPostion();
+                return WH2.getP();
             case 21:
-                return WE1.returnPostion();
+                return WE1.getP();
             case 22:
-                return WE2.returnPostion();
+                return WE2.getP();
             case 23:
-                return WQ.returnPostion();
+                return WQ.getP();
             case 24:
-                return WK.returnPostion();
+                return WK.getP();
             case 25:
-                return WS[0].returnPostion();
+                return WS[0].getP();
             case 26:
-                return WS[1].returnPostion();
+                return WS[1].getP();
             case 27:
-                return WS[2].returnPostion();
+                return WS[2].getP();
             case 28:
-                return WS[3].returnPostion();
+                return WS[3].getP();
             case 29:
-                return WS[4].returnPostion();
+                return WS[4].getP();
             case 30:
-                return WS[5].returnPostion();
+                return WS[5].getP();
             case 31:
-                return WS[6].returnPostion();
+                return WS[6].getP();
             case 32:
-                return WS[7].returnPostion();
+                return WS[7].getP();
         }
         return new Point(-1, -1);
     }
 
-    public Point returnOldPostion(int i) {
+    public Point getPieceOldPosition(int i) {
 
         switch (i) {
 
             case 17:
-                return WC1.returnOld();
+                return WC1.getOld();
             case 18:
-                return WC2.returnOld();
+                return WC2.getOld();
             case 19:
-                return WH1.returnOld();
+                return WH1.getOld();
             case 20:
-                return WH2.returnOld();
+                return WH2.getOld();
             case 21:
-                return WE1.returnOld();
+                return WE1.getOld();
             case 22:
-                return WE2.returnOld();
+                return WE2.getOld();
             case 23:
-                return WQ.returnOld();
+                return WQ.getOld();
             case 24:
-                return WK.returnOld();
+                return WK.getOld();
             case 25:
-                return WS[0].returnOld();
+                return WS[0].getOld();
             case 26:
-                return WS[1].returnOld();
+                return WS[1].getOld();
             case 27:
-                return WS[2].returnOld();
+                return WS[2].getOld();
             case 28:
-                return WS[3].returnOld();
+                return WS[3].getOld();
             case 29:
-                return WS[4].returnOld();
+                return WS[4].getOld();
             case 30:
-                return WS[5].returnOld();
+                return WS[5].getOld();
             case 31:
-                return WS[6].returnOld();
+                return WS[6].getOld();
             case 32:
-                return WS[7].returnOld();
+                return WS[7].getOld();
         }
         return new Point(-1, -1);
     }
@@ -131,41 +130,41 @@ public class Player1 {
         switch (i) {
 
             case 17: {
-                return WC1.returnPieceImage();
+                return WC1.getPieceImage();
             }
             case 18: {
-                return WC2.returnPieceImage();
+                return WC2.getPieceImage();
             }
             case 19: {
-                return WH1.returnPieceImage();
+                return WH1.getPieceImage();
             }
             case 20: {
-                return WH2.returnPieceImage();
+                return WH2.getPieceImage();
             }
             case 21:
-                return WE1.returnPieceImage();
+                return WE1.getPieceImage();
             case 22:
-                return WE2.returnPieceImage();
+                return WE2.getPieceImage();
             case 23:
-                return WQ.returnPieceImage();
+                return WQ.getPieceImage();
             case 24:
-                return WK.returnPieceImage();
+                return WK.getPieceImage();
             case 25:
-                return WS[0].returnPieceImage();
+                return WS[0].getPieceImage();
             case 26:
-                return WS[1].returnPieceImage();
+                return WS[1].getPieceImage();
             case 27:
-                return WS[2].returnPieceImage();
+                return WS[2].getPieceImage();
             case 28:
-                return WS[3].returnPieceImage();
+                return WS[3].getPieceImage();
             case 29:
-                return WS[4].returnPieceImage();
+                return WS[4].getPieceImage();
             case 30:
-                return WS[5].returnPieceImage();
+                return WS[5].getPieceImage();
             case 31:
-                return WS[6].returnPieceImage();
+                return WS[6].getPieceImage();
             case 32:
-                return WS[7].returnPieceImage();
+                return WS[7].getPieceImage();
         }
         return null;
     }
@@ -339,37 +338,37 @@ public class Player1 {
         switch (choosenOne) {
 
             case 17:
-                return WC1.getpixelPoint();
+                return WC1.getPixelPoint();
             case 18:
-                return WC2.getpixelPoint();
+                return WC2.getPixelPoint();
             case 19:
-                return WH1.getpixelPoint();
+                return WH1.getPixelPoint();
             case 20:
-                return WH2.getpixelPoint();
+                return WH2.getPixelPoint();
             case 21:
-                return WE1.getpixelPoint();
+                return WE1.getPixelPoint();
             case 22:
-                return WE2.getpixelPoint();
+                return WE2.getPixelPoint();
             case 23:
-                return WQ.getpixelPoint();
+                return WQ.getPixelPoint();
             case 24:
-                return WK.getpixelPoint();
+                return WK.getPixelPoint();
             case 25:
-                return WS[0].getpixelPoint();
+                return WS[0].getPixelPoint();
             case 26:
-                return WS[1].getpixelPoint();
+                return WS[1].getPixelPoint();
             case 27:
-                return WS[2].getpixelPoint();
+                return WS[2].getPixelPoint();
             case 28:
-                return WS[3].getpixelPoint();
+                return WS[3].getPixelPoint();
             case 29:
-                return WS[4].getpixelPoint();
+                return WS[4].getPixelPoint();
             case 30:
-                return WS[5].getpixelPoint();
+                return WS[5].getPixelPoint();
             case 31:
-                return WS[6].getpixelPoint();
+                return WS[6].getPixelPoint();
             case 32:
-                return WS[7].getpixelPoint();
+                return WS[7].getPixelPoint();
         }
         return null;
     }
@@ -439,21 +438,21 @@ public class Player1 {
     public boolean returnPawnSeen(int i) {
         switch (i) {
             case 25:
-                return WS[0].returnMyseen();
+                return WS[0].getSeen();
             case 26:
-                return WS[1].returnMyseen();
+                return WS[1].getSeen();
             case 27:
-                return WS[2].returnMyseen();
+                return WS[2].getSeen();
             case 28:
-                return WS[3].returnMyseen();
+                return WS[3].getSeen();
             case 29:
-                return WS[4].returnMyseen();
+                return WS[4].getSeen();
             case 30:
-                return WS[5].returnMyseen();
+                return WS[5].getSeen();
             case 31:
-                return WS[6].returnMyseen();
+                return WS[6].getSeen();
             case 32:
-                return WS[7].returnMyseen();
+                return WS[7].getSeen();
         }
         return false;
     }
@@ -624,11 +623,11 @@ public class Player1 {
 
             inHand = -1;
             return false;
-        } else if (!CastleGenerate_moves(Enemy, WC1)) {
+        } else if (!RookGenerate_moves(Enemy, WC1)) {
 
             inHand = -1;
             return false;
-        } else if (!CastleGenerate_moves(Enemy, WC2)) {
+        } else if (!RookGenerate_moves(Enemy, WC2)) {
 
             inHand = -1;
             return false;
@@ -671,8 +670,8 @@ public class Player1 {
 
     public boolean seeIfChecked(Player2 Black) {
 
-        Point My_King_Postion = WK.returnPostion();
-        boolean flag;
+        Point My_King_Postion = WK.getP();
+        boolean flag = false;
 
         //////////    Start Checking the King ////////////
         for (int i = 1; i < 17; i++) {
@@ -684,7 +683,7 @@ public class Player1 {
 
                         if (j < 17) {
 
-                            if (Black.checktheWay(My_King_Postion, Black.returnPostion(j), i)) {
+                            if (Black.checktheWay(My_King_Postion, Black.getPiecePosition(j), i)) {
                                 //Means there is something in the Way so can't move'
 
                                 flag = false;
@@ -693,7 +692,7 @@ public class Player1 {
                         } else {
 
                             if (j != 24) {
-                                if (Black.checktheWay(My_King_Postion, returnPostion(j), i)) {
+                                if (Black.checktheWay(My_King_Postion, getPiecePosition(j), i)) {
 
                                     flag = false;
                                     //Means there is something in the Way so can't move'
@@ -737,7 +736,7 @@ public class Player1 {
 
                 //Check if there is White Pices in the new Point
                 //If so we Can't move (Same Color)!!
-                samePostion = returnPostion(i);
+                samePostion = getPiecePosition(i);
                 if (newP.x == samePostion.x && newP.y == samePostion.y) {
 
                     return false;
@@ -752,7 +751,7 @@ public class Player1 {
     public boolean Pice_already_there_from_enemy(Point newP, Player2 enemy) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
-            samePostion = enemy.returnPostion(i);
+            samePostion = enemy.getPiecePosition(i);
             if (newP.x == samePostion.x && newP.y == samePostion.y) {
 
                 return false;
@@ -766,7 +765,7 @@ public class Player1 {
     public int Get_Pice_already_there_from_enemy(Point newP, Player2 enemy) {
         Point samePostion;
         for (int i = 1; i <= 16; i++) {
-            samePostion = enemy.returnPostion(i);
+            samePostion = enemy.getPiecePosition(i);
             if (newP.x == samePostion.x && newP.y == samePostion.y) {
 
                 return i;
@@ -784,8 +783,8 @@ public class Player1 {
         Point PlaceCheck = new Point();
         inHand = 24;
 
-        int x = WK.returnX();
-        int y = WK.returnY();
+        int x = WK.getX();
+        int y = WK.getY();
         Oldp.x = x;
         Oldp.y = y;
 
@@ -796,7 +795,7 @@ public class Player1 {
             PlaceCheck.x = x + 1;
             PlaceCheck.y = y;
 
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
             if (Pice_already_there(PlaceCheck)) {
@@ -823,7 +822,7 @@ public class Player1 {
             WK.setY(y + 1);
             PlaceCheck.x = x;
             PlaceCheck.y = y + 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
             if (Pice_already_there(PlaceCheck)) {
@@ -854,7 +853,7 @@ public class Player1 {
             PlaceCheck.x = x;
             PlaceCheck.y = y - 1;
 
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
 
@@ -884,7 +883,7 @@ public class Player1 {
 
             PlaceCheck.x = x - 1;
             PlaceCheck.y = y;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
             if (Pice_already_there(PlaceCheck)) {
@@ -912,7 +911,7 @@ public class Player1 {
             PlaceCheck.x = x - 1;
             PlaceCheck.y = y - 1;
 
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
             if (Pice_already_there(PlaceCheck)) {
@@ -940,7 +939,7 @@ public class Player1 {
 
             PlaceCheck.x = x + 1;
             PlaceCheck.y = y + 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
             if (Pice_already_there(PlaceCheck)) {
@@ -968,7 +967,7 @@ public class Player1 {
 
             PlaceCheck.x = x + 1;
             PlaceCheck.y = y - 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
             if (Pice_already_there(PlaceCheck)) {
@@ -995,7 +994,7 @@ public class Player1 {
 
             PlaceCheck.x = x - 1;
             PlaceCheck.y = y + 1;
-            if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+            if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                 somthing_killed = true;
             }
             if (Pice_already_there(PlaceCheck)) {
@@ -1021,13 +1020,13 @@ public class Player1 {
 
     }
 
-    public boolean CastleGenerate_moves(Player2 enemy, Rook WC) {
+    public boolean RookGenerate_moves(Player2 enemy, Rook WC) {
         boolean somthing_killed = false;
         Point Oldp1 = new Point();
 
         Point PlaceCheck = new Point();
-        int x1 = WC.returnX();
-        int y1 = WC.returnY();
+        int x1 = WC.getX();
+        int y1 = WC.getY();
 
         if (WC == WC1) {
             inHand = 17;
@@ -1047,7 +1046,7 @@ public class Player1 {
                 PlaceCheck.x = i;
 
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
                     if (Pice_already_there(PlaceCheck)) {
@@ -1081,7 +1080,7 @@ public class Player1 {
                 WC.setY(i);
                 PlaceCheck.y = i;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
                     if (Pice_already_there(PlaceCheck)) {
@@ -1120,10 +1119,10 @@ public class Player1 {
 
     public boolean ElephentGenerate_moves(Player2 enemy, Bishop WE) {
         boolean somthing_killed = false;
-        Point Oldp1;
+        Point Oldp1 = new Point();
         Point PlaceCheck = new Point();
 
-        Oldp1 = WE.returnPostion();
+        Oldp1 = WE.getP();
 
         if (WE == WE1) {
             inHand = 21;
@@ -1139,7 +1138,7 @@ public class Player1 {
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
                     if (Pice_already_there(PlaceCheck)) {
@@ -1172,7 +1171,7 @@ public class Player1 {
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
                     if (Pice_already_there(PlaceCheck)) {
@@ -1208,9 +1207,9 @@ public class Player1 {
     }
 
     public boolean HosreGenerate_moves(Player2 enemy, Knight WH) {
-        Point oldp1;
+        Point oldp1 = new Point();
         boolean somthing_killed = false;
-        oldp1 = WH.returnPostion();
+        oldp1 = WH.getP();
 
         Point PlaceCheck = new Point();
 
@@ -1231,7 +1230,7 @@ public class Player1 {
                 PlaceCheck.x = x + 1;
                 PlaceCheck.y = y + 2;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
 
@@ -1258,7 +1257,7 @@ public class Player1 {
                 WH.setY(y - 2);
                 PlaceCheck.x = x + 1;
                 PlaceCheck.y = y - 2;
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
 
@@ -1284,7 +1283,7 @@ public class Player1 {
                 PlaceCheck.x = x + 2;
                 PlaceCheck.y = y + 1;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
 
@@ -1309,7 +1308,7 @@ public class Player1 {
                 WH.setY(y - 1);
                 PlaceCheck.x = x + 2;
                 PlaceCheck.y = y - 1;
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
 
@@ -1335,7 +1334,7 @@ public class Player1 {
                 PlaceCheck.x = x - 1;
                 PlaceCheck.y = y + 2;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
 
@@ -1360,7 +1359,7 @@ public class Player1 {
                 WH.setY(y - 2);
                 PlaceCheck.x = x - 1;
                 PlaceCheck.y = y - 2;
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
 
@@ -1386,7 +1385,7 @@ public class Player1 {
                 PlaceCheck.x = x - 2;
                 PlaceCheck.y = y + 1;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
                 if (Pice_already_there(PlaceCheck)) {
@@ -1412,7 +1411,7 @@ public class Player1 {
                 PlaceCheck.x = x - 2;
                 PlaceCheck.y = y - 1;
 
-                if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                     somthing_killed = true;
                 }
 
@@ -1441,9 +1440,9 @@ public class Player1 {
     public boolean QueenGenerate_moves(Player2 enemy) {
         boolean somthing_killed = false;
 
-        Point Oldp1;
+        Point Oldp1 = new Point();
 
-        Oldp1 = WQ.returnPostion();
+        Oldp1 = WQ.getP();
 
         Point PlaceCheck = new Point();
 
@@ -1457,7 +1456,7 @@ public class Player1 {
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
 
@@ -1491,7 +1490,7 @@ public class Player1 {
                 PlaceCheck.x = x;
                 PlaceCheck.y = y;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
                     if (Pice_already_there(PlaceCheck)) {
@@ -1526,7 +1525,7 @@ public class Player1 {
 
                 PlaceCheck.x = i;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
                     if (Pice_already_there(PlaceCheck)) {
@@ -1559,7 +1558,7 @@ public class Player1 {
                 WQ.setY(i);
                 PlaceCheck.y = i;
                 if (Check_The_Way_to_Postion(enemy, Oldp1)) {
-                    if (kill_to_protect_king(enemy, returnPostion(inHand))) {
+                    if (kill_to_protect_king(enemy, getPiecePosition(inHand))) {
                         somthing_killed = true;
                     }
                     if (Pice_already_there(PlaceCheck)) {
@@ -1593,8 +1592,8 @@ public class Player1 {
     }
 
     public boolean SoliderGenerate_moves(Player2 enemy, Pawn Sold) {
-        Point Oldp1;
-        Oldp1 = Sold.returnPostion();
+        Point Oldp1 = new Point();
+        Oldp1 = Sold.getP();
         Point PlaceCheck = new Point();
         PlaceCheck.x = Oldp1.x;
         PlaceCheck.y = Oldp1.y;
@@ -1667,15 +1666,15 @@ public class Player1 {
     }
 
     public boolean Check_The_Way_to_Postion(Player2 enemy, Point newP) {
-        boolean flag;
+        boolean flag = false;
 
         for (int i = 1; i <= 32; i++) {
             if (inHand != i)// check if there is peices in the WAY
             {
                 if (i < 17) {
-                    flag = checktheWay(newP, enemy.returnPostion(i), inHand);//Means there is somting in the Way so can't move
+                    flag = checktheWay(newP, enemy.getPiecePosition(i), inHand);//Means there is somting in the Way so can't move
                 } else {
-                    flag = checktheWay(newP, returnPostion(i), inHand);
+                    flag = checktheWay(newP, getPiecePosition(i), inHand);
                 }
 
                 if (flag == true) {
@@ -1691,7 +1690,7 @@ public class Player1 {
 
         for (int i = 1; i < 17; i++) {
 
-            other = enemy.returnPostion(i);
+            other = enemy.getPiecePosition(i);
             if (other.x == newP.x && other.y == newP.y) {
                 ate_to_protect = i;
 
@@ -1703,41 +1702,41 @@ public class Player1 {
         return false;
     }
 
-    public String Tell_me_About_last_move() {
+    public String AboutLastMove() {
         switch (inHand) {
 
             case 17:
-                return WC1.Tell_me();
+                return WC1.toString();
             case 18:
-                return WC2.Tell_me();
+                return WC2.toString();
             case 19:
-                return WH1.Tell_me();
+                return WH1.toString();
             case 20:
-                return WH2.Tell_me();
+                return WH2.toString();
             case 21:
-                return WE1.Tell_me();
+                return WE1.toString();
             case 22:
-                return WE2.Tell_me();
+                return WE2.toString();
             case 23:
-                return WQ.Tell_me();
+                return WQ.toString();
             case 24:
-                return WK.Tell_me();
+                return WK.toString();
             case 25:
-                return WS[0].Tell_me();
+                return WS[0].toString();
             case 26:
-                return WS[1].Tell_me();
+                return WS[1].toString();
             case 27:
-                return WS[2].Tell_me();
+                return WS[2].toString();
             case 28:
-                return WS[3].Tell_me();
+                return WS[3].toString();
             case 29:
-                return WS[4].Tell_me();
+                return WS[4].toString();
             case 30:
-                return WS[5].Tell_me();
+                return WS[5].toString();
             case 31:
-                return WS[6].Tell_me();
+                return WS[6].toString();
             case 32:
-                return WS[7].Tell_me();
+                return WS[7].toString();
         }
         return null;
     }

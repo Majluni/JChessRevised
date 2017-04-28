@@ -22,7 +22,7 @@ public abstract class Piece {
         p.y = Y;
     }
  
-    public PieceIcon getPieceIcon()
+    public PieceIcon returnPieceIcon()
     {
         return icon;
     }
@@ -47,7 +47,7 @@ public abstract class Piece {
         this.Y = Y;
     }
 
-    public Point getPixelPoint() {
+    public Point returnPixelPoint() {
         return pixelPoint;
     }
 
@@ -59,6 +59,11 @@ public abstract class Piece {
         return p;
     }
 
+    public Point getPixelPoint()
+    {
+        return pixelPoint;
+    }
+    
     public void setP(Point p) {
         this.p = p;
     }
